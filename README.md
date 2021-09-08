@@ -4,7 +4,7 @@
 
 Este repositório é referente ao trabalho do sistema SCOA, para o CEFET/RJ. Matéria **insira aqui o nome da matéria**, do professor Sildenir.
 
-Alunos: João Pedro Bernardo, Leonardo Landa, Caio Tenorio, Pedro Martins
+Alunos: João Pedro Bernardo, Leonardo Landa, Caio Tenorio, Pedro Henrique Martins
 
 ## Coisas úteis: 
 
@@ -24,5 +24,7 @@ Caso de uso:
 https://lucid.app/lucidchart/invitations/accept/inv_ed007622-d5ea-4508-a15a-1390247ed7a5?viewport_loc=603%2C-141%2C2720%2C1221%2C0_0
 
 Site de apoio UML: https://www.ateomomento.com.br/uml-diagrama-de-classes/
+
+Explicação muito ruim do conceito básico do git, por Pedro Santos: https://www.loom.com/share/770fcef750324a9088cf82accef8fa8c
 
 🤠👍
