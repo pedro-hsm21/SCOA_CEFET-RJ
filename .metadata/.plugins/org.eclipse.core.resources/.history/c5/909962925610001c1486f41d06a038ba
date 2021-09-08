@@ -86,7 +86,7 @@ public class TelaCadastroCurso extends JFrame {
 		lblNomeCadastroCurso.setBounds(10, 11, 60, 20);
 		panelCadastroCurso.add(lblNomeCadastroCurso);
 		lblNomeCadastroCurso.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblNomeCadastroCurso.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNomeCadastroCurso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNomeCadastroCurso.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		textFieldNomeCadastroCurso = new JTextField();
