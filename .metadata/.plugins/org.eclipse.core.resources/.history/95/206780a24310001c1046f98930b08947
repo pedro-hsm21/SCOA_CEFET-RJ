@@ -1,0 +1,130 @@
+package view;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Panel;
+import java.awt.Component;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import java.awt.TextArea;
+import javax.swing.JButton;
+
+public class TelaCadastroCurso extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField textFieldNome;
+	private JTextField textFieldTipo;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroCurso frame = new TelaCadastroCurso();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public TelaCadastroCurso() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Cadastrar Curso");
+		setResizable(false);
+		setBounds(100, 100, 1024, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblCadastrarCurso = new JLabel("Cadastrar Curso");
+		lblCadastrarCurso.setBounds(10, 11, 998, 70);
+		contentPane.add(lblCadastrarCurso);
+		lblCadastrarCurso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastrarCurso.setFont(new Font("Tahoma", Font.BOLD, 40));
+		
+		Panel panel = new Panel();
+		panel.setBackground(Color.GRAY);
+		panel.setBounds(10, 87, 998, 474);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(10, 11, 60, 20);
+		panel.add(lblNome);
+		lblNome.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNome.setForeground(Color.WHITE);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		textFieldNome = new JTextField();
+		textFieldNome.setBounds(80, 13, 908, 20);
+		panel.add(textFieldNome);
+		textFieldNome.setColumns(10);
+		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setBounds(10, 42, 60, 20);
+		panel.add(lblTipo);
+		lblTipo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTipo.setForeground(Color.WHITE);
+		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTipo.setAlignmentX(0.5f);
+		
+		textFieldTipo = new JTextField();
+		textFieldTipo.setBounds(80, 44, 908, 20);
+		panel.add(textFieldTipo);
+		textFieldTipo.setColumns(10);
+		
+		JLabel lblQtdPeriodos = new JLabel("Qtd de Per\u00EDodos:");
+		lblQtdPeriodos.setBounds(10, 73, 136, 20);
+		panel.add(lblQtdPeriodos);
+		lblQtdPeriodos.setHorizontalAlignment(SwingConstants.LEFT);
+		lblQtdPeriodos.setForeground(Color.WHITE);
+		lblQtdPeriodos.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblQtdPeriodos.setAlignmentX(0.5f);
+		
+		JSpinner spinnerQtdPeriodos = new JSpinner();
+		spinnerQtdPeriodos.setBounds(156, 75, 40, 20);
+		panel.add(spinnerQtdPeriodos);
+		
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(10, 104, 120, 20);
+		panel.add(lblDescricao);
+		lblDescricao.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDescricao.setForeground(Color.WHITE);
+		lblDescricao.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescricao.setAlignmentX(0.5f);
+		
+		TextArea textAreaDescricao = new TextArea();
+		textAreaDescricao.setBounds(10, 130, 978, 250);
+		panel.add(textAreaDescricao);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setBounds(504, 413, 480, 50);
+		panel.add(btnLimpar);
+		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(12, 413, 480, 50);
+		panel.add(btnCadastrar);
+		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+	}
+}

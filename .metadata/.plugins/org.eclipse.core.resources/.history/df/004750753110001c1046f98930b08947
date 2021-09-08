@@ -1,0 +1,74 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Panel;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+public class TelaCadastroDisciplina extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroDisciplina frame = new TelaCadastroDisciplina();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public TelaCadastroDisciplina() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Cadastrar Curso");
+		setResizable(false);
+		setBounds(100, 100, 1024, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblCadastrarDisciplina = new JLabel("Cadastrar Disciplina");
+		lblCadastrarDisciplina.setBounds(10, 11, 998, 70);
+		contentPane.add(lblCadastrarDisciplina);
+		lblCadastrarDisciplina.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastrarDisciplina.setFont(new Font("Tahoma", Font.BOLD, 40));
+		
+		Panel panel = new Panel();
+		panel.setBackground(Color.GRAY);
+		panel.setBounds(10, 87, 998, 474);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(10, 11, 60, 20);
+		panel.add(lblNome);
+		lblNome.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNome.setForeground(Color.WHITE);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 16));
+	}
+
+}
