@@ -1,15 +1,16 @@
+## Informação geral do Projeto
+
 ### Trabalho SCOA
 
 Este repositório é referente ao trabalho do sistema SCOA, para o CEFET/RJ. Matéria **insira aqui o nome da matéria**, do professor Sildenir.
 
-
 Alunos: João Pedro Bernardo, Leonardo Landa, Caio Tenorio, Pedro Martins
 
+## Coisas úteis: 
 
-Coisas úteis: 
-
-Cor primaria azul: #1F3A68
-Cor Primária roxa: #8661AB
+### Cores
+- Cor primaria azul: #1F3A68
+- Cor Primária roxa: #8661AB
 
 Resolução base: 1024 x 600
 
