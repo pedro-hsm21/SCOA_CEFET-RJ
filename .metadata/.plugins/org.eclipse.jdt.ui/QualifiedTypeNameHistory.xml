@@ -2,4 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="javax.swing.BorderFactory"/>
+<fullyQualifiedTypeName name="javax.swing.text.DefaultFormatterFactory"/>
+<fullyQualifiedTypeName name="javax.swing.text.MaskFormatter"/>
 </qualifiedTypeNameHistroy>

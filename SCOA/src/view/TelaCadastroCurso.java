@@ -4,27 +4,19 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.Panel;
 import java.awt.Component;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import java.awt.TextArea;
 import javax.swing.JButton;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.BevelBorder;
+import javax.swing.JTextArea;
 
 public class TelaCadastroCurso extends JFrame {
 
@@ -83,14 +75,14 @@ public class TelaCadastroCurso extends JFrame {
 		JLabel lblNomeCadastroCurso = new JLabel("Nome:");
 		lblNomeCadastroCurso.setForeground(new Color (122, 97, 171));
 		lblNomeCadastroCurso.setBackground(new Color(31, 58, 104));
-		lblNomeCadastroCurso.setBounds(10, 11, 60, 20);
+		lblNomeCadastroCurso.setBounds(10, 11, 53, 20);
 		panelCadastroCurso.add(lblNomeCadastroCurso);
 		lblNomeCadastroCurso.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNomeCadastroCurso.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNomeCadastroCurso.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		textFieldNomeCadastroCurso = new JTextField();
-		textFieldNomeCadastroCurso.setBounds(80, 13, 908, 20);
+		textFieldNomeCadastroCurso.setBounds(73, 13, 915, 20);
 		panelCadastroCurso.add(textFieldNomeCadastroCurso);
 		textFieldNomeCadastroCurso.setColumns(10);
 		
@@ -104,7 +96,7 @@ public class TelaCadastroCurso extends JFrame {
 		lblTipoCadastroCurso.setAlignmentX(0.5f);
 		
 		textFieldTipoCadastroCurso = new JTextField();
-		textFieldTipoCadastroCurso.setBounds(80, 44, 908, 20);
+		textFieldTipoCadastroCurso.setBounds(73, 44, 915, 20);
 		panelCadastroCurso.add(textFieldTipoCadastroCurso);
 		textFieldTipoCadastroCurso.setColumns(10);
 		
@@ -130,10 +122,6 @@ public class TelaCadastroCurso extends JFrame {
 		lblDescricaoCadastroCurso.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblDescricaoCadastroCurso.setAlignmentX(0.5f);
 		
-		TextArea textAreaDescricaoCadastroCurso = new TextArea();
-		textAreaDescricaoCadastroCurso.setBounds(10, 130, 978, 250);
-		panelCadastroCurso.add(textAreaDescricaoCadastroCurso);
-		
 		JButton btnLimparCadastroCurso = new JButton("Limpar");
 		btnLimparCadastroCurso.setBackground(new Color (122, 97, 171));
 		btnLimparCadastroCurso.setForeground(new Color(31, 58, 104));
@@ -147,6 +135,11 @@ public class TelaCadastroCurso extends JFrame {
 		btnCadastrarCurso.setBounds(12, 413, 480, 50);
 		panelCadastroCurso.add(btnCadastrarCurso);
 		btnCadastrarCurso.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		JTextArea textAreaDescricaoCadastroCurso = new JTextArea();
+		textAreaDescricaoCadastroCurso.setBounds(10, 135, 978, 267);
+		panelCadastroCurso.add(textAreaDescricaoCadastroCurso);
+		textAreaDescricaoCadastroCurso.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		
 	}
 }
