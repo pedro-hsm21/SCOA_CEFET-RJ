@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -14,15 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastroPreRequisito extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
-	private JTable table_1;
+	private JTable tablePreRequisitosCadastroPreRequisito;
 
 	/**
 	 * Launch the application.
@@ -91,7 +92,7 @@ public class TelaCadastroPreRequisito extends JFrame {
 		lblDisciplinaCadastroPreRequisito.setBounds(12, 11, 84, 20);
 		panelCadastroPreRequisito.add(lblDisciplinaCadastroPreRequisito);
 		
-		JComboBox comboBoxDisciplinaCadastroPreRequisito = new JComboBox();
+		JComboBox<String> comboBoxDisciplinaCadastroPreRequisito = new JComboBox<String>();
 		comboBoxDisciplinaCadastroPreRequisito.setBounds(106, 13, 882, 20);
 		panelCadastroPreRequisito.add(comboBoxDisciplinaCadastroPreRequisito);
 		
@@ -104,36 +105,48 @@ public class TelaCadastroPreRequisito extends JFrame {
 		lblPreRequisitoCadastroPreRequisito.setBounds(12, 42, 116, 20);
 		panelCadastroPreRequisito.add(lblPreRequisitoCadastroPreRequisito);
 		
-		JComboBox comboBoxPreRequisitoCadastroPreRequisito = new JComboBox();
-		comboBoxPreRequisitoCadastroPreRequisito.setBounds(138, 44, 705, 20);
+		JComboBox<String> comboBoxPreRequisitoCadastroPreRequisito = new JComboBox<String>();
+		comboBoxPreRequisitoCadastroPreRequisito.setBounds(138, 44, 850, 20);
 		panelCadastroPreRequisito.add(comboBoxPreRequisitoCadastroPreRequisito);
 		
 		JButton btnAdicionarCadastroPreRequisito = new JButton("Adicionar");
 		btnAdicionarCadastroPreRequisito.setForeground(new Color(31, 58, 104));
 		btnAdicionarCadastroPreRequisito.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnAdicionarCadastroPreRequisito.setBackground(new Color(122, 97, 171));
-		btnAdicionarCadastroPreRequisito.setBounds(853, 44, 135, 20);
+		btnAdicionarCadastroPreRequisito.setBounds(12, 73, 480, 20);
 		panelCadastroPreRequisito.add(btnAdicionarCadastroPreRequisito);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		JButton btnRemoverCadastroPreRequisito = new JButton("Remover");
+		btnRemoverCadastroPreRequisito.setForeground(new Color(31, 58, 104));
+		btnRemoverCadastroPreRequisito.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnRemoverCadastroPreRequisito.setBackground(new Color(122, 97, 171));
+		btnRemoverCadastroPreRequisito.setBounds(504, 74, 480, 20);
+		panelCadastroPreRequisito.add(btnRemoverCadastroPreRequisito);
+		
+		tablePreRequisitosCadastroPreRequisito = new JTable();
+		tablePreRequisitosCadastroPreRequisito.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Disciplina", "Pr\u00E9 Requisito"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] {
-				Object.class, String.class
+				String.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
-		table_1.getColumnModel().getColumn(0).setPreferredWidth(314);
-		table_1.getColumnModel().getColumn(1).setPreferredWidth(308);
-		table_1.setBounds(588, 112, -560, 50);
-		panelCadastroPreRequisito.add(table_1);
+		tablePreRequisitosCadastroPreRequisito.getColumnModel().getColumn(0).setPreferredWidth(312);
+		tablePreRequisitosCadastroPreRequisito.getColumnModel().getColumn(1).setPreferredWidth(308);
+		tablePreRequisitosCadastroPreRequisito.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		tablePreRequisitosCadastroPreRequisito.setBounds(12, 104, 976, 298);
+		panelCadastroPreRequisito.add(tablePreRequisitosCadastroPreRequisito);
 		
 
 

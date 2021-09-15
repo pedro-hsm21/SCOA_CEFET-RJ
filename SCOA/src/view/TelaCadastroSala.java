@@ -1,16 +1,13 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -92,9 +89,9 @@ public class TelaCadastroSala extends JFrame {
 		lblNumeroCadastroSala.setBounds(12, 11, 70, 20);
 		panelCadastroSala.add(lblNumeroCadastroSala);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(92, 13, 40, 20);
-		panelCadastroSala.add(spinner);
+		JSpinner spinnerNumeroCadastroSala = new JSpinner();
+		spinnerNumeroCadastroSala.setBounds(92, 13, 40, 20);
+		panelCadastroSala.add(spinnerNumeroCadastroSala);
 		
 		JLabel lblLocalizacaoCadastroSala = new JLabel("Localiza\u00E7\u00E3o:");
 		lblLocalizacaoCadastroSala.setHorizontalAlignment(SwingConstants.LEFT);
@@ -105,10 +102,10 @@ public class TelaCadastroSala extends JFrame {
 		lblLocalizacaoCadastroSala.setBounds(12, 42, 100, 20);
 		panelCadastroSala.add(lblLocalizacaoCadastroSala);
 		
-		JTextArea textAreaMetaCadastroSala = new JTextArea();
-		textAreaMetaCadastroSala.setBounds(12, 73, 976, 329);
-		panelCadastroSala.add(textAreaMetaCadastroSala);
-		textAreaMetaCadastroSala.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		JTextArea textAreaLocalizacaoCadastroSala = new JTextArea();
+		textAreaLocalizacaoCadastroSala.setBounds(12, 73, 976, 329);
+		panelCadastroSala.add(textAreaLocalizacaoCadastroSala);
+		textAreaLocalizacaoCadastroSala.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		
 		
 	}

@@ -96,7 +96,7 @@ public class TelaCadastroMetasPrazos extends JFrame {
 		lblProfessorCadastroMetasPrazos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblProfessorCadastroMetasPrazos.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		JComboBox comboBoxProfessorCadastroMetasPrazos = new JComboBox();
+		JComboBox<String> comboBoxProfessorCadastroMetasPrazos = new JComboBox<String>();
 		comboBoxProfessorCadastroMetasPrazos.setBounds(103, 13, 885, 20);
 		panelCadastroMetasPrazos.add(comboBoxProfessorCadastroMetasPrazos);
 		
@@ -109,10 +109,10 @@ public class TelaCadastroMetasPrazos extends JFrame {
 		lblPrazoCadastroMetasPrazos.setBounds(12, 42, 180, 20);
 		panelCadastroMetasPrazos.add(lblPrazoCadastroMetasPrazos);
 		
-		JFormattedTextField formattedTextFieldIngressoCadastroMetasPrazos = new JFormattedTextField();
-		formattedTextFieldIngressoCadastroMetasPrazos.setBounds(202, 44, 70, 20);
-		panelCadastroMetasPrazos.add(formattedTextFieldIngressoCadastroMetasPrazos);
-		formattedTextFieldIngressoCadastroMetasPrazos.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+		JFormattedTextField formattedTextFieldPrazoCadastroMetasPrazos = new JFormattedTextField();
+		formattedTextFieldPrazoCadastroMetasPrazos.setBounds(202, 44, 70, 20);
+		panelCadastroMetasPrazos.add(formattedTextFieldPrazoCadastroMetasPrazos);
+		formattedTextFieldPrazoCadastroMetasPrazos.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 		
 		JLabel lblMetaCadastroMetasPrazos = new JLabel("Meta:");
 		lblMetaCadastroMetasPrazos.setHorizontalAlignment(SwingConstants.LEFT);

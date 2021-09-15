@@ -20,7 +20,6 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class TelaCadastroAluno extends JFrame {
 
@@ -185,7 +184,7 @@ public class TelaCadastroAluno extends JFrame {
 		lblCursoCadastroAluno.setBounds(10, 197, 53, 20);
 		panelCadastroAluno.add(lblCursoCadastroAluno);
 		
-		JComboBox comboBoxCursoCadastroAluno = new JComboBox();
+		JComboBox<String> comboBoxCursoCadastroAluno = new JComboBox<String>();
 		comboBoxCursoCadastroAluno.setBounds(73, 199, 915, 20);
 		panelCadastroAluno.add(comboBoxCursoCadastroAluno);
 		

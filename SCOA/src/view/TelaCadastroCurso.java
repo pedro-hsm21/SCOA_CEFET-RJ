@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
-import java.awt.TextArea;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;

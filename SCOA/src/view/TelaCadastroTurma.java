@@ -99,7 +99,7 @@ public class TelaCadastroTurma extends JFrame {
 		lblProfessorCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
 		lblProfessorCadastroTurma.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		JComboBox comboBoxProfessorCadastroTurma = new JComboBox();
+		JComboBox<String> comboBoxProfessorCadastroTurma = new JComboBox<String>();
 		comboBoxProfessorCadastroTurma.setBounds(105, 44, 885, 20);
 		panelCadastroTurma.add(comboBoxProfessorCadastroTurma);
 		
@@ -112,7 +112,7 @@ public class TelaCadastroTurma extends JFrame {
 		lblDisciplinaCadastroTurma.setBounds(14, 73, 84, 20);
 		panelCadastroTurma.add(lblDisciplinaCadastroTurma);
 		
-		JComboBox comboBoxDisciplinaCadastroTurma = new JComboBox();
+		JComboBox<String> comboBoxDisciplinaCadastroTurma = new JComboBox<String>();
 		comboBoxDisciplinaCadastroTurma.setBounds(105, 75, 885, 20);
 		panelCadastroTurma.add(comboBoxDisciplinaCadastroTurma);
 		
@@ -125,7 +125,7 @@ public class TelaCadastroTurma extends JFrame {
 		lblSalaCadastroTurma.setBounds(14, 104, 41, 20);
 		panelCadastroTurma.add(lblSalaCadastroTurma);
 		
-		JComboBox comboBoxSalaCadastroTurma = new JComboBox();
+		JComboBox<String> comboBoxSalaCadastroTurma = new JComboBox<String>();
 		comboBoxSalaCadastroTurma.setBounds(65, 106, 925, 20);
 		panelCadastroTurma.add(comboBoxSalaCadastroTurma);
 		
@@ -165,9 +165,9 @@ public class TelaCadastroTurma extends JFrame {
 		lblNumAlunosCadastroTurma.setBounds(12, 166, 103, 20);
 		panelCadastroTurma.add(lblNumAlunosCadastroTurma);
 		
-		JSpinner spinnerPeriodoCadastroTurma_1 = new JSpinner();
-		spinnerPeriodoCadastroTurma_1.setBounds(125, 168, 40, 20);
-		panelCadastroTurma.add(spinnerPeriodoCadastroTurma_1);
+		JSpinner spinnerNumAlunosCadastroTurma = new JSpinner();
+		spinnerNumAlunosCadastroTurma.setBounds(125, 168, 40, 20);
+		panelCadastroTurma.add(spinnerNumAlunosCadastroTurma);
 		
 		JLabel lblTurnoCadastroTurma = new JLabel("Turno:");
 		lblTurnoCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);

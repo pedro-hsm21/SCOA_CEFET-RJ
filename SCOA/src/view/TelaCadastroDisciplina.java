@@ -107,9 +107,9 @@ public class TelaCadastroDisciplina extends JFrame {
 		lblPeriodoCadastroDisciplina.setBounds(10, 42, 69, 20);
 		panelCadastroDisciplina.add(lblPeriodoCadastroDisciplina);
 		
-		JSpinner spinnerCadastroDisciplina = new JSpinner();
-		spinnerCadastroDisciplina.setBounds(90, 44, 40, 20);
-		panelCadastroDisciplina.add(spinnerCadastroDisciplina);
+		JSpinner spinnerPeriodoCadastroDisciplina = new JSpinner();
+		spinnerPeriodoCadastroDisciplina.setBounds(90, 44, 40, 20);
+		panelCadastroDisciplina.add(spinnerPeriodoCadastroDisciplina);
 		
 		JLabel lblDescricaoCadastroDisciplina = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricaoCadastroDisciplina.setHorizontalAlignment(SwingConstants.LEFT);
@@ -120,10 +120,10 @@ public class TelaCadastroDisciplina extends JFrame {
 		lblDescricaoCadastroDisciplina.setBounds(10, 73, 84, 20);
 		panelCadastroDisciplina.add(lblDescricaoCadastroDisciplina);
 		
-		JTextArea textAreaCadastroDisciplina = new JTextArea();
-		textAreaCadastroDisciplina.setBounds(12, 104, 976, 298);
-		panelCadastroDisciplina.add(textAreaCadastroDisciplina);
-		textAreaCadastroDisciplina.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		JTextArea textAreaDescricaoCadastroDisciplina = new JTextArea();
+		textAreaDescricaoCadastroDisciplina.setBounds(12, 104, 976, 298);
+		panelCadastroDisciplina.add(textAreaDescricaoCadastroDisciplina);
+		textAreaDescricaoCadastroDisciplina.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		
 
 	}
