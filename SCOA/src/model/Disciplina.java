@@ -16,23 +16,63 @@ public class Disciplina{
 		this.descricao_disciplina = descricao_disciplina;
 	}
 	
-	public void cadastrar() throws Exception{
-		//new Dao().cadastrar(obj);
+	public int getId_disciplina() {
+		return id_disciplina;
+	}
+
+	public void setId_disciplina(int id_disciplina) {
+		this.id_disciplina = id_disciplina;
+	}
+
+	public int getId_curso() {
+		return id_curso;
+	}
+
+	public void setId_curso(int id_curso) {
+		this.id_curso = id_curso;
+	}
+
+	public int getPeriodo_disciplina() {
+		return periodo_disciplina;
+	}
+
+	public void setPeriodo_disciplina(int periodo_disciplina) {
+		this.periodo_disciplina = periodo_disciplina;
+	}
+
+	public String getNome_disciplina() {
+		return nome_disciplina;
+	}
+
+	public void setNome_disciplina(String nome_disciplina) {
+		this.nome_disciplina = nome_disciplina;
+	}
+
+	public String getDescricao_disciplina() {
+		return descricao_disciplina;
+	}
+
+	public void setDescricao_disciplina(String descricao_disciplina) {
+		this.descricao_disciplina = descricao_disciplina;
+	}
+
+	public void cadastrar(Disciplina disciplina) throws Exception{
+		//new DisciplinaDao().cadastrarDisciplina(disciplina);
 	}	
 	
 	public void alterar() throws Exception{
-		//new Dao().alterar(obj);
+		//new DisciplinaDao().alterarDisciplina(disciplina);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new Dao().excluir(cod);
+		//new DisciplinaDao().excluirDisciplina(cod);
 	}	
 	
 	public void buscar(int cod) throws Exception{
-		//new Dao().buscar(cod)
+		//new DisciplinaDao().buscarDisciplina(cod)
 	}
 	public ArrayList<String> listarAtores() throws Exception{
-		//return new Dao().listar();
+		//return new DisciplinaDao().listarDisciplina();
 		return null;
 	}
 }

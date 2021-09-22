@@ -15,23 +15,55 @@ public class Sala{
 		this.localizacao = localizacao;
 	}
 	
-	public void cadastrar() throws Exception{
-		//new Dao().cadastrar(obj);
+	public int getIdsala() {
+		return idsala;
+	}
+
+	public void setIdsala(int idsala) {
+		this.idsala = idsala;
+	}
+
+	public int getNumero_sala() {
+		return numero_sala;
+	}
+
+	public void setNumero_sala(int numero_sala) {
+		this.numero_sala = numero_sala;
+	}
+
+	public int getId_turma() {
+		return id_turma;
+	}
+
+	public void setId_turma(int id_turma) {
+		this.id_turma = id_turma;
+	}
+
+	public String getLocalizacao() {
+		return localizacao;
+	}
+
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
+	}
+
+	public void cadastrar(Sala sala) throws Exception{
+		//new SalaDao().cadastrarSala(sala);
 	}	
 	
 	public void alterar() throws Exception{
-		//new Dao().alterar(obj);
+		//new SalaDao().alterarSala(sala);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new Dao().excluir(cod);
+		//new SalaDao().excluirSala(cod);
 	}	
 	
 	public void buscar(int cod) throws Exception{
-		//new Dao().buscar(cod)
+		//new SalaDao().buscarSala(cod)
 	}
 	public ArrayList<String> listarAtores() throws Exception{
-		//return new Dao().listar();
+		//return new SalaDao().listarSala();
 		return null;
 	}
 	}

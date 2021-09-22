@@ -22,23 +22,79 @@ public class Avaliacao{
 		this.data_avaliacao = data_avaliacao;
 	} 
 	
+	public float getNota_avaliacao() {
+		return nota_avaliacao;
+	}
+
+	public void setNota_avaliacao(float nota_avaliacao) {
+		this.nota_avaliacao = nota_avaliacao;
+	}
+
+	public float getNota_atingida() {
+		return nota_atingida;
+	}
+
+	public void setNota_atingida(float nota_atingida) {
+		this.nota_atingida = nota_atingida;
+	}
+
+	public float getNota_total() {
+		return nota_total;
+	}
+
+	public void setNota_total(float nota_total) {
+		this.nota_total = nota_total;
+	}
+
+	public int getIdavaliacao() {
+		return idavaliacao;
+	}
+
+	public void setIdavaliacao(int idavaliacao) {
+		this.idavaliacao = idavaliacao;
+	}
+
+	public int getId_status_aluno_turma() {
+		return id_status_aluno_turma;
+	}
+
+	public void setId_status_aluno_turma(int id_status_aluno_turma) {
+		this.id_status_aluno_turma = id_status_aluno_turma;
+	}
+
+	public String getDescricao_avaliacao() {
+		return descricao_avaliacao;
+	}
+
+	public void setDescricao_avaliacao(String descricao_avaliacao) {
+		this.descricao_avaliacao = descricao_avaliacao;
+	}
+
+	public Date getData_avaliacao() {
+		return data_avaliacao;
+	}
+
+	public void setData_avaliacao(Date data_avaliacao) {
+		this.data_avaliacao = data_avaliacao;
+	}
+
 	public void cadastrar(Avaliacao avaliacao) throws Exception{
-		//new Dao().cadastrar(obj);
+		//new AvaliacaoDao().cadastrarAvaliacao(obj);
 	}	
 	
 	public void alterar(Avaliacao avaliacao) throws Exception{
-		//new Dao().alterar(obj);
+		//new AvaliacaoDao().alterarAvaliacao(obj);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new Dao().excluir(cod);
+		//new AvaliacaoDao().excluirAvaliacao(cod);
 	}	
 	
 	public void buscar(int cod) throws Exception{
-		//new Dao().buscar(cod)
+		//new AvaliacaoDao().buscarAvaliacao(cod)
 	}
 	public ArrayList<String> listarAtores() throws Exception{
-		//return new Dao().listar();
+		//return new AvaliacaoDao().listarAvaliacao();
 		return null;
 	}
 } 

@@ -55,7 +55,7 @@ public class TelaCadastroPreRequisito extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCadastrarPreRequisito = new JLabel("Cadastrar PreRequisito");
+		JLabel lblCadastrarPreRequisito = new JLabel("Cadastrar Pr\u00E9 Requisito");
 		lblCadastrarPreRequisito.setForeground(new Color(31, 58, 104));
 		lblCadastrarPreRequisito.setIcon(new ImageIcon(TelaCadastroPreRequisito.class.getResource("/images/_007f97-removebg-preview100.png")));
 		lblCadastrarPreRequisito.setBounds(10, 11, 998, 70);

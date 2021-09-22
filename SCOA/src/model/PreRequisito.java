@@ -12,23 +12,47 @@ public class PreRequisito{
 		this.id_disciplina_requisito = id_disciplina_requisito;
 	} 
 	
-	public void cadastrar() throws Exception{
-		//new Dao().cadastrar(obj);
+	public int getIdpre_requisito() {
+		return idpre_requisito;
+	}
+
+	public void setIdpre_requisito(int idpre_requisito) {
+		this.idpre_requisito = idpre_requisito;
+	}
+
+	public int getId_disciplina() {
+		return id_disciplina;
+	}
+
+	public void setId_disciplina(int id_disciplina) {
+		this.id_disciplina = id_disciplina;
+	}
+
+	public int getId_disciplina_requisito() {
+		return id_disciplina_requisito;
+	}
+
+	public void setId_disciplina_requisito(int id_disciplina_requisito) {
+		this.id_disciplina_requisito = id_disciplina_requisito;
+	}
+
+	public void cadastrar(PreRequisito prerequisito) throws Exception{
+		//new PreRequisitoDao().cadastrarPreRequisito(prerequisito);
 	}	
 	
 	public void alterar() throws Exception{
-		//new Dao().alterar(obj);
+		//new PreRequisitoDao().alterarPreRequisito(prerequisito);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new Dao().excluir(cod);
+		//new PreRequisitoDao().excluirPreRequisito(cod);
 	}	
 	
 	public void buscar(int cod) throws Exception{
-		//new Dao().buscar(cod)
+		//new PreRequisitoDao().buscarPreRequisito(cod)
 	}
 	public ArrayList<String> listarAtores() throws Exception{
-		//return new Dao().listar();
+		//return new PreRequisitoDao().listarPreRequisito();
 		return null;
 	}
 }
