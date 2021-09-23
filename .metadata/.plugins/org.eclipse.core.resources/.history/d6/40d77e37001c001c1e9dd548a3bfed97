@@ -20,6 +20,7 @@ public boolean alterarAluno_Turma(int idAT, int idTurma,int idAluno,float freq, 
 		
 		if (idAT > 0 && idTurma > 0 && idAluno > 0 && status.length() > 0 && status != null && data !=null ){
 			Aluno_Turma alunoTurma = new Aluno_Turma(idTurma,idAluno,freq,media,status,data);
+			alunoTurma.setId_status_aluno_turma(idAT);
 			alunoTurma.alterar(alunoTurma);
 			return true;
 		} 
@@ -32,12 +33,12 @@ public boolean alterarAluno_Turma(int idAT, int idTurma,int idAluno,float freq, 
 			return false;
 		}
 		
-		new AlunoTurmaDao().excluirAlunoTurma(cod);
+		//new AtorDao().excluirAtor(cod);
 			return true;
 	}
 	
 	public ArrayList<String> listar() throws Exception{
-		//return new AlunoTurmaDao().listarAtores();
+		//return new Ator().listarAtores();
 		return null;
 	}
 

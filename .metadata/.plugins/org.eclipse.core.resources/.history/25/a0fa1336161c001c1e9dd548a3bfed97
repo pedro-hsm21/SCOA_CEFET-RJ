@@ -32,12 +32,12 @@ public boolean alterarAluno_Turma(int idAT, int idTurma,int idAluno,float freq, 
 			return false;
 		}
 		
-		new AlunoTurmaDao().excluirAlunoTurma(cod);
+		//new AtorDao().excluirAtor(cod);
 			return true;
 	}
 	
 	public ArrayList<String> listar() throws Exception{
-		//return new AlunoTurmaDao().listarAtores();
+		//return new Ator().listarAtores();
 		return null;
 	}
 

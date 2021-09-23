@@ -14,10 +14,6 @@ public class Aluno {
 		this.id_curso = id_curso;
 		this.id_usuario = id_usuario;
 		this.matricula_aluno = matricula_aluno;
-	}	
-	
-	public Aluno(){
-		
 	}
 	
 	public int getId_aluno() {
@@ -75,8 +71,9 @@ public class Aluno {
 	public void buscar(int cod) throws Exception{
 		//new AlunoDao().buscarAluno(cod)
 	}
+	
 	public ArrayList<String> listarAlunos() throws Exception{
-		//return new AlunoDao().listaAlunos();
+		//return new AlunoDao().listarAluno();
 		return null;
 	}
 	}

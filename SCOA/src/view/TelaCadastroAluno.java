@@ -18,8 +18,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+
+import controller.AlunoController;
+import controller.UsuarioController;
+import model.Aluno;
+import model.Usuario;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class TelaCadastroAluno extends JFrame {
 
@@ -32,6 +41,9 @@ public class TelaCadastroAluno extends JFrame {
 	private JTextField textFieldEmailCadastroAluno;
 	private JTextField textFieldSenhaCadastroAluno;
 	private JTextField textFieldMatriculaCadastroAluno;
+	private JSpinner spinnerPeriodoCadastroAluno;
+	private JFormattedTextField formattedTextFieldIngressoCadastroAluno;
+	private JComboBox<String> comboBoxCursoCadastroAluno;
 
 	/**
 	 * Launch the application.
@@ -93,6 +105,18 @@ public class TelaCadastroAluno extends JFrame {
 		textFieldNomeCadastroAluno.setColumns(10);
 		
 		JButton btnLimparCadastroAluno = new JButton("Limpar");
+		btnLimparCadastroAluno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				spinnerPeriodoCadastroAluno.setValue(0);;
+				formattedTextFieldIngressoCadastroAluno.setText("");
+				textFieldNomeCadastroAluno.setText("");
+				textFieldEmailCadastroAluno.setText("");
+				textFieldSenhaCadastroAluno.setText("");
+				textFieldMatriculaCadastroAluno.setText("");
+				comboBoxCursoCadastroAluno.setSelectedIndex(0);
+			
+			}
+		});
 		btnLimparCadastroAluno.setBackground(new Color (122, 97, 171));
 		btnLimparCadastroAluno.setForeground(new Color(31, 58, 104));
 		btnLimparCadastroAluno.setBounds(504, 413, 480, 50);
@@ -100,6 +124,28 @@ public class TelaCadastroAluno extends JFrame {
 		btnLimparCadastroAluno.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		JButton btnCadastrarAluno = new JButton("Cadastrar");
+		btnCadastrarAluno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int periodo = Integer.parseInt(spinnerPeriodoCadastroAluno.getValue().toString());;
+				String data = formattedTextFieldIngressoCadastroAluno.getText();
+				String nome = textFieldNomeCadastroAluno.getText();
+				String email = textFieldEmailCadastroAluno.getText();
+				String senha = textFieldSenhaCadastroAluno.getText();
+				String matricula = textFieldMatriculaCadastroAluno.getText();
+				String curso = comboBoxCursoCadastroAluno.getSelectedItem().toString();
+				try {
+					UsuarioController usercontroller = new UsuarioController();			
+					usercontroller.cadastrar(nome,email,data,senha);
+				
+					AlunoController controller = new AlunoController();
+					controller.cadastrarAluno(periodo,0,0,matricula);
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnCadastrarAluno.setBackground(new Color (122, 97, 171));
 		btnCadastrarAluno.setForeground(new Color(31, 58, 104));
 		btnCadastrarAluno.setBounds(12, 413, 480, 50);
@@ -143,7 +189,7 @@ public class TelaCadastroAluno extends JFrame {
 		lblIngressoCadastroAluno.setBounds(10, 104, 203, 20);
 		panelCadastroAluno.add(lblIngressoCadastroAluno);
 		
-		JFormattedTextField formattedTextFieldIngressoCadastroAluno = new JFormattedTextField();
+		formattedTextFieldIngressoCadastroAluno = new JFormattedTextField();
 		formattedTextFieldIngressoCadastroAluno.setBounds(223, 106, 70, 20);
 		panelCadastroAluno.add(formattedTextFieldIngressoCadastroAluno);
 		formattedTextFieldIngressoCadastroAluno.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
@@ -157,7 +203,7 @@ public class TelaCadastroAluno extends JFrame {
 		lblPeriodoCadastroAluno.setBounds(10, 135, 70, 20);
 		panelCadastroAluno.add(lblPeriodoCadastroAluno);
 		
-		JSpinner spinnerPeriodoCadastroAluno = new JSpinner();
+		spinnerPeriodoCadastroAluno = new JSpinner();
 		spinnerPeriodoCadastroAluno.setBounds(90, 137, 40, 20);
 		panelCadastroAluno.add(spinnerPeriodoCadastroAluno);
 		
@@ -184,7 +230,9 @@ public class TelaCadastroAluno extends JFrame {
 		lblCursoCadastroAluno.setBounds(10, 197, 53, 20);
 		panelCadastroAluno.add(lblCursoCadastroAluno);
 		
-		JComboBox<String> comboBoxCursoCadastroAluno = new JComboBox<String>();
+		comboBoxCursoCadastroAluno = new JComboBox<String>();
+		comboBoxCursoCadastroAluno.setModel(new DefaultComboBoxModel(new String[] {"selecione"}));
+		comboBoxCursoCadastroAluno.setToolTipText("");
 		comboBoxCursoCadastroAluno.setBounds(73, 199, 915, 20);
 		panelCadastroAluno.add(comboBoxCursoCadastroAluno);
 		
