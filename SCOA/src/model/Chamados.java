@@ -3,19 +3,22 @@ package model;
 import java.util.ArrayList;
 
 public class Chamados{
-	int idchamado, id_aluno;
+	int idchamado, id_usuario;
 	String titulo,	mensagem, tipo_chamado;
 	
 	
-	public Chamados(int idchamado, int id_aluno, String titulo, String mensagem, String tipo_chamado) {
+	public Chamados(int id_usuario, String titulo, String mensagem, String tipo_chamado) {
 		super();
-		this.idchamado = idchamado;
-		this.id_aluno = id_aluno;
+		this.id_usuario = id_usuario;
 		this.titulo = titulo;
 		this.mensagem = mensagem;
 		this.tipo_chamado = tipo_chamado;
 	}
 	
+	public Chamados() {
+
+	}
+
 	public int getIdchamado() {
 		return idchamado;
 	}
@@ -24,12 +27,12 @@ public class Chamados{
 		this.idchamado = idchamado;
 	}
 
-	public int getId_aluno() {
-		return id_aluno;
+	public int getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setId_aluno(int id_aluno) {
-		this.id_aluno = id_aluno;
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public String getTitulo() {

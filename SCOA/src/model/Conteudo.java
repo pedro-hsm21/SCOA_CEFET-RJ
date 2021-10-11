@@ -6,11 +6,14 @@ public class Conteudo{
 	int id_conteudo, id_turma;
 	String conteudo;
 	
-	public Conteudo(int id_conteudo, int id_turma, String conteudo) {
+	public Conteudo(int id_turma, String conteudo) {
 		super();
-		this.id_conteudo = id_conteudo;
 		this.id_turma = id_turma;
 		this.conteudo = conteudo;
+	}
+
+	public Conteudo() {
+
 	}
 
 	public int getId_conteudo() {

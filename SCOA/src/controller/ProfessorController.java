@@ -2,37 +2,40 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Professor;
+
 public class ProfessorController {
-	public boolean cadastrar() throws Exception{		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
-			//ator.cadastrarAtor(ator);
+	public boolean cadastrarProfessor(int id_usuario, String descricao_academica) throws Exception{		
+		if (id_usuario > 0 && descricao_academica != null && descricao_academica.length() > 0){
+			Professor professor = new Professor(id_usuario, descricao_academica);
+			professor.cadastrar(professor);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterar() throws Exception{
+public boolean alterarProfessor(int id, int id_usuario, String descricao_academica) throws Exception{
 		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
+		if (id > 0 && id_usuario > 0 && descricao_academica != null && descricao_academica.length() > 0){
+			Professor professor = new Professor(id_usuario, descricao_academica);
+			professor.alterar(professor);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluir(int cod) throws Exception {
+	public boolean excluirProfessor(int cod) throws Exception {
 		
 		if (cod == 0){
 			return false;
 		}
 		
-		//new AtorDao().excluirAtor(cod);
+		new Professor().excluir(cod);
 			return true;
 	}
 	
-	public ArrayList<String> listar() throws Exception{
-		//return new Ator().listarAtores();
+	public ArrayList<String> listarProfessores() throws Exception{
+		//return new Professor().listarProfessores();
 		return null;
 	}
 }

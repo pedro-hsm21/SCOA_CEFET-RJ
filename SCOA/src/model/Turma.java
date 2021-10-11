@@ -7,10 +7,9 @@ public class Turma{
 	String nome_turma, turno_turma;
 	
 	
-	public Turma(int idturma, int periodo_turma, int num_alunos_turma, int id_professor, int id_disciplina,
+	public Turma(int periodo_turma, int num_alunos_turma, int id_professor, int id_disciplina,
 			String nome_turma, String turno_turma) {
 		super();
-		this.idturma = idturma;
 		this.periodo_turma = periodo_turma;
 		this.num_alunos_turma = num_alunos_turma;
 		this.id_professor = id_professor;
@@ -19,6 +18,10 @@ public class Turma{
 		this.turno_turma = turno_turma;
 	}
 	
+	public Turma() {
+
+	}
+
 	public int getIdturma() {
 		return idturma;
 	}
@@ -79,7 +82,7 @@ public class Turma{
 		//new TurmaDao().cadastrarTurma(turma);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(Turma turma) throws Exception{
 		//new TurmaDao().alterarTurma(turma);
 	}	
 	

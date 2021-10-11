@@ -2,37 +2,40 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Telefone;
+
 public class TelefoneController {
-	public boolean cadastrar() throws Exception{		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
-			//ator.cadastrarAtor(ator);
+	public boolean cadastrarTelefone(int id_usuario, String tipo_telefone, String numero_telefone) throws Exception{		
+		if (id_usuario > 0 && tipo_telefone != null && tipo_telefone.length() > 0 && numero_telefone != null && numero_telefone.length() > 0){
+			Telefone telefone = new Telefone(id_usuario, tipo_telefone, numero_telefone);
+			telefone.cadastrar(telefone);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterar() throws Exception{
+public boolean alterarTelefone(int id, int id_usuario, String tipo_telefone, String numero_telefone) throws Exception{
 		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
+		if (id > 0 && id_usuario > 0 && tipo_telefone != null && tipo_telefone.length() > 0 && numero_telefone != null && numero_telefone.length() > 0){
+			Telefone telefone = new Telefone(id_usuario, tipo_telefone, numero_telefone);
+			telefone.alterar(telefone);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluir(int cod) throws Exception {
+	public boolean excluirTelefone(int cod) throws Exception {
 		
 		if (cod == 0){
 			return false;
 		}
 		
-		//new AtorDao().excluirAtor(cod);
+		new Telefone().excluir(cod);
 			return true;
 	}
 	
-	public ArrayList<String> listar() throws Exception{
-		//return new Ator().listarAtores();
+	public ArrayList<String> listarTelefones() throws Exception{
+		//return new Telefone().listarTelefones();
 		return null;
 	}
 }

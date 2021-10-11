@@ -7,14 +7,17 @@ public class Sala{
 	String localizacao;
 	
 	
-	public Sala(int idsala, int numero_sala, int id_turma, String localizacao) {
+	public Sala(int numero_sala, int id_turma, String localizacao) {
 		super();
-		this.idsala = idsala;
 		this.numero_sala = numero_sala;
 		this.id_turma = id_turma;
 		this.localizacao = localizacao;
 	}
 	
+	public Sala() {
+
+	}
+
 	public int getIdsala() {
 		return idsala;
 	}
@@ -51,7 +54,7 @@ public class Sala{
 		//new SalaDao().cadastrarSala(sala);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(Sala sala) throws Exception{
 		//new SalaDao().alterarSala(sala);
 	}	
 	

@@ -6,16 +6,19 @@ public class Disciplina{
 	int id_disciplina, id_curso, periodo_disciplina;
 	String nome_disciplina, descricao_disciplina;
 	
-	public Disciplina(int id_disciplina, int id_curso, int periodo_disciplina, String nome_disciplina,
+	public Disciplina(int id_curso, int periodo_disciplina, String nome_disciplina,
 			String descricao_disciplina) {
 		super();
-		this.id_disciplina = id_disciplina;
 		this.id_curso = id_curso;
 		this.periodo_disciplina = periodo_disciplina;
 		this.nome_disciplina = nome_disciplina;
 		this.descricao_disciplina = descricao_disciplina;
 	}
 	
+	public Disciplina() {
+
+	}
+
 	public int getId_disciplina() {
 		return id_disciplina;
 	}
@@ -60,7 +63,7 @@ public class Disciplina{
 		//new DisciplinaDao().cadastrarDisciplina(disciplina);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(Disciplina disciplina) throws Exception{
 		//new DisciplinaDao().alterarDisciplina(disciplina);
 	}	
 	

@@ -5,14 +5,17 @@ import java.util.ArrayList;
 public class Plano_Estudos{
 	int idplano_estudos, periodo, id_aluno, id_disciplina;
 
-	public Plano_Estudos(int idplano_estudos, int periodo, int id_aluno, int id_disciplina) {
+	public Plano_Estudos(int periodo, int id_aluno, int id_disciplina) {
 		super();
-		this.idplano_estudos = idplano_estudos;
 		this.periodo = periodo;
 		this.id_aluno = id_aluno;
 		this.id_disciplina = id_disciplina;
 	}
 	
+	public Plano_Estudos() {
+
+	}
+
 	public int getIdplano_estudos() {
 		return idplano_estudos;
 	}
@@ -49,7 +52,7 @@ public class Plano_Estudos{
 		//new Plano_EstudosDao().cadastrarPlanoEstudos(planos_estudos);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(Plano_Estudos planos_estudos) throws Exception{
 		//new Plano_EstudosDao().alterarPlanoEstudos(planos_estudos);
 	}	
 	

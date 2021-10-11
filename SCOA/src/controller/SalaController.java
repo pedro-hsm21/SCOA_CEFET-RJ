@@ -2,37 +2,40 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Sala;
+
 public class SalaController {
-	public boolean cadastrar() throws Exception{		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
-			//ator.cadastrarAtor(ator);
+	public boolean cadastrarSala(int numero_sala, int id_turma, String localizacao) throws Exception{		
+		if (numero_sala > 0 && id_turma > 0 && localizacao != null && localizacao.length() > 0){
+			Sala sala = new Sala(numero_sala, id_turma, localizacao);
+			sala.cadastrar(sala);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterar() throws Exception{
+public boolean alterarSala(int id, int numero_sala, int id_turma, String localizacao) throws Exception{
 		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
+		if (id > 0 && numero_sala > 0 && id_turma > 0 && localizacao != null && localizacao.length() > 0){
+			Sala sala = new Sala(numero_sala, id_turma, localizacao);
+			sala.alterar(sala);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluir(int cod) throws Exception {
+	public boolean excluirSala(int cod) throws Exception {
 		
 		if (cod == 0){
 			return false;
 		}
 		
-		//new AtorDao().excluirAtor(cod);
+		new Sala().excluir(cod);
 			return true;
 	}
 	
-	public ArrayList<String> listar() throws Exception{
-		//return new Ator().listarAtores();
+	public ArrayList<String> listarSalas() throws Exception{
+		//return new Sala().listarSalas();
 		return null;
 	}
 }

@@ -1,33 +1,25 @@
 package model;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class Avaliacao{	
-	float nota_avaliacao, nota_atingida, nota_total;
+	float nota_atingida, nota_total;
 	int idavaliacao, id_status_aluno_turma;
 	String descricao_avaliacao;
-	Date data_avaliacao;
-	
-	
-	public Avaliacao(float nota_avaliacao, float nota_atingida, float nota_total, int idavaliacao,
-			int id_status_aluno_turma, String descricao_avaliacao, Date data_avaliacao) {
+	String data_avaliacao;
+
+	public Avaliacao(String descricao_avaliacao, float nota_total, float nota_atingida, String data_avaliacao,
+			int id_status_aluno_turma) {
 		super();
-		this.nota_avaliacao = nota_avaliacao;
 		this.nota_atingida = nota_atingida;
 		this.nota_total = nota_total;
-		this.idavaliacao = idavaliacao;
 		this.id_status_aluno_turma = id_status_aluno_turma;
 		this.descricao_avaliacao = descricao_avaliacao;
 		this.data_avaliacao = data_avaliacao;
-	} 
-	
-	public float getNota_avaliacao() {
-		return nota_avaliacao;
 	}
 
-	public void setNota_avaliacao(float nota_avaliacao) {
-		this.nota_avaliacao = nota_avaliacao;
+	public Avaliacao() {
+
 	}
 
 	public float getNota_atingida() {
@@ -70,11 +62,11 @@ public class Avaliacao{
 		this.descricao_avaliacao = descricao_avaliacao;
 	}
 
-	public Date getData_avaliacao() {
+	public String getData_avaliacao() {
 		return data_avaliacao;
 	}
 
-	public void setData_avaliacao(Date data_avaliacao) {
+	public void setData_avaliacao(String data_avaliacao) {
 		this.data_avaliacao = data_avaliacao;
 	}
 

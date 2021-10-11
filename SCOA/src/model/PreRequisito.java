@@ -5,13 +5,16 @@ import java.util.ArrayList;
 public class PreRequisito{
 	int idpre_requisito, id_disciplina, id_disciplina_requisito;
 
-	public PreRequisito(int idpre_requisito, int id_disciplina, int id_disciplina_requisito) {
+	public PreRequisito(int id_disciplina, int id_disciplina_requisito) {
 		super();
-		this.idpre_requisito = idpre_requisito;
 		this.id_disciplina = id_disciplina;
 		this.id_disciplina_requisito = id_disciplina_requisito;
 	} 
 	
+	public PreRequisito() {
+
+	}
+
 	public int getIdpre_requisito() {
 		return idpre_requisito;
 	}
@@ -40,7 +43,7 @@ public class PreRequisito{
 		//new PreRequisitoDao().cadastrarPreRequisito(prerequisito);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(PreRequisito prerequisito) throws Exception{
 		//new PreRequisitoDao().alterarPreRequisito(prerequisito);
 	}	
 	

@@ -7,15 +7,18 @@ public class Curso{
 	String nome_curso, tipo_curso, descricao_curso;
 	
 	
-	public Curso(int id_curso, int periodos, String nome_curso, String tipo_curso, String descricao_curso) {
+	public Curso(int periodos, String nome_curso, String tipo_curso, String descricao_curso) {
 		super();
-		this.id_curso = id_curso;
 		this.periodos = periodos;
 		this.nome_curso = nome_curso;
 		this.tipo_curso = tipo_curso;
 		this.descricao_curso = descricao_curso;
 	}
 	
+	public Curso() {
+
+	}
+
 	public int getId_curso() {
 		return id_curso;
 	}

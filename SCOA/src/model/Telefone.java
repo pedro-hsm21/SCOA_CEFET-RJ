@@ -7,14 +7,17 @@ public class Telefone{
 	String tipo_telefone, numero_telefone;
 	
 	
-	public Telefone(int id_telefone, int id_usuario, String tipo_telefone, String numero_telefone) {
+	public Telefone(int id_usuario, String tipo_telefone, String numero_telefone) {
 		super();
-		this.id_telefone = id_telefone;
 		this.id_usuario = id_usuario;
 		this.tipo_telefone = tipo_telefone;
 		this.numero_telefone = numero_telefone;
 	}
 	
+	public Telefone() {
+
+	}
+
 	public int getId_telefone() {
 		return id_telefone;
 	}

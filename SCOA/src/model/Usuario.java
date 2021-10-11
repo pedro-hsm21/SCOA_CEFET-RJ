@@ -6,15 +6,18 @@ public class Usuario {
 	int id_usuario; 
 	String nome_usuario, email_usuario, ingresso, senha;
 	
-	public Usuario(int id_usuario, String nome_usuario, String email_usuario, String ingresso, String senha) {
+	public Usuario(String nome_usuario, String email_usuario, String ingresso, String senha) {
 		super();
-		this.id_usuario = id_usuario;
 		this.nome_usuario = nome_usuario;
 		this.email_usuario = email_usuario;
 		this.ingresso = ingresso;
 		this.senha = senha;
 	}
 	
+	public Usuario() {
+
+	}
+
 	public int getId_usuario() {
 		return id_usuario;
 	}
@@ -59,7 +62,7 @@ public class Usuario {
 		//new UsuarioDao().cadastrarUsuario(usuario);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(Usuario usuario) throws Exception{
 		//new UsuarioDao().alterarUsuario(usuario);
 	}	
 	

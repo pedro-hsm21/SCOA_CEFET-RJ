@@ -2,36 +2,41 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Curso;
+
 public class CursoController {
-	public boolean cadastrar() throws Exception{		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
-			//ator.cadastrarAtor(ator);
+	public boolean cadastrarCurso(int periodos, String nome_curso, String tipo_curso, String descricao_curso) throws Exception{		
+		if (periodos > 0 && nome_curso != null && nome_curso.length() > 0 && tipo_curso != null && tipo_curso.length() > 0 && 
+				descricao_curso != null && descricao_curso.length() > 0){
+			Curso curso = new Curso(periodos, nome_curso, tipo_curso, descricao_curso);
+			curso.cadastrar(curso);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterar() throws Exception{
+public boolean alterarCurso(int id, int periodos, String nome_curso, String tipo_curso, String descricao_curso) throws Exception{
 		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
+		if (id > 0 && periodos > 0 && nome_curso != null && nome_curso.length() > 0 && tipo_curso != null && tipo_curso.length() > 0 && 
+				descricao_curso != null && descricao_curso.length() > 0){
+			Curso curso = new Curso(periodos, nome_curso, tipo_curso, descricao_curso);
+			curso.cadastrar(curso);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluir(int cod) throws Exception {
+	public boolean excluirCurso(int cod) throws Exception {
 		
 		if (cod == 0){
 			return false;
 		}
 		
-		//new AtorDao().excluirAtor(cod);
-			return true;
+		new Curso().excluir(cod);
+		return true;
 	}
 	
-	public ArrayList<String> listar() throws Exception{
+	public ArrayList<String> listarCursos() throws Exception{
 		//return new Ator().listarAtores();
 		return null;
 	}

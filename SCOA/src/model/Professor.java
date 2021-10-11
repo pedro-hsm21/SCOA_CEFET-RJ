@@ -4,16 +4,19 @@ import java.util.ArrayList;
 
 public class Professor{
 	int id_professor, id_usuario;
-	String descricao_academca;
+	String descricao_academica;
 	
 	
-	public Professor(int id_professor, int id_usuario, String descricao_academca) {
+	public Professor(int id_usuario, String descricao_academica) {
 		super();
-		this.id_professor = id_professor;
 		this.id_usuario = id_usuario;
-		this.descricao_academca = descricao_academca;
+		this.descricao_academica = descricao_academica;
 	}
 	
+	public Professor() {
+
+	}
+
 	public int getId_professor() {
 		return id_professor;
 	}
@@ -30,19 +33,19 @@ public class Professor{
 		this.id_usuario = id_usuario;
 	}
 
-	public String getDescricao_academca() {
-		return descricao_academca;
+	public String getDescricao_academica() {
+		return descricao_academica;
 	}
 
-	public void setDescricao_academca(String descricao_academca) {
-		this.descricao_academca = descricao_academca;
+	public void setDescricao_academica(String descricao_academica) {
+		this.descricao_academica = descricao_academica;
 	}
 
 	public void cadastrar(Professor professor) throws Exception{
 		//new ProfessorDao().cadastrarProfessor(professor);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(Professor professor) throws Exception{
 		//new ProfessorDao().alterarProfessor(professor);
 	}	
 	

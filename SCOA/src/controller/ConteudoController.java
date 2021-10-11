@@ -2,36 +2,39 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Conteudo;
+
 public class ConteudoController {
-	public boolean cadastrar() throws Exception{		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
-			//ator.cadastrarAtor(ator);
+	public boolean cadastrarConteudo(int id_turma, String conteudos) throws Exception{		
+		if (id_turma > 0 && conteudos != null && conteudos.length() > 0){
+			Conteudo conteudo = new Conteudo(id_turma, conteudos);
+			conteudo.cadastrar(conteudo);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterar() throws Exception{
+public boolean alterarConteudo(int id, int id_turma, String conteudos) throws Exception{
 		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
+		if (id > 0 && id_turma > 0 && conteudos != null && conteudos.length() > 0){
+			Conteudo conteudo = new Conteudo(id_turma, conteudos);
+			conteudo.alterar(conteudo);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluir(int cod) throws Exception {
+	public boolean excluirConteudo(int cod) throws Exception {
 		
 		if (cod == 0){
 			return false;
 		}
 		
-		//new AtorDao().excluirAtor(cod);
-			return true;
+		new Conteudo().excluir(cod);
+		return true;
 	}
 	
-	public ArrayList<String> listar() throws Exception{
+	public ArrayList<String> listarConteudos() throws Exception{
 		//return new Ator().listarAtores();
 		return null;
 	}

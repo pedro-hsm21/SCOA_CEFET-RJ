@@ -3,19 +3,41 @@ package model;
 import java.util.ArrayList;
 
 public class Endereco{
-	int id_endereco, id_usuario;
-	String uf, cidade, bairro, rua;
+	int id_endereco, id_usuario, numero;
+	String uf, cidade, bairro, rua, complemento;
 	
-	public Endereco(int id_endereco, int id_usuario, String uf, String cidade, String bairro, String rua) {
+	
+	public Endereco(int id_usuario, String uf, String cidade, String bairro, String rua, int numero, String complemento) {
 		super();
-		this.id_endereco = id_endereco;
 		this.id_usuario = id_usuario;
 		this.uf = uf;
 		this.cidade = cidade;
 		this.bairro = bairro;
 		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
 	}
 	
+	public Endereco() {
+
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
 	public int getId_endereco() {
 		return id_endereco;
 	}
@@ -68,7 +90,7 @@ public class Endereco{
 		//new EnderecoDao().cadastrarEndereco(endereco);
 	}	
 	
-	public void alterar() throws Exception{
+	public void alterar(Endereco endereco) throws Exception{
 		//new EnderecoDao().alterarEndereco(obenderecoj);
 	}	
 	

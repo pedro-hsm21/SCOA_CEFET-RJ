@@ -2,36 +2,39 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Plano_Estudos;
+
 public class Plano_EstudosController {
-	public boolean cadastrar() throws Exception{		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
-			//ator.cadastrarAtor(ator);
+	public boolean cadastrarPlanos_Estudos(int periodo, int id_aluno, int id_disciplina) throws Exception{		
+		if (periodo > 0 && id_aluno > 0 && id_disciplina > 0){
+			Plano_Estudos planos_estudos = new Plano_Estudos(periodo, id_aluno, id_disciplina);
+			planos_estudos.cadastrar(planos_estudos);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterar() throws Exception{
+public boolean alterarPlanos_Estudos(int id, int periodo, int id_aluno, int id_disciplina) throws Exception{
 		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
+		if (id > 0 && periodo > 0 && id_aluno > 0 && id_disciplina > 0){
+			Plano_Estudos planos_estudos = new Plano_Estudos(periodo, id_aluno, id_disciplina);
+			planos_estudos.alterar(planos_estudos);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluir(int cod) throws Exception {
+	public boolean excluirPlanos_Estudos(int cod) throws Exception {
 		
 		if (cod == 0){
 			return false;
 		}
 		
-		//new AtorDao().excluirAtor(cod);
+		new Plano_Estudos().excluir(cod);
 			return true;
 	}
 	
-	public ArrayList<String> listar() throws Exception{
+	public ArrayList<String> listarPlanos_Estudos() throws Exception{
 		//return new Ator().listarAtores();
 		return null;
 	}

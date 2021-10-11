@@ -2,37 +2,40 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Chamados;
+
 public class ChamadosController {
-	public boolean cadastrar() throws Exception{		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
-			//ator.cadastrarAtor(ator);
+	public boolean cadastrarChamado(int id_usuario, String titulo, String mensagem, String tipo_chamado) throws Exception{		
+		if (id_usuario > 0 && titulo != null && titulo.length() > 0 && mensagem != null && mensagem.length() > 0 && tipo_chamado != null && tipo_chamado.length() > 0){
+			Chamados chamado = new Chamados(id_usuario, titulo, mensagem, tipo_chamado);
+			chamado.cadastrar(chamado);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterar() throws Exception{
+public boolean alterarChamados(int id, int id_usuario, String titulo, String mensagem, String tipo_chamado) throws Exception{
 		
-		if (true){
-			//Ator ator = new Ator(nome, nacional);
+		if (id > 0 && id_usuario > 0 && titulo != null && titulo.length() > 0 && mensagem != null && mensagem.length() > 0 && tipo_chamado != null && tipo_chamado.length() > 0){
+			Chamados chamado = new Chamados(id_usuario, titulo, mensagem, tipo_chamado);
+			chamado.alterar(chamado);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluir(int cod) throws Exception {
+	public boolean excluirChamados(int cod) throws Exception {
 		
 		if (cod == 0){
 			return false;
 		}
 		
-		//new AtorDao().excluirAtor(cod);
-			return true;
+		new Chamados().excluir(cod);
+		return true;
 	}
 	
-	public ArrayList<String> listar() throws Exception{
-		//return new Ator().listarAtores();
+	public ArrayList<String> listarChamados() throws Exception{
+		//return new Chamados().listarChamados();
 		return null;
 	}
 }
