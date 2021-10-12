@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class Aluno_Turma{
@@ -15,10 +14,10 @@ public class Aluno_Turma{
 	int id_status_aluno_turma, id_turma, id_aluno; 
 	float frequencia,	media;
 	String status_aluno;
-	Date data_encerramento;
+	String data_encerramento;
 	
 	public Aluno_Turma(int id_turma, int id_aluno, float frequencia, float media,
-			String status_aluno, Date data_encerramento) {
+			String status_aluno, String data_encerramento) {
 		super();
 		this.id_turma = id_turma;
 		this.id_aluno = id_aluno;
@@ -27,6 +26,11 @@ public class Aluno_Turma{
 		this.status_aluno = status_aluno;
 		this.data_encerramento = data_encerramento;
 	}
+
+	public Aluno_Turma() {
+
+	}
+
 
 	public int getId_turma() {
 		return id_turma;
@@ -68,11 +72,11 @@ public class Aluno_Turma{
 		this.status_aluno = status_aluno;
 	}
 
-	public Date getData_encerramento() {
+	public String getData_encerramento() {
 		return data_encerramento;
 	}
 
-	public void setData_encerramento(Date data_encerramento) {
+	public void setData_encerramento(String data_encerramento) {
 		this.data_encerramento = data_encerramento;
 	}
 

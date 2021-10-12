@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;controller.Aluno_Turma_Controller&apos; to &apos;Aluno_TurmaController&apos;&#x0D;&#x0A;- Original project: &apos;SCOA&apos;&#x0D;&#x0A;- Original element: &apos;controller.Aluno_Turma_Controller&apos;&#x0D;&#x0A;- Renamed element: &apos;controller.Aluno_TurmaController&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Aluno_Turma_Controller&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;controller{Aluno_Turma_Controller.java[Aluno_Turma_Controller" matchStrategy="1" name="Aluno_TurmaController" qualified="false" references="true" similarDeclarations="false" stamp="1633989386576" textual="false" version="1.0"/>
+</session>

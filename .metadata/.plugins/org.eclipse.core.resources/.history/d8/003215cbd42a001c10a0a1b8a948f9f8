@@ -1,0 +1,148 @@
+package dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import model.Aluno;
+
+public class AlunoDao extends Connection {
+	private PreparedStatement pstm = null;
+	private ResultSet rs = null;
+
+	public AlunoDao() throws Exception {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+public void cadastrarAluno(Aluno Aluno) throws Exception{
+		
+		String sql= "INSERT INTO Aluno" + "(MATRICULA_Aluno,PERIODO_Aluno, ID_CURSO, ID_USUARIO)" + 
+	          "  VALUES (?,?,?,?)";
+		try{
+		pstm = con.prepareStatement(sql);
+		pstm.setString(1, Aluno.getMatricula_Aluno());
+		pstm.setInt(2, Aluno.getPeriodo_Aluno());
+		pstm.setInt(3, Aluno.getId_curso());
+		pstm.setInt(4, Aluno.getId_usuario());
+		
+		
+		pstm.executeUpdate();
+		
+		} catch(SQLException e){
+			throw new Exception("Erro ao cadastrar:" + e);
+		} finally {
+			try {
+				if (pstm != null){ 
+						pstm.close();
+					};
+			}catch (SQLException e){
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null){
+					con.close();
+				}
+			}catch(SQLException e){
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+	}
+
+public void excluirAluno(int id) throws Exception{
+	try{
+		String sql="delete from Aluno where IDAluno = ?";
+		pstm=con.prepareStatement(sql);		
+		pstm.setInt(1, id);		
+		pstm.executeUpdate();
+	} catch (SQLException e) {
+		throw new Exception("Erro:" + e);
+	} finally {
+		try {
+			if (pstm != null){ 
+					pstm.close();
+				};
+		}catch (SQLException e){
+			throw new Exception("Erro ao fechar o Statement:" + e);
+		}
+		try {
+			if (con != null){
+				con.close();
+			}
+		}catch(SQLException e){
+			throw new Exception("Erro ao fechar a conexão:" + e);
+		}
+	}	
+}
+
+public void alterarAluno(Aluno Aluno) throws Exception {
+	String sql= "UPDATE Aluno SET MATRICULA_Aluno = ? ,PERIODO_Aluno = ? , ID_CURSO = ?, ID_USUARIO = ?;";
+		try{
+		pstm = con.prepareStatement(sql);
+		pstm.setString(1, Aluno.getMatricula_Aluno());
+		pstm.setInt(2, Aluno.getPeriodo_Aluno());
+		pstm.setInt(3, Aluno.getId_curso());
+		pstm.setInt(4, Aluno.getId_usuario());
+		
+		pstm.executeUpdate();
+		
+		} catch(SQLException e){
+			throw new Exception("Erro no update:" + e);
+		} finally {
+			try {
+				if (pstm != null){ 
+						pstm.close();
+					};
+			}catch (SQLException e){
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null){
+					con.close();
+				}
+			}catch(SQLException e){
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+}
+
+public ArrayList<Aluno> listarAluno() throws Exception {
+	
+	ArrayList<Aluno> lista = new ArrayList<Aluno>();
+	String sql="SELECT * FROM Aluno; ";
+	try {
+		pstm=con.prepareStatement(sql);
+		rs=pstm.executeQuery();
+		while (rs.next()){
+			Aluno Aluno = new Aluno();
+			Aluno.setId_Aluno(rs.getInt("IDAluno"));
+			Aluno.setId_curso((rs.getInt("ID_CURSO")));
+			Aluno.setId_usuario(rs.getInt("nome"));
+			Aluno.setMatricula_Aluno(rs.getString("MATRICULA_Aluno"));
+			Aluno.setPeriodo_Aluno(rs.getInt("PERIODO_Aluno"));
+			lista.add(Aluno);
+	    	}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null){ 
+						pstm.close();
+					};
+			}catch (SQLException e){
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null){
+					con.close();
+				}
+			}catch(SQLException e){
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+		
+	return  lista;
+
+	}
+}
