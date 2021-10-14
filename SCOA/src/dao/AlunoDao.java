@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.Aluno;
 
 public class AlunoDao extends Connection {
@@ -18,14 +20,13 @@ public class AlunoDao extends Connection {
 	
 public void cadastrarAluno(Aluno aluno) throws Exception{
 		
-		String sql= "INSERT INTO aluno" + "(MATRICULA_ALUNO,PERIODO_ALUNO, ID_CURSO, ID_USUARIO)" + 
-	          "  VALUES (?,?,?,?)";
+		String sql= "INSERT INTO aluno" + "(PERIODO_ALUNO, ID_USUARIO)" + 
+	          "  VALUES (?,?)";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setString(1, aluno.getMatricula_aluno());
-		pstm.setInt(2, aluno.getPeriodo_aluno());
-		pstm.setInt(3, aluno.getId_curso());
-		pstm.setInt(4, aluno.getId_usuario());
+	
+		pstm.setInt(1, aluno.getPeriodo_aluno());
+		pstm.setInt(2, aluno.getId_usuario());
 		
 		
 		pstm.executeUpdate();
@@ -77,15 +78,13 @@ public void excluirAluno(int id) throws Exception{
 }
 
 public void alterarAluno(Aluno aluno) throws Exception {
-	String sql= "UPDATE aluno SET MATRICULA_ALUNO = ? ,PERIODO_ALUNO = ? , ID_CURSO = ?, ID_USUARIO = ?"
+	String sql= "UPDATE aluno SET PERIODO_ALUNO = ? , ID_USUARIO = ?"
 			+ " WHERE IDALUNO = ?";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setString(1, aluno.getMatricula_aluno());
-		pstm.setInt(2, aluno.getPeriodo_aluno());
-		pstm.setInt(3, aluno.getId_curso());
-		pstm.setInt(4, aluno.getId_usuario());
-		pstm.setInt(5, aluno.getId_aluno());
+		pstm.setInt(1, aluno.getPeriodo_aluno());
+		pstm.setInt(2, aluno.getId_usuario());
+		pstm.setInt(3, aluno.getId_aluno());
 		
 		pstm.executeUpdate();
 		
@@ -119,9 +118,7 @@ public ArrayList<Aluno> listarAlunos() throws Exception {
 		while (rs.next()){
 			Aluno aluno = new Aluno();
 			aluno.setId_aluno(rs.getInt("IDALUNO"));
-			aluno.setId_curso(rs.getInt("ID_CURSO"));
 			aluno.setId_usuario(rs.getInt("nome"));
-			aluno.setMatricula_aluno(rs.getString("MATRICULA_ALUNO"));
 			aluno.setPeriodo_aluno(rs.getInt("PERIODO_ALUNO"));
 			lista.add(aluno);
 	    	}

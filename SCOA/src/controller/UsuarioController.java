@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import model.Usuario;
 
 public class UsuarioController {
-	public boolean cadastrarUsuario(String nome_usuario, String email_usuario, String ingresso, String senha) throws Exception{		
+	public int cadastrarUsuario(String nome_usuario, String email_usuario, String ingresso, String senha) throws Exception{		
 		if (nome_usuario != null && nome_usuario.length() > 0 && email_usuario != null && email_usuario.length() > 0 && ingresso != null && ingresso.length() > 0 &&
 				senha != null && senha.length() > 0){
 			Usuario usuario = new Usuario(nome_usuario, email_usuario, ingresso, senha);
-			usuario.cadastrar(usuario);
-			return true;
+			return usuario.cadastrar(usuario);
+			
 		} 
-			return false;
+			return 0;
 	}	
 	
 public boolean alterarUsuario(int id, String nome_usuario, String email_usuario, String ingresso, String senha) throws Exception{

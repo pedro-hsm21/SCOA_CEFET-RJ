@@ -5,21 +5,20 @@ import java.util.ArrayList;
 import model.Endereco;
 
 public class EnderecoController {
-	public boolean cadastrarEndereco(int id_usuario, String uf, String cidade, String bairro, String rua, int numero, String complemento) throws Exception{		
-		if (id_usuario > 0 && uf != null && uf.length() > 0 && cidade != null && cidade.length() > 0 && rua != null && rua.length() > 0 &&
-				numero > 0 && complemento != null && complemento.length() > 0){
-			Endereco endereco = new Endereco(id_usuario, uf, cidade, bairro, rua, numero, complemento);
+	public boolean cadastrarEndereco(int id_usuario, String uf, String cidade, String bairro, String rua) throws Exception{		
+		if (id_usuario > 0 && uf != null && uf.length() > 0 && cidade != null && cidade.length() > 0 && rua != null && rua.length() > 0){
+			Endereco endereco = new Endereco(id_usuario, uf, cidade, bairro, rua);
 			endereco.cadastrar(endereco);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterarEndereco(int id, int id_usuario, String uf, String cidade, String bairro, String rua, int numero, String complemento) throws Exception{
+public boolean alterarEndereco(int id, int id_usuario, String uf, String cidade, String bairro, String rua) throws Exception{
 		
-		if (id > 0 && id_usuario > 0 && uf != null && uf.length() > 0 && cidade != null && cidade.length() > 0 && rua != null && rua.length() > 0 &&
-				numero > 0 && complemento != null && complemento.length() > 0){
-			Endereco endereco = new Endereco(id_usuario, uf, cidade, bairro, rua, numero, complemento);
+		if (id > 0 && id_usuario > 0 && uf != null && uf.length() > 0 && cidade != null && cidade.length() > 0 && rua != null && rua.length() > 0 
+				){
+			Endereco endereco = new Endereco(id_usuario, uf, cidade, bairro, rua);
 			endereco.alterar(endereco);
 			return true;
 		} 

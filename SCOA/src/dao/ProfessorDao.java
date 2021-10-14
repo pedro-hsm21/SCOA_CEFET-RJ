@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.Professor;
 
 public class ProfessorDao extends Connection {
@@ -17,7 +19,7 @@ public class ProfessorDao extends Connection {
 	}
 	
 public void cadastrarProfessor(Professor professor) throws Exception{
-		
+		JOptionPane.showMessageDialog(null, "Entrou na dao");
 		String sql= "INSERT INTO professor" + "(ID_USUARIO, DESCRICAO_ACADEMICA)" + 
 	          "  VALUES (?,?)";
 		try{

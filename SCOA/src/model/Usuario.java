@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.UsuarioDao;
+
+
 public class Usuario {	
 	int id_usuario; 
 	String nome_usuario, email_usuario, ingresso, senha;
@@ -58,8 +61,9 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public void cadastrar(Usuario usuario) throws Exception{
-		//new UsuarioDao().cadastrarUsuario(usuario);
+	public int cadastrar(Usuario usuario) throws Exception{
+		UsuarioDao dao = new UsuarioDao();
+		return dao.cadastrarUsuario(usuario);
 	}	
 	
 	public void alterar(Usuario usuario) throws Exception{

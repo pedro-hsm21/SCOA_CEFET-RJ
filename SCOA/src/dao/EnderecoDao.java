@@ -18,8 +18,8 @@ public class EnderecoDao extends Connection {
 	
 public void cadastrarEndereco(Endereco endereco) throws Exception{
 		
-		String sql= "INSERT INTO endereco" + "(ID_USUARIO, UF, CIDADE, BAIRRO, RUA, NUMERO_ENDERECO, COMPLEMENTO)" + 
-	          "  VALUES (?,?,?,?,?,?,?)";
+		String sql= "INSERT INTO endereco" + "(ID_USUARIO, UF, CIDADE, BAIRRO, RUA)" + 
+	          "  VALUES (?,?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql);
 		pstm.setInt(1, endereco.getId_usuario());
@@ -27,8 +27,7 @@ public void cadastrarEndereco(Endereco endereco) throws Exception{
 		pstm.setString(3, endereco.getCidade());
 		pstm.setString(4, endereco.getBairro());
 		pstm.setString(5, endereco.getRua());
-		pstm.setInt(6, endereco.getNumero());
-		pstm.setString(7, endereco.getComplemento());
+	
 		
 		
 		pstm.executeUpdate();
@@ -80,7 +79,7 @@ public void excluirEndereco(int id) throws Exception{
 }
 
 public void alterarEndereco(Endereco endereco) throws Exception {
-	String sql= "UPDATE endereco SET ID_USUARIO = ?, UF = ?, CIDADE = ?, BAIRRO = ?, RUA = ?, NUMERO_ENDERECO = ?, COMPLEMENTO = ?"
+	String sql= "UPDATE endereco SET ID_USUARIO = ?, UF = ?, CIDADE = ?, BAIRRO = ?, RUA = ?"
 			+ " WHERE IDENDERECO = ?";
 		try{
 		pstm = con.prepareStatement(sql);
@@ -89,9 +88,7 @@ public void alterarEndereco(Endereco endereco) throws Exception {
 		pstm.setString(3, endereco.getCidade());
 		pstm.setString(4, endereco.getBairro());
 		pstm.setString(5, endereco.getRua());
-		pstm.setInt(6, endereco.getNumero());
-		pstm.setString(7, endereco.getComplemento());
-		pstm.setInt(8, endereco.getId_endereco());
+		pstm.setInt(6, endereco.getId_endereco());
 		
 		pstm.executeUpdate();
 		
@@ -129,8 +126,6 @@ public ArrayList<Endereco> listarEnderecos() throws Exception {
 			endereco.setCidade(rs.getString("CIDADE"));
 			endereco.setBairro(rs.getString("BAIRRO"));
 			endereco.setRua(rs.getString("RUA"));
-			endereco.setNumero(rs.getInt("NUMERO_ENDERECO"));
-			endereco.setComplemento(rs.getString("COMPLEMENTO"));
 			endereco.setId_endereco(rs.getInt("IDENDERECO"));
 			lista.add(endereco);
 	    	}

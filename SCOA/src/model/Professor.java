@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.ProfessorDao;
+
 public class Professor{
 	int id_professor, id_usuario;
 	String descricao_academica;
@@ -42,7 +44,7 @@ public class Professor{
 	}
 
 	public void cadastrar(Professor professor) throws Exception{
-		//new ProfessorDao().cadastrarProfessor(professor);
+		new ProfessorDao().cadastrarProfessor(professor);
 	}	
 	
 	public void alterar(Professor professor) throws Exception{

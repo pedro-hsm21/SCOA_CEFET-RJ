@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import model.Aluno;
 
 public class AlunoController {
-	public boolean cadastrarAluno(int periodo, int id_curso, int id_usuario, String matricula) throws Exception{		
-		if (periodo > 0 && id_curso >0 && id_usuario > 0 && matricula != null && matricula.length() > 0){
-			Aluno aluno = new Aluno(periodo, id_curso, id_usuario, matricula);
+	public boolean cadastrarAluno(int periodo, int id_curso, int id_usuario) throws Exception{		
+		if (periodo > 0 && id_usuario > 0){
+			Aluno aluno = new Aluno(periodo, id_usuario);
 			aluno.cadastrar(aluno);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterarAluno(int id, int periodo, int id_curso, int id_usuario, String matricula) throws Exception{
+public boolean alterarAluno(int id, int periodo, int id_curso, int id_usuario) throws Exception{
 		
-		if (id > 0 && periodo > 0 && id_curso >0 && id_usuario > 0 && matricula != null && matricula.length() > 0){
-			Aluno aluno = new Aluno(periodo, id_curso, id_usuario, matricula);
+		if (id > 0 && periodo > 0 && id_curso >0 && id_usuario > 0 ){
+			Aluno aluno = new Aluno(periodo, id_usuario);
 			aluno.alterar(aluno);
 			return true;
 		} 

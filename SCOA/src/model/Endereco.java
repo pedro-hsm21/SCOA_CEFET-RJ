@@ -2,41 +2,27 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.EnderecoDao;
+
 public class Endereco{
-	int id_endereco, id_usuario, numero;
-	String uf, cidade, bairro, rua, complemento;
+	int id_endereco, id_usuario;
+	String uf, cidade, bairro, rua;
 	
 	
-	public Endereco(int id_usuario, String uf, String cidade, String bairro, String rua, int numero, String complemento) {
+	public Endereco(int id_usuario, String uf, String cidade, String bairro, String rua) {
 		super();
 		this.id_usuario = id_usuario;
 		this.uf = uf;
 		this.cidade = cidade;
 		this.bairro = bairro;
 		this.rua = rua;
-		this.numero = numero;
-		this.complemento = complemento;
 	}
 	
 	public Endereco() {
 
 	}
 
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
+	
 
 	public int getId_endereco() {
 		return id_endereco;
@@ -87,7 +73,7 @@ public class Endereco{
 	}
 
 	public void cadastrar(Endereco endereco) throws Exception{
-		//new EnderecoDao().cadastrarEndereco(endereco);
+		new EnderecoDao().cadastrarEndereco(endereco);
 	}	
 	
 	public void alterar(Endereco endereco) throws Exception{

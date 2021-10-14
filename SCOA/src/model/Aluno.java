@@ -2,18 +2,19 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.AlunoDao;
+
 public class Aluno {
-	int id_aluno, periodo_aluno, id_curso, id_usuario;
+	int id_aluno, periodo_aluno, id_usuario;
 	String matricula_aluno;
 	
 	
-	public Aluno(int periodo_aluno, int id_curso, int id_usuario, String matricula_aluno) {
+	public Aluno(int periodo_aluno, int id_usuario) {
 		super();
 	
 		this.periodo_aluno = periodo_aluno;
-		this.id_curso = id_curso;
 		this.id_usuario = id_usuario;
-		this.matricula_aluno = matricula_aluno;
+	
 	}	
 	
 	public Aluno(){
@@ -36,13 +37,6 @@ public class Aluno {
 		this.periodo_aluno = periodo_aluno;
 	}
 
-	public int getId_curso() {
-		return id_curso;
-	}
-
-	public void setId_curso(int id_curso) {
-		this.id_curso = id_curso;
-	}
 
 	public int getId_usuario() {
 		return id_usuario;
@@ -61,7 +55,7 @@ public class Aluno {
 	}
 
 	public void cadastrar(Aluno aluno) throws Exception{
-		//new AlunoDao().cadastrarAluno(aluno);
+		new AlunoDao().cadastrarAluno(aluno);
 	}	
 	
 	public void alterar(Aluno aluno) throws Exception{

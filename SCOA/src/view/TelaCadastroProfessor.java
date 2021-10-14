@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -19,6 +20,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+
+import controller.AlunoController;
+import controller.ProfessorController;
+import controller.UsuarioController;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCadastroProfessor extends JFrame {
 
@@ -30,7 +38,9 @@ public class TelaCadastroProfessor extends JFrame {
 	private JTextField textFieldNomeCadastroProfessor;
 	private JTextField textFieldEmailCadastroProfessor;
 	private JTextField textFieldSenhaCadastroProfessor;
-
+	private JTextArea textAreaDescricaoAcademicaCadastroProfessor;
+	private JFormattedTextField formattedTextFieldIngressoCadastroProfessor;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -91,6 +101,11 @@ public class TelaCadastroProfessor extends JFrame {
 		textFieldNomeCadastroProfessor.setColumns(10);
 		
 		JButton btnLimparCadastroProfessor = new JButton("Limpar");
+		btnLimparCadastroProfessor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpar();
+			}
+		});
 		btnLimparCadastroProfessor.setBackground(new Color (122, 97, 171));
 		btnLimparCadastroProfessor.setForeground(new Color(31, 58, 104));
 		btnLimparCadastroProfessor.setBounds(504, 413, 480, 50);
@@ -98,6 +113,34 @@ public class TelaCadastroProfessor extends JFrame {
 		btnLimparCadastroProfessor.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		JButton btnCadastrarProfessor = new JButton("Cadastrar");
+		btnCadastrarProfessor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String data = formattedTextFieldIngressoCadastroProfessor.getText();
+				String nome = textFieldNomeCadastroProfessor.getText();
+				String email = textFieldEmailCadastroProfessor.getText();
+				String senha = textFieldSenhaCadastroProfessor.getText();
+				String descricao = textAreaDescricaoAcademicaCadastroProfessor.getText();
+				
+				try {
+					UsuarioController usercontroller = new UsuarioController();			
+					int id_user = usercontroller.cadastrarUsuario(nome,email,data,senha);
+					
+					JOptionPane.showMessageDialog(null, "Usuario cadastado id:"+id_user);
+					
+					ProfessorController controller = new ProfessorController();
+					controller.cadastrarProfessor(id_user, descricao);
+					JOptionPane.showMessageDialog(null, "Passou pela controler:");
+					limpar();
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
 		btnCadastrarProfessor.setBackground(new Color (122, 97, 171));
 		btnCadastrarProfessor.setForeground(new Color(31, 58, 104));
 		btnCadastrarProfessor.setBounds(12, 413, 480, 50);
@@ -141,7 +184,7 @@ public class TelaCadastroProfessor extends JFrame {
 		lblIngressoCadastroProfessor.setBounds(10, 104, 203, 20);
 		panelCadastroProfessor.add(lblIngressoCadastroProfessor);
 		
-		JFormattedTextField formattedTextFieldIngressoCadastroProfessor = new JFormattedTextField();
+		formattedTextFieldIngressoCadastroProfessor = new JFormattedTextField();
 		formattedTextFieldIngressoCadastroProfessor.setBounds(223, 106, 70, 20);
 		panelCadastroProfessor.add(formattedTextFieldIngressoCadastroProfessor);
 		formattedTextFieldIngressoCadastroProfessor.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
@@ -155,11 +198,19 @@ public class TelaCadastroProfessor extends JFrame {
 		lblDescricaoAcademicaCadastroProfessor.setBounds(10, 135, 177, 20);
 		panelCadastroProfessor.add(lblDescricaoAcademicaCadastroProfessor);
 		
-		JTextArea textAreaDescricaoAcademicaCadastroProfessor = new JTextArea();
+		textAreaDescricaoAcademicaCadastroProfessor = new JTextArea();
 		textAreaDescricaoAcademicaCadastroProfessor.setBounds(10, 166, 978, 236);
 		panelCadastroProfessor.add(textAreaDescricaoAcademicaCadastroProfessor);
 		textAreaDescricaoAcademicaCadastroProfessor.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		
+	}
+	
+	public void limpar(){
+		textFieldEmailCadastroProfessor.setText("");
+		textFieldNomeCadastroProfessor.setText("");
+		textFieldSenhaCadastroProfessor.setText("");
+		formattedTextFieldIngressoCadastroProfessor.setText("");
+		textAreaDescricaoAcademicaCadastroProfessor.setText("");
 	}
 
 }
