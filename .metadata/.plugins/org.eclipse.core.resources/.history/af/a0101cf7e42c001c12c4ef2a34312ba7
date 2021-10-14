@@ -167,7 +167,7 @@ public class TelaCadastroAluno extends JFrame {
 						UsuarioController usercontroller = new UsuarioController();			
 						int id_user = usercontroller.cadastrarUsuario(nome,email,data,senha);
 					
-						JOptionPane.showMessageDialog(null, "Usuário cadastrado id:"+id_user);
+						JOptionPane.showMessageDialog(null, "Usuario cadastado id:"+id_user);
 					
 						AlunoController controller = new AlunoController();
 						controller.cadastrarAluno(periodo,0,id_user);
