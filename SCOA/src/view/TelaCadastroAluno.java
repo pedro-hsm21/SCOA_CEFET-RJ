@@ -221,11 +221,11 @@ public class TelaCadastroAluno extends JFrame {
 		lblIngressoCadastroAluno.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblIngressoCadastroAluno.setBackground(new Color(31, 58, 104));
 		lblIngressoCadastroAluno.setAlignmentX(0.5f);
-		lblIngressoCadastroAluno.setBounds(572, 42, 277, 20);
+		lblIngressoCadastroAluno.setBounds(634, 42, 277, 20);
 		panelCadastroAluno.add(lblIngressoCadastroAluno);
 		
 		ftfIngresso = new JFormattedTextField();
-		ftfIngresso.setBounds(852, 42, 70, 20);
+		ftfIngresso.setBounds(914, 42, 70, 20);
 		panelCadastroAluno.add(ftfIngresso);
 		ftfIngresso.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
 		
@@ -235,11 +235,11 @@ public class TelaCadastroAluno extends JFrame {
 		lblPeriodoCadastroAluno.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPeriodoCadastroAluno.setBackground(new Color(31, 58, 104));
 		lblPeriodoCadastroAluno.setAlignmentX(0.5f);
-		lblPeriodoCadastroAluno.setBounds(802, 73, 70, 20);
+		lblPeriodoCadastroAluno.setBounds(864, 71, 70, 20);
 		panelCadastroAluno.add(lblPeriodoCadastroAluno);
 		
 		spinnerPeriodo = new JSpinner();
-		spinnerPeriodo.setBounds(882, 75, 40, 20);
+		spinnerPeriodo.setBounds(944, 73, 40, 20);
 		panelCadastroAluno.add(spinnerPeriodo);
 		
 		JLabel lblConfirmarSenha = new JLabel("Confirmar senha:");
@@ -248,7 +248,7 @@ public class TelaCadastroAluno extends JFrame {
 		lblConfirmarSenha.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblConfirmarSenha.setBackground(new Color(31, 58, 104));
 		lblConfirmarSenha.setAlignmentX(0.5f);
-		lblConfirmarSenha.setBounds(343, 73, 149, 20);
+		lblConfirmarSenha.setBounds(388, 75, 149, 20);
 		panelCadastroAluno.add(lblConfirmarSenha);
 		
 		JLabel lblCpf = new JLabel("CPF:");
@@ -257,17 +257,17 @@ public class TelaCadastroAluno extends JFrame {
 		lblCpf.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCpf.setBackground(new Color(31, 58, 104));
 		lblCpf.setAlignmentX(0.5f);
-		lblCpf.setBounds(572, 11, 40, 20);
+		lblCpf.setBounds(633, 11, 40, 20);
 		panelCadastroAluno.add(lblCpf);
 		
 		tfCPF = new JTextField();
 		tfCPF.setColumns(10);
-		tfCPF.setBounds(617, 13, 305, 20);
+		tfCPF.setBounds(683, 13, 301, 20);
 		panelCadastroAluno.add(tfCPF);
 		
 		tfRUA = new JTextField();
 		tfRUA.setColumns(10);
-		tfRUA.setBounds(116, 106, 806, 20);
+		tfRUA.setBounds(116, 106, 868, 20);
 		panelCadastroAluno.add(tfRUA);
 		
 		JLabel lblLogradouro = new JLabel("Logradouro:");
@@ -346,7 +346,7 @@ public class TelaCadastroAluno extends JFrame {
 		panelCadastroAluno.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 201, 342, 92);
+		scrollPane.setBounds(12, 239, 972, 147);
 		panelCadastroAluno.add(scrollPane);
 		
 		table = new JTable();
@@ -354,7 +354,7 @@ public class TelaCadastroAluno extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Telefones"
+				"Curso"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -364,7 +364,7 @@ public class TelaCadastroAluno extends JFrame {
 		panelCadastroAluno.add(passwordField);
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(492, 75, 260, 20);
+		passwordField_1.setBounds(537, 77, 260, 20);
 		panelCadastroAluno.add(passwordField_1);
 		
 		
