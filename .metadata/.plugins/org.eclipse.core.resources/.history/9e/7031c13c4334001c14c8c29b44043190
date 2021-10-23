@@ -41,11 +41,10 @@ public boolean alterarUsuario(int id, String nome_usuario, String email_usuario,
 		return null;
 	}
 	
-	public Usuario buscarUsuario(String email) throws Exception{
+	public Usuario loginUsuario(String email){
 		if (email != null && email.length() > 0){
 			Usuario usuario = new Usuario();
 			return usuario.buscar(email);
 		}
-		return null;
 	}
 }

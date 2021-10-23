@@ -74,10 +74,8 @@ public class Usuario {
 		//new UsuarioDao().excluirUsuario(cod);
 	}	
 	
-	public Usuario buscar(String email) throws Exception{
-		UsuarioDao dao = new UsuarioDao();
-		return dao.buscarUsuario(email);
-		
+	public void buscar(String email) throws Exception{
+		//new UsuarioDao().buscarUsuario(email)
 	}
 	public ArrayList<String> listarAtores() throws Exception{
 		//return new UsuarioDao().listarUsuario();

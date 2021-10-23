@@ -76,7 +76,7 @@ public class Usuario {
 	
 	public Usuario buscar(String email) throws Exception{
 		UsuarioDao dao = new UsuarioDao();
-		return dao.buscarUsuario(email);
+		return dao.loginUsuario(email);
 		
 	}
 	public ArrayList<String> listarAtores() throws Exception{
