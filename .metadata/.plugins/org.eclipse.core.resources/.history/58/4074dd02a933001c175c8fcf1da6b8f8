@@ -3,16 +3,17 @@ package model;
 import java.util.ArrayList;
 
 public class Avaliacao{	
-	String titulo_avaliacao;
-	float nota_total;
-	int idavaliacao;
+	float nota_atingida, nota_total;
+	int idavaliacao, id_status_aluno_turma;
 	String descricao_avaliacao;
 	String data_avaliacao;
 
-	public Avaliacao(String titulo_avaliacao, float nota_total, String descricao_avaliacao, String data_avaliacao) {
+	public Avaliacao(String descricao_avaliacao, float nota_total, float nota_atingida, String data_avaliacao,
+			int id_status_aluno_turma) {
 		super();
-		this.titulo_avaliacao = titulo_avaliacao;
+		this.nota_atingida = nota_atingida;
 		this.nota_total = nota_total;
+		this.id_status_aluno_turma = id_status_aluno_turma;
 		this.descricao_avaliacao = descricao_avaliacao;
 		this.data_avaliacao = data_avaliacao;
 	}
@@ -21,12 +22,12 @@ public class Avaliacao{
 
 	}
 
-	public String getTitulo_avaliacao() {
-		return titulo_avaliacao;
+	public float getNota_atingida() {
+		return nota_atingida;
 	}
 
-	public void setTitulo_avaliacao(String titulo_avaliacao) {
-		this.titulo_avaliacao = titulo_avaliacao;
+	public void setNota_atingida(float nota_atingida) {
+		this.nota_atingida = nota_atingida;
 	}
 
 	public float getNota_total() {
@@ -43,6 +44,14 @@ public class Avaliacao{
 
 	public void setIdavaliacao(int idavaliacao) {
 		this.idavaliacao = idavaliacao;
+	}
+
+	public int getId_status_aluno_turma() {
+		return id_status_aluno_turma;
+	}
+
+	public void setId_status_aluno_turma(int id_status_aluno_turma) {
+		this.id_status_aluno_turma = id_status_aluno_turma;
 	}
 
 	public String getDescricao_avaliacao() {

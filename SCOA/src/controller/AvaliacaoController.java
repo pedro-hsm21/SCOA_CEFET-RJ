@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import model.Avaliacao;
 
 public class AvaliacaoController {
-	public boolean cadastrarAvaliacao(String descricao_avaliacao, float nota_total, float nota_atingida, String data_avaliacao, int id_status_aluno_turma) throws Exception{		
-		if (descricao_avaliacao != null && descricao_avaliacao.length() > 0 && nota_total >= 0 && nota_total < 10 && 
-				nota_atingida >= 0 && nota_atingida < 10 && validarData(data_avaliacao) && id_status_aluno_turma>0){
-			Avaliacao avaliacao = new Avaliacao(descricao_avaliacao, nota_total, nota_atingida, data_avaliacao, id_status_aluno_turma);
+	public boolean cadastrarAvaliacao(String titulo_avaliacao, float nota_total, String descricao_avaliacao, String data_avaliacao) throws Exception{		
+		if (titulo_avaliacao != null && titulo_avaliacao.length() > 0 && descricao_avaliacao != null && descricao_avaliacao.length() > 0 
+				&& nota_total >= 0 && nota_total < 100 && validarData(data_avaliacao)){
+			Avaliacao avaliacao = new Avaliacao(titulo_avaliacao, nota_total, descricao_avaliacao, data_avaliacao);
 			avaliacao.cadastrar(avaliacao);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterarAvaliacao(int id, String descricao_avaliacao, float nota_total, float nota_atingida, String data_avaliacao, int id_status_aluno_turma) throws Exception{
+public boolean alterarAvaliacao(int id, String titulo_avaliacao, float nota_total, String descricao_avaliacao, String data_avaliacao) throws Exception{
 		
-		if (id>0 && descricao_avaliacao != null && descricao_avaliacao.length() > 0 && nota_total >= 0 && nota_total < 10 && 
-				nota_atingida >= 0 && nota_atingida < 10 && validarData(data_avaliacao) && id_status_aluno_turma>0){
-			Avaliacao avaliacao = new Avaliacao(descricao_avaliacao, nota_total, nota_atingida, data_avaliacao, id_status_aluno_turma);
+		if (id>0 && titulo_avaliacao != null && titulo_avaliacao.length() > 0 && descricao_avaliacao != null && descricao_avaliacao.length() > 0 
+				&& nota_total >= 0 && nota_total < 100 && validarData(data_avaliacao)){
+			Avaliacao avaliacao = new Avaliacao(titulo_avaliacao, nota_total, descricao_avaliacao, data_avaliacao);
 			avaliacao.alterar(avaliacao);
 			return true;
 		} 

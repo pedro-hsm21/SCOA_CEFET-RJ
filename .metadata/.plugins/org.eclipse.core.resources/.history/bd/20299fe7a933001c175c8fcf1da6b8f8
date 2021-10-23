@@ -18,15 +18,15 @@ public class AvaliacaoDao extends Connection {
 	
 public void cadastrarAvaliacao(Avaliacao avaliacao) throws Exception{
 		
-		String sql= "INSERT INTO avaliacao" + "(TITULO, DESCRICAO_AVALIACAO, NOTA_TOTAL, DATA_AVALIACAO)" + 
+		String sql= "INSERT INTO avaliacao" + "(DESCRICAO_AVALIACAO, NOTA_TOTAL, NOTA_ATINGIDA, DATA_AVALIACAO, ID_STATUS_ALUNO_TURMA)" + 
 	          "  VALUES (?,?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setString(1, avaliacao.getTitulo_avaliacao());
-		pstm.setString(2, avaliacao.getDescricao_avaliacao());
-		pstm.setFloat(3, avaliacao.getNota_total());
+		pstm.setString(1, avaliacao.getDescricao_avaliacao());
+		pstm.setFloat(2, avaliacao.getNota_total());
+		pstm.setFloat(3, avaliacao.getNota_atingida());
 		pstm.setString(4, avaliacao.getData_avaliacao());
-
+		pstm.setInt(5, avaliacao.getId_status_aluno_turma());
 		
 		
 		pstm.executeUpdate();
@@ -78,15 +78,16 @@ public void excluirAvaliacao(int id) throws Exception{
 }
 
 public void alterarAvaliacao(Avaliacao avaliacao) throws Exception {
-	String sql= "UPDATE avaliacao SET TITULO = ?, DESCRICAO_AVALIACAO = ?, NOTA_TOTAL = ?, DATA_AVALIACAO = ?" 
+	String sql= "UPDATE avaliacao SET DESCRICAO_AVALIACAO = ?, NOTA_TOTAL = ?, NOTA_ATINGIDA = ?, DATA_AVALIACAO = ?, ID_STATUS_ALUNO_TURMA = ?" 
 			+ " WHERE IDAVALIACAO = ?";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setString(1, avaliacao.getTitulo_avaliacao());
-		pstm.setString(2, avaliacao.getDescricao_avaliacao());
-		pstm.setFloat(3, avaliacao.getNota_total());
+		pstm.setString(1, avaliacao.getDescricao_avaliacao());
+		pstm.setFloat(2, avaliacao.getNota_total());
+		pstm.setFloat(3, avaliacao.getNota_atingida());
 		pstm.setString(4, avaliacao.getData_avaliacao());
-		pstm.setInt(5, avaliacao.getIdavaliacao());
+		pstm.setInt(5, avaliacao.getId_status_aluno_turma());
+		pstm.setInt(6, avaliacao.getIdavaliacao());
 		
 		pstm.executeUpdate();
 		
@@ -120,10 +121,11 @@ public ArrayList<Avaliacao> listarAvaliacoes() throws Exception {
 		while (rs.next()){
 			Avaliacao avaliacao = new Avaliacao();
 			avaliacao.setIdavaliacao(rs.getInt("IDAVALIACAO"));
-			avaliacao.setTitulo_avaliacao(rs.getString("TITULO"));
 			avaliacao.setDescricao_avaliacao(rs.getString("DESCRICAO_AVALIACAO"));
 			avaliacao.setNota_total(rs.getFloat("NOTA_TOTAL"));
+			avaliacao.setNota_atingida(rs.getFloat("NOTA_ATINGIDA"));
 			avaliacao.setData_avaliacao(rs.getString("DATA_AVALIACAO"));
+			avaliacao.setId_status_aluno_turma(rs.getInt("ID_SATUS_ALUNO_TURMA"));
 			lista.add(avaliacao);
 	    	}
 		} catch (SQLException e) {

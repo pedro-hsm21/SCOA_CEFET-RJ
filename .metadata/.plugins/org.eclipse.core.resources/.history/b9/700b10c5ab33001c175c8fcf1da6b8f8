@@ -101,12 +101,12 @@ public class TelaCadastroAvaliacao extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String titulo = tfTitulo.getText();
 				float nota = Float.parseFloat(spNotaTotal.getValue().toString());
-				String descricao = taDescricao.getText();
+				String descrricao = taDescricao.getText();
 				String data = ftfData.getText();
 				
 				try{
 					AvaliacaoController controller = new AvaliacaoController();
-					controller.cadastrarAvaliacao(titulo, nota, descricao, data);
+					controller.cadastrarAvaliacao(titulo, nota_total, descricao_avaliacao, data_avaliacao);
 					
 					limpar();
 				}catch(Exception e1){
