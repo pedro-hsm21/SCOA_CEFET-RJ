@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 
 import javax.swing.SwingConstants;
 import java.awt.Component;
@@ -22,8 +21,6 @@ import javax.swing.border.LineBorder;
 import controller.CursoController;
 
 import javax.swing.JTextArea;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class TelaCadastroCurso extends JFrame {
 
@@ -56,7 +53,7 @@ public class TelaCadastroCurso extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroCurso() throws ParseException{
+	public TelaCadastroCurso() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastrar Curso");
 		setResizable(false);
@@ -134,7 +131,8 @@ public class TelaCadastroCurso extends JFrame {
 		JButton btnLimparCadastroCurso = new JButton("Limpar");
 		btnLimparCadastroCurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				limpar();
+			limpar();
+			
 			}
 		});
 		btnLimparCadastroCurso.setBackground(new Color (122, 97, 171));
@@ -175,10 +173,9 @@ public class TelaCadastroCurso extends JFrame {
 	}
 	
 	public void limpar(){
-		spPeriodos.setValue(0);
-		tfNome.setText("");
-		tfTipo.setText("");
-		taDescricao.setText("");
+		tfNome.setText("");;
+		tfTipo.setText("");;
+		spPeriodos.setValue(0);;
+		taDescricao.setText("");;
 	}
-	
 }

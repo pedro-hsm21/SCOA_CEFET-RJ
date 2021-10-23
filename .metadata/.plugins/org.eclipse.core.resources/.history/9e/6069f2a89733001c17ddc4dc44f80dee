@@ -132,11 +132,17 @@ public class TelaCadastroCurso extends JFrame {
 		lblDescricaoCadastroCurso.setAlignmentX(0.5f);
 		
 		JButton btnLimparCadastroCurso = new JButton("Limpar");
-		btnLimparCadastroCurso.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnLimparCadastroCurso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				limpar();
 			}
 		});
+		/*btnLimparCadastroCurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limpar();
+			}
+		});*/
 		btnLimparCadastroCurso.setBackground(new Color (122, 97, 171));
 		btnLimparCadastroCurso.setForeground(new Color(31, 58, 104));
 		btnLimparCadastroCurso.setBounds(504, 413, 480, 50);

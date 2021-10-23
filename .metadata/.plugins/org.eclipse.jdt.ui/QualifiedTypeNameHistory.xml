@@ -18,4 +18,5 @@
 <fullyQualifiedTypeName name="model.Telefone"/>
 <fullyQualifiedTypeName name="model.Turma"/>
 <fullyQualifiedTypeName name="model.Usuario"/>
+<fullyQualifiedTypeName name="controller.CursoController"/>
 </qualifiedTypeNameHistroy>
