@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import model.Usuario;
@@ -19,25 +21,16 @@ public class UsuarioDao extends Connection {
 
 	public int cadastrarUsuario(Usuario usuario) throws Exception {
 		int id = 0;
-		String sql = "INSERT INTO usuario"
-				+ "(NOME_USUARIO, EMAIL_USUARIO, INGRESSO, SENHA, UF, CIDADE, BAIRRO, RUA, TIPO, CPF)"
-				+ "  VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO usuario" + "(NOME_USUARIO, EMAIL_USUARIO, INGRESSO, SENHA)" + "  VALUES (?,?,?,?)";
 		try {
 			pstm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pstm.setString(1, usuario.getNome_usuario());
 			pstm.setString(2, usuario.getEmail_usuario());
 
-			// DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-			// java.sql.Date data = new
-			// java.sql.Date(fmt.parse(usuario.getIngresso()).getTime());
-			pstm.setDate(3, usuario.getIngresso());
+			DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+			java.sql.Date data = new java.sql.Date(fmt.parse(usuario.getIngresso()).getTime());
+			pstm.setDate(3, data);
 			pstm.setString(4, usuario.getSenha());
-			pstm.setString(5, usuario.getUf());
-			pstm.setString(6, usuario.getCidade());
-			pstm.setString(7, usuario.getBairro());
-			pstm.setString(8, usuario.getRua());
-			pstm.setInt(9, usuario.getTipo());
-			pstm.setInt(10, usuario.getCPF());
 
 			pstm.executeUpdate();
 
@@ -97,21 +90,15 @@ public class UsuarioDao extends Connection {
 	}
 
 	public void alterarUsuario(Usuario usuario) throws Exception {
-		String sql = "UPDATE usuario SET NOME_USUARIO = ?, EMAIL_USUARIO = ?, INGRESSO = ?, SENHA = ?, UF = ?, CIDADE = ?, BAIRRO = ?, RUA = ?, TIPO = ?, CPF = ?"
+		String sql = "UPDATE usuario SET NOME_USUARIO = ?, EMAIL_USUARIO = ?, INGRESSO = ?, SENHA = ?"
 				+ " WHERE IDUSUARIO = ?";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, usuario.getNome_usuario());
 			pstm.setString(2, usuario.getEmail_usuario());
-			pstm.setDate(3, usuario.getIngresso());
+			pstm.setString(3, usuario.getIngresso());
 			pstm.setString(4, usuario.getSenha());
-			pstm.setString(5, usuario.getUf());
-			pstm.setString(6, usuario.getCidade());
-			pstm.setString(7, usuario.getBairro());
-			pstm.setString(8, usuario.getRua());
-			pstm.setInt(9, usuario.getTipo());
-			pstm.setInt(10, usuario.getCPF());
-			pstm.setInt(11, usuario.getId_usuario());
+			pstm.setInt(5, usuario.getId_usuario());
 
 			pstm.executeUpdate();
 
@@ -136,27 +123,20 @@ public class UsuarioDao extends Connection {
 		}
 	}
 
-	public ArrayList<Usuario> listarUsuarios(int tipo) throws Exception {
+	public ArrayList<Usuario> listarUsuarios() throws Exception {
 
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
-		String sql = "SELECT * FROM usuario where tipo= ?";
+		String sql = "SELECT * FROM usuario";
 		try {
 			pstm = con.prepareStatement(sql);
-			pstm.setInt(1, tipo);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				Usuario usuario = new Usuario();
 				usuario.setId_usuario(rs.getInt("IDUSUARIO"));
 				usuario.setNome_usuario(rs.getString("NOME_USUARIO"));
 				usuario.setEmail_usuario(rs.getString("EMAIL_USUARIO"));
-				usuario.setIngresso((rs.getDate("INGRESSO")));
+				usuario.setIngresso(rs.getString("INGRESSO"));
 				usuario.setSenha(rs.getString("SENHA"));
-				usuario.setUf(rs.getString("UF"));
-				usuario.setCidade(rs.getString("CIDADE"));
-				usuario.setBairro(rs.getString("BAIRRO"));
-				usuario.setRua(rs.getString("RUA"));
-				usuario.setTipo(rs.getInt("TIPO"));
-				usuario.setCPF(rs.getInt("CPF"));
 				lista.add(usuario);
 			}
 		} catch (SQLException e) {
@@ -190,7 +170,7 @@ public class UsuarioDao extends Connection {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, usuario.getNome_usuario());
 			rs = pstm.executeQuery();
-
+			
 			usuario.setId_usuario(rs.getInt("IDUSUARIO"));
 			usuario.setNome_usuario(rs.getString("NOME_USUARIO"));
 			usuario.setEmail_usuario(rs.getString("EMAIL_USUARIO"));
