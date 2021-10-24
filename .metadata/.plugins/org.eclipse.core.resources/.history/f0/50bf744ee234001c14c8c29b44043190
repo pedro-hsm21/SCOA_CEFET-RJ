@@ -20,7 +20,6 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
 import controller.AvaliacaoController;
-import model.Avaliacao;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -39,7 +38,6 @@ public class TelaCadastroAvaliacao extends JFrame {
 	private JTextArea taDescricao;
 	private JFormattedTextField ftfData;
 	private JTextField tfTitulo;
-	private int codigo = 0;
 
 	/**
 	 * Launch the application.
@@ -59,8 +57,7 @@ public class TelaCadastroAvaliacao extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * 
-	 * @throws ParseException
+	 * @throws ParseException 
 	 */
 	public TelaCadastroAvaliacao() throws ParseException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -72,68 +69,57 @@ public class TelaCadastroAvaliacao extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		JLabel lblCadastrarAvaliacao = new JLabel("Cadastrar Avalia\u00E7\u00E3o");
 		lblCadastrarAvaliacao.setForeground(new Color(31, 58, 104));
-		lblCadastrarAvaliacao.setIcon(
-				new ImageIcon(TelaCadastroAvaliacao.class.getResource("/images/_007f97-removebg-preview100.png")));
+		lblCadastrarAvaliacao.setIcon(new ImageIcon(TelaCadastroAvaliacao.class.getResource("/images/_007f97-removebg-preview100.png")));
 		lblCadastrarAvaliacao.setBounds(10, 11, 998, 70);
 		contentPane.add(lblCadastrarAvaliacao);
 		lblCadastrarAvaliacao.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastrarAvaliacao.setFont(new Font("Tahoma", Font.BOLD, 40));
-
+		
 		JPanel panelCadastroAvaliacao = new JPanel();
 		panelCadastroAvaliacao.setBorder(new LineBorder(new Color(31, 58, 104), 2, true));
 		panelCadastroAvaliacao.setBounds(20, 92, 998, 474);
 		contentPane.add(panelCadastroAvaliacao);
 		panelCadastroAvaliacao.setLayout(null);
-
+		
 		JButton btnLimparCadastroAvaliacao = new JButton("Limpar");
 		btnLimparCadastroAvaliacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				limpar();
 			}
 		});
-		btnLimparCadastroAvaliacao.setBackground(new Color(122, 97, 171));
+		btnLimparCadastroAvaliacao.setBackground(new Color (122, 97, 171));
 		btnLimparCadastroAvaliacao.setForeground(new Color(31, 58, 104));
 		btnLimparCadastroAvaliacao.setBounds(504, 413, 480, 50);
 		panelCadastroAvaliacao.add(btnLimparCadastroAvaliacao);
 		btnLimparCadastroAvaliacao.setFont(new Font("Tahoma", Font.BOLD, 16));
-
-		JButton btnCadastrarAvaliacao = new JButton("Salvar");
+		
+		JButton btnCadastrarAvaliacao = new JButton("Cadastrar");
 		btnCadastrarAvaliacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String titulo = tfTitulo.getText();
 				float nota = Float.parseFloat(spNotaTotal.getValue().toString());
 				String descricao = taDescricao.getText();
 				String data = ftfData.getText();
-				if (codigo == 0) {
-					try {
-						AvaliacaoController controller = new AvaliacaoController();
-						controller.cadastrarAvaliacao(titulo, nota, descricao, data);
-
-						limpar();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else {
-					try{
-						AvaliacaoController controller = new AvaliacaoController();
-						controller.alterarAvaliacao(codigo, titulo, nota, descricao, data);
-
-						limpar();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
+				
+				try{
+					AvaliacaoController controller = new AvaliacaoController();
+					controller.cadastrarAvaliacao(titulo, nota, descricao, data);
+					
+					limpar();
+				}catch(Exception e1){
+					e1.printStackTrace();
 				}
 			}
 		});
-		btnCadastrarAvaliacao.setBackground(new Color(122, 97, 171));
+		btnCadastrarAvaliacao.setBackground(new Color (122, 97, 171));
 		btnCadastrarAvaliacao.setForeground(new Color(31, 58, 104));
 		btnCadastrarAvaliacao.setBounds(12, 413, 480, 50);
 		panelCadastroAvaliacao.add(btnCadastrarAvaliacao);
 		btnCadastrarAvaliacao.setFont(new Font("Tahoma", Font.BOLD, 16));
-
+		
 		JLabel lblDataCadastroAvaliacao = new JLabel("Data Avalia\u00E7\u00E3o:");
 		lblDataCadastroAvaliacao.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDataCadastroAvaliacao.setForeground(new Color(122, 97, 171));
@@ -142,12 +128,12 @@ public class TelaCadastroAvaliacao extends JFrame {
 		lblDataCadastroAvaliacao.setAlignmentX(0.5f);
 		lblDataCadastroAvaliacao.setBounds(12, 73, 129, 20);
 		panelCadastroAvaliacao.add(lblDataCadastroAvaliacao);
-
+		
 		ftfData = new JFormattedTextField();
 		ftfData.setBounds(151, 75, 70, 20);
 		panelCadastroAvaliacao.add(ftfData);
 		ftfData.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-
+		
 		JLabel lblNotaTotalCadastroAvaliacao = new JLabel("Nota Total:");
 		lblNotaTotalCadastroAvaliacao.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNotaTotalCadastroAvaliacao.setForeground(new Color(122, 97, 171));
@@ -156,12 +142,12 @@ public class TelaCadastroAvaliacao extends JFrame {
 		lblNotaTotalCadastroAvaliacao.setAlignmentX(0.5f);
 		lblNotaTotalCadastroAvaliacao.setBounds(12, 42, 93, 20);
 		panelCadastroAvaliacao.add(lblNotaTotalCadastroAvaliacao);
-
+		
 		spNotaTotal = new JSpinner();
 		spNotaTotal.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0)));
 		spNotaTotal.setBounds(115, 44, 60, 20);
 		panelCadastroAvaliacao.add(spNotaTotal);
-
+		
 		JLabel lblNotaDescricaoCadastroAvaliacao = new JLabel("Descri\u00E7\u00E3o:");
 		lblNotaDescricaoCadastroAvaliacao.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNotaDescricaoCadastroAvaliacao.setForeground(new Color(122, 97, 171));
@@ -170,12 +156,12 @@ public class TelaCadastroAvaliacao extends JFrame {
 		lblNotaDescricaoCadastroAvaliacao.setAlignmentX(0.5f);
 		lblNotaDescricaoCadastroAvaliacao.setBounds(12, 104, 84, 20);
 		panelCadastroAvaliacao.add(lblNotaDescricaoCadastroAvaliacao);
-
+		
 		taDescricao = new JTextArea();
 		taDescricao.setBounds(12, 135, 976, 267);
 		panelCadastroAvaliacao.add(taDescricao);
 		taDescricao.setBorder(new LineBorder(Color.LIGHT_GRAY));
-
+		
 		JLabel lblTituloCadastroAvaliacao = new JLabel("T\u00EDtulo:");
 		lblTituloCadastroAvaliacao.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTituloCadastroAvaliacao.setForeground(new Color(122, 97, 171));
@@ -184,26 +170,18 @@ public class TelaCadastroAvaliacao extends JFrame {
 		lblTituloCadastroAvaliacao.setAlignmentX(0.5f);
 		lblTituloCadastroAvaliacao.setBounds(12, 11, 54, 20);
 		panelCadastroAvaliacao.add(lblTituloCadastroAvaliacao);
-
+		
 		tfTitulo = new JTextField();
 		tfTitulo.setBounds(76, 13, 912, 20);
 		panelCadastroAvaliacao.add(tfTitulo);
 		tfTitulo.setColumns(10);
-
+		
 	}
-
-	public void limpar() {
+	
+	public void limpar(){
 		tfTitulo.setText("");
 		spNotaTotal.setValue(0.0);
 		taDescricao.setText("");
 		ftfData.setText("");
-	}
-
-	public void carregarValores(Avaliacao avaliacao) {
-		tfTitulo.setText(avaliacao.getTitulo_avaliacao());
-		spNotaTotal.setValue(avaliacao.getNota_total());
-		taDescricao.setText(avaliacao.getDescricao_avaliacao());
-		ftfData.setText(avaliacao.getData_avaliacao());
-		codigo = avaliacao.getIdavaliacao();
 	}
 }

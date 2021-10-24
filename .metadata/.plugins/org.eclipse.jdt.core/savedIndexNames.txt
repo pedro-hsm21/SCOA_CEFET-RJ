@@ -7,7 +7,6 @@ INDEX VERSION 1.130+C:\Users\Thinc\OneDrive - THINC\Documentos\GitHub\SCOA_CEFET
 4051742280.index
 803029218.index
 3739489145.index
-3869205710.index
 2355514278.index
 1135985349.index
 2143812890.index
