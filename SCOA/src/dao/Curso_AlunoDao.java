@@ -5,29 +5,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Aluno_Turma;
+import model.Curso_Aluno;
 
-public class Aluno_TurmaDao extends Connection {
+public class Curso_AlunoDao extends Connection {
 	private PreparedStatement pstm = null;
 	private ResultSet rs = null;
 
-	public Aluno_TurmaDao() throws Exception {
+	public Curso_AlunoDao() throws Exception {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-public void cadastrarAluno_Turma(Aluno_Turma aluno_turma) throws Exception{
+public void cadastrarcurso_aluno(Curso_Aluno curso_aluno) throws Exception{
 		
-		String sql= "INSERT INTO status_aluno_turma" + "(ID_TURMA, ID_ALUNO, FREQUENCIA, MEDIA, STATUS_ALUNO, DATAENCERRAMENTO)" + 
-	          "  VALUES (?,?,?,?,?,?)";
+		String sql= "INSERT INTO curso_aluno" + "(ID_CURSO,ID_ALUNO,MATRICULA,STATUS_MATRICULA,DATA_ENCERRAMENTO)" + 
+	          "  VALUES (?,?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, aluno_turma.getId_turma());
-		pstm.setInt(2, aluno_turma.getId_aluno());
-		pstm.setFloat(3, aluno_turma.getFrequencia());
-		pstm.setFloat(4, aluno_turma.getMedia());
-		pstm.setString(5, aluno_turma.getStatus_aluno());
-		pstm.setString(6, aluno_turma.getData_encerramento());
+		pstm.setInt(1, curso_aluno.getId_curso());
+		pstm.setInt(2, curso_aluno.getId_aluno());
+		pstm.setString(3, curso_aluno.getMatricula());;
+		pstm.setInt(4, curso_aluno.getStatus_matricula());
+		pstm.setDate(5, curso_aluno.getData_fim());
 		
 		
 		pstm.executeUpdate();
@@ -52,9 +51,9 @@ public void cadastrarAluno_Turma(Aluno_Turma aluno_turma) throws Exception{
 		}
 	}
 
-public void excluirAluno_Turma(int id) throws Exception{
+public void excluircurso_aluno(int id) throws Exception{
 	try{
-		String sql="DELETE FROM status_aluno_turma WHERE IDSTATUS_ALUNO_TURMA = ?";
+		String sql="DELETE FROM curso_aluno WHERE IDSTATUS_curso_aluno = ?";
 		pstm=con.prepareStatement(sql);		
 		pstm.setInt(1, id);		
 		pstm.executeUpdate();
@@ -78,18 +77,17 @@ public void excluirAluno_Turma(int id) throws Exception{
 	}	
 }
 
-public void alterarAluno_Turma(Aluno_Turma aluno_turma) throws Exception {
-	String sql= "UPDATE status_aluno_turma SET ID_TURMA = ?, ID_ALUNO = ?, FREQUENCIA = ?, MEDIA = ?, STATUS_ALUNO = ?, DATAENCERRAMENTO = ?"
-			+ " WHERE IDSTATUS_ALUNO_TURMA = ?";
+public void alterarcurso_aluno(Curso_Aluno curso_aluno) throws Exception {
+	String sql= "UPDATE curso_aluno SET ID_CURSO = ?, ID_ALUNO = ?, MATRICULA = ?,"
+			+ " STATUS_MATRICULA = ?, DATA_ENCERRAMENTO = ?  WHERE IDCURSO_ALUNO = ? ";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, aluno_turma.getId_turma());
-		pstm.setInt(2, aluno_turma.getId_aluno());
-		pstm.setFloat(3, aluno_turma.getFrequencia());
-		pstm.setFloat(4, aluno_turma.getMedia());
-		pstm.setString(5, aluno_turma.getStatus_aluno());
-		pstm.setString(6, aluno_turma.getData_encerramento());
-		pstm.setInt(7,  aluno_turma.getId_status_aluno_turma());
+		pstm.setInt(1, curso_aluno.getId_curso());
+		pstm.setInt(2, curso_aluno.getId_aluno());
+		pstm.setString(3, curso_aluno.getMatricula());;
+		pstm.setInt(4, curso_aluno.getStatus_matricula());
+		pstm.setDate(5, curso_aluno.getData_fim());
+		pstm.setInt(6, curso_aluno.getId_curso_aluno());
 		
 		pstm.executeUpdate();
 		
@@ -113,23 +111,23 @@ public void alterarAluno_Turma(Aluno_Turma aluno_turma) throws Exception {
 		}
 }
 
-public ArrayList<Aluno_Turma> listarAluno_Turmas() throws Exception {
+public ArrayList<Curso_Aluno> listarcurso_alunos(int id) throws Exception {
 	
-	ArrayList<Aluno_Turma> lista = new ArrayList<Aluno_Turma>();
-	String sql="SELECT * FROM status_aluno_turma";
+	ArrayList<Curso_Aluno> lista = new ArrayList<Curso_Aluno>();
+	String sql="SELECT * FROM curso_aluno  WHERE ID_ALUNO = ?";
 	try {
 		pstm=con.prepareStatement(sql);
+		pstm.setInt(1, id);
 		rs=pstm.executeQuery();
 		while (rs.next()){
-			Aluno_Turma aluno_turma = new Aluno_Turma();
-			aluno_turma.setId_turma(rs.getInt("ID_TURMA"));
-			aluno_turma.setId_aluno(rs.getInt("ID_ALUNO"));
-			aluno_turma.setFrequencia(rs.getFloat("FREQUENCIA"));
-			aluno_turma.setMedia(rs.getFloat("MEDIA"));
-			aluno_turma.setStatus_aluno(rs.getString("STATUS_ALUNO"));
-			aluno_turma.setData_encerramento(rs.getString("DATAENCERRAMENTO"));
-			aluno_turma.setId_status_aluno_turma(rs.getInt("IDSTATUS_ALUNO_TURMA"));
-			lista.add(aluno_turma);
+			Curso_Aluno curso_aluno = new Curso_Aluno();
+			curso_aluno.setId_curso(rs.getInt("ID_CURSO"));
+			curso_aluno.setId_aluno(rs.getInt("ID_ALUNO"));
+			curso_aluno.setMatricula(rs.getString("MATRICULA"));
+			curso_aluno.setStatus_matricula(rs.getInt("STATUS_MATRICULA"));
+			curso_aluno.setData_fim(rs.getDate("DATA_ENCERRAMENTO"));
+			curso_aluno.setId_curso_aluno(rs.getInt("IDCURSO_ALUNO"));
+			lista.add(curso_aluno);
 	    	}
 		} catch (SQLException e) {
 			throw new Exception("Erro:" + e);

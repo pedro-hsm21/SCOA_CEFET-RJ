@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,13 +25,19 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
 import controller.AlunoController;
+import controller.CursoController;
+import controller.Curso_AlunoController;
 import controller.UsuarioController;
 import model.Aluno;
+import model.Curso;
+import model.Curso_Aluno;
 import model.Usuario;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
@@ -61,6 +68,8 @@ public class TelaCadastroAluno extends JFrame {
 	private JTextField tfCodigo;
 	private int codigo;
 	private int codigoA;
+	private ArrayList<Curso_Aluno> cursos;
+	private ArrayList<Curso> curso;
 
 	/**
 	 * Launch the application.
@@ -80,13 +89,22 @@ public class TelaCadastroAluno extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws ParseException 
+	 * @throws Exception 
 	 */
-	public TelaCadastroAluno() throws ParseException {
+	public TelaCadastroAluno() throws Exception {	
+				
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastrar Aluno");
 		setResizable(false);
 		setBounds(100, 100, 1024, 600);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+				if (codigoA > 0) {
+					carregarTable();
+				}
+			}
+		});
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -137,7 +155,7 @@ public class TelaCadastroAluno extends JFrame {
 		});
 		btnLimparCadastroAluno.setBackground(new Color (122, 97, 171));
 		btnLimparCadastroAluno.setForeground(new Color(31, 58, 104));
-		btnLimparCadastroAluno.setBounds(504, 413, 480, 50);
+		btnLimparCadastroAluno.setBounds(683, 413, 301, 50);
 		panelCadastroAluno.add(btnLimparCadastroAluno);
 		btnLimparCadastroAluno.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
@@ -198,7 +216,7 @@ public class TelaCadastroAluno extends JFrame {
 		});
 		btnCadastrarAluno.setBackground(new Color (122, 97, 171));
 		btnCadastrarAluno.setForeground(new Color(31, 58, 104));
-		btnCadastrarAluno.setBounds(12, 413, 480, 50);
+		btnCadastrarAluno.setBounds(12, 413, 301, 50);
 		panelCadastroAluno.add(btnCadastrarAluno);
 		btnCadastrarAluno.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
@@ -348,11 +366,19 @@ public class TelaCadastroAluno extends JFrame {
 		JButton btnNewButton = new JButton("Adicionar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.addRow(new Object[]{tftelefone.getText()});
+				if (codigo > 0 || codigoA > 0) {
+					try {
+						TelaCurso_Aluno tela = new TelaCurso_Aluno();
+						tela.carregarValores(tfNome.getText(), codigoA);
+						tela.setVisible(true);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else JOptionPane.showMessageDialog(null, "Aluno não cadastrado");
 			}
 		});
-		btnNewButton.setBounds(364, 168, 89, 23);
+		btnNewButton.setBounds(895, 212, 89, 23);
 		panelCadastroAluno.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -362,11 +388,22 @@ public class TelaCadastroAluno extends JFrame {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null},
 			},
 			new String[] {
-				"Curso"
+				"ID", "Curso", "Matricula"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setPreferredWidth(426);
+		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
 		
 		passwordField = new JPasswordField();
@@ -376,6 +413,20 @@ public class TelaCadastroAluno extends JFrame {
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(537, 77, 260, 20);
 		panelCadastroAluno.add(passwordField_1);
+		
+		JButton btnvoltar = new JButton("Voltar");
+		btnvoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaAlunos tela = new TelaAlunos();
+				dispose();
+				tela.setVisible(true);
+			}
+		});
+		btnvoltar.setForeground(new Color(31, 58, 104));
+		btnvoltar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnvoltar.setBackground(new Color(122, 97, 171));
+		btnvoltar.setBounds(350, 413, 301, 50);
+		panelCadastroAluno.add(btnvoltar);
 		
 	
 		
@@ -419,5 +470,25 @@ public class TelaCadastroAluno extends JFrame {
 		codigo = user.getId_usuario();
 		codigoA = aluno.getId_aluno();
 		
+	}
+	
+	void carregarTable() {
+		DefaultTableModel tablemodel = (DefaultTableModel) table.getModel();
+		tablemodel.setRowCount(0);
+		Curso_AlunoController controllerA = new Curso_AlunoController();
+		CursoController controllerC = new CursoController();		
+		try {
+			curso = controllerC.listarCursos();			
+			cursos = controllerA.listar(codigoA);
+			//JOptionPane.showMessageDialog(null,"Carregou a lista"); 
+			cursos.forEach((Curso_Aluno cursoA) -> {
+				tablemodel.addRow(new Object[] { cursoA.getId_curso(), curso.get(cursoA.getId_curso()-1).getNome_curso(), cursoA.getMatricula()});
+			});
+			table.setModel(tablemodel);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

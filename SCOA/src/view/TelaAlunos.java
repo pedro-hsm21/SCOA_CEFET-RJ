@@ -125,6 +125,9 @@ public class TelaAlunos extends JFrame {
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
@@ -143,7 +146,7 @@ public class TelaAlunos extends JFrame {
 						TelaCadastroAluno tela = new TelaCadastroAluno();
 						AlunoController controllerA = new AlunoController();
 						Aluno aluno = controllerA.buscarAluno(usuarios.get(clicou).getId_usuario());
-						 JOptionPane.showMessageDialog(null,"enviou codigo" + aluno.getId_aluno() + "e periodo" + aluno.getPeriodo_aluno());
+						 //JOptionPane.showMessageDialog(null,"enviou codigo" + aluno.getId_aluno() + "e periodo" + aluno.getPeriodo_aluno());
 						tela.carregarValores(aluno, usuarios.get(clicou));
 						dispose();
 						tela.setVisible(true);

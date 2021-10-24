@@ -36,8 +36,8 @@ public boolean alterarCurso(int id, int periodos, String nome_curso, String tipo
 		return true;
 	}
 	
-	public ArrayList<String> listarCursos() throws Exception{
-		//return new Ator().listarAtores();
-		return null;
+	public ArrayList<Curso> listarCursos() throws Exception{
+		return new Curso().listarCurso();
+		
 	}
 }

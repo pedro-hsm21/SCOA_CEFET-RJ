@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.CursoDao;
+
 public class Curso{
 	int id_curso, periodos;
 	String nome_curso, tipo_curso, descricao_curso;
@@ -74,8 +76,8 @@ public class Curso{
 	public void buscar(int cod) throws Exception{
 		//new CursoDao().buscarCurso(cod)
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new CursoDao().listarCurso();
-		return null;
+	public ArrayList<Curso> listarCurso() throws Exception{
+		return new CursoDao().listarCursos();
+		
 	}
 }
