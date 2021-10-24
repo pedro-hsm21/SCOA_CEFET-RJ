@@ -118,7 +118,7 @@ public ArrayList<Aluno> listarAlunos() throws Exception {
 		while (rs.next()){
 			Aluno aluno = new Aluno();
 			aluno.setId_aluno(rs.getInt("IDALUNO"));
-			aluno.setId_usuario(rs.getInt("nome"));
+			aluno.setId_usuario(rs.getInt("IDUSUARIO"));
 			aluno.setPeriodo_aluno(rs.getInt("PERIODO_ALUNO"));
 			lista.add(aluno);
 	    	}
@@ -143,5 +143,40 @@ public ArrayList<Aluno> listarAlunos() throws Exception {
 		
 	return  lista;
 
+	}
+
+	public Aluno buscarAluno(int cod) throws Exception {
+		Aluno aluno = new Aluno();
+		String sql="SELECT * FROM aluno WHERE ID_USUARIO = ?";
+		try {
+			pstm=con.prepareStatement(sql);
+			pstm.setInt(1, cod);
+			rs=pstm.executeQuery();
+			while (rs.next()){
+				aluno.setId_aluno(rs.getInt("IDALUNO"));
+				aluno.setId_usuario(rs.getInt("ID_USUARIO"));
+				aluno.setPeriodo_aluno(rs.getInt("PERIODO_ALUNO"));
+				
+		    	}
+			} catch (SQLException e) {
+				throw new Exception("Erro:" + e);
+			} finally {
+				try {
+					if (pstm != null){ 
+							pstm.close();
+						};
+				}catch (SQLException e){
+					throw new Exception("Erro ao fechar o Statement:" + e);
+				}
+				try {
+					if (con != null){
+						con.close();
+					}
+				}catch(SQLException e){
+					throw new Exception("Erro ao fechar a conexão:" + e);
+				}
+			}
+			
+		return  aluno;
 	}
 }

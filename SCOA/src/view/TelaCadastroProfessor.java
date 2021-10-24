@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,7 +22,7 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
 import controller.ProfessorController;
-import controller.EnderecoController;
+import controller.AlunoController;
 import controller.UsuarioController;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
@@ -52,6 +54,8 @@ public class TelaCadastroProfessor extends JFrame {
 	private JPasswordField passwordField_1;
 	private JTextField tfCodigo;
 	private JTextArea taDescricaoAcademica;
+	private int codigo;
+	private int codigoP;
 
 	/**
 	 * Launch the application.
@@ -139,7 +143,7 @@ public class TelaCadastroProfessor extends JFrame {
 				if (String.valueOf(passwordField.getPassword()).equals(String.valueOf(passwordField_1.getPassword()))){
 					
 					String descricao_academica = taDescricaoAcademica.getText();
-					String data = ftfIngresso.getText();
+					String ingresso = ftfIngresso.getText();
 					String nome = tfNome.getText();
 					String email = tfEmail.getText();
 					String senha = String.valueOf(passwordField.getPassword());
@@ -149,27 +153,37 @@ public class TelaCadastroProfessor extends JFrame {
 					String UF = tfUF.getText();
 					int cpf = Integer.parseInt(tfCPF.getText());
 					
-					/* tfBairro.setText("");
-					tfCidade.setText("");
-					tfCPF.setText("");
-					tfRUA.setText("");
-					tftelefone.setText("");
-					tfUF.setText("");
-					*/
-				
+					
+					DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
+					java.sql.Date data = null;
 					try {
-						UsuarioController usercontroller = new UsuarioController();			
-						int id_user = usercontroller.cadastrarUsuario(nome,email,data,senha);
+						data = new java.sql.Date(fmt.parse(ingresso).getTime());
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null,"Erro na data"); 
+					}
 					
-						JOptionPane.showMessageDialog(null, "Usuário cadastrado id:"+id_user);
-					
+									
+					try {
+						UsuarioController usercontroller = new UsuarioController();	
 						ProfessorController controller = new ProfessorController();
-						controller.cadastrarProfessor(id_user, descricao_academica);
 						
-						EnderecoController endcontroller = new EnderecoController();
-						endcontroller.cadastrarEndereco(id_user, UF, cidade, bairro, rua);
+						boolean status = false;
+						if (codigo == 0) {
+							int id_user = usercontroller.cadastrarUsuario(nome,email,data,senha, UF, cidade, bairro, rua,1, cpf);						
+							status = controller.cadastrarProfessor(id_user, descricao_academica);
+						} else {
+							//status = controller.alterarAluno(codigoA,periodo,codigo);
+						}
 						
-						limpar();
+						if (status == true){
+							JOptionPane.showMessageDialog(null, "Sucesso!"); 		
+							TelaAlunos tela = new TelaAlunos();
+							dispose();
+							tela.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(null, "Falhou, verifique se os campos estão preenchidos corretamente.");
+						}									
 					
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block

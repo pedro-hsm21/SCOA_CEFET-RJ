@@ -59,15 +59,15 @@ public class Aluno {
 	}	
 	
 	public void alterar(Aluno aluno) throws Exception{
-		//new AlunoDao().alterarAluno(aluno);
+		new AlunoDao().alterarAluno(aluno);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new AlunoDao().excluirAluno(cod);
+		new AlunoDao().excluirAluno(cod);
 	}	
 	
-	public void buscar(int cod) throws Exception{
-		//new AlunoDao().buscarAluno(cod)
+	public Aluno buscar(int cod) throws Exception{
+		return new AlunoDao().buscarAluno(cod);
 	}
 	public ArrayList<String> listarAlunos() throws Exception{
 		//return new AlunoDao().listaAlunos();

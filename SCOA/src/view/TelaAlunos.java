@@ -142,8 +142,8 @@ public class TelaAlunos extends JFrame {
 					try {
 						TelaCadastroAluno tela = new TelaCadastroAluno();
 						AlunoController controllerA = new AlunoController();
-						// Aluno aluno =
-						// controllerA.buscarAluno(usuarios.get(clicou).getId_usuario());
+						Aluno aluno = controllerA.buscarAluno(usuarios.get(clicou).getId_usuario());
+						 JOptionPane.showMessageDialog(null,"enviou codigo" + aluno.getId_aluno() + "e periodo" + aluno.getPeriodo_aluno());
 						tela.carregarValores(aluno, usuarios.get(clicou));
 						dispose();
 						tela.setVisible(true);
@@ -200,11 +200,8 @@ public class TelaAlunos extends JFrame {
 						try {
 							UsuarioController controller = new UsuarioController();
 							AlunoController controllerA = new AlunoController();
-							// Aluno aluno =
-							// controllerA.buscarAluno(usuarios.get(clicou).getId_usuario());
-							boolean status = controller.excluirUsuario(usuarios.get(clicou).getId_usuario());
-							// boolean status2 =
-							// controllerA.excluirAluno(aluno.getId_aluno());
+							Aluno aluno = controllerA.buscarAluno(usuarios.get(clicou).getId_usuario());
+							boolean status = controllerA.excluirAluno(aluno.getId_aluno()) && controller.excluirUsuario(usuarios.get(clicou).getId_usuario())  ;
 							if (status == true) {
 								JOptionPane.showMessageDialog(null, "Removido com sucesso!");
 							}

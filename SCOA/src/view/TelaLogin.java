@@ -89,8 +89,6 @@ public class TelaLogin extends JFrame {
 		tfEmail = new JTextField();
 		tfEmail.setBounds(158, 471, 440, 20);
 		contentPane.add(tfEmail);
-		tfEmail.setEnabled(false);
-		tfEmail.setEditable(false);
 		tfEmail.setColumns(10);
 
 		lblSenha = new JLabel("Senha:");
@@ -117,7 +115,7 @@ public class TelaLogin extends JFrame {
 					UsuarioController controller = new UsuarioController();
 					usuario = controller.buscarUsuario(email);
 					
-					if (email.equals(usuario.getEmail_usuario()) && senha.equals(usuario.getSenha())){
+					if (senha.equals(usuario.getSenha())){
 						JOptionPane.showMessageDialog(null,"Bom-vindo(a), " + usuario.getNome_usuario() +" !");
 						//habilitar tela principal
 					}else{
