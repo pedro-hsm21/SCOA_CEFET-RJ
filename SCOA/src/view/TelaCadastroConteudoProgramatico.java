@@ -23,6 +23,9 @@ public class TelaCadastroConteudoProgramatico extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextArea taConteudo;
+	private int turmaId;
+	private int codigo;
 
 	/**
 	 * Launch the application.

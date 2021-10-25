@@ -6,30 +6,30 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="taDescricao" key="selection"/>
+		<item value="professorr" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="textAreaDescricaoCadastroAvaliacao"/>
-			<item value="spinnerNotaTotalCadastroAvaliacao"/>
-			<item value="formattedTextFieldDataCadastroMetasPrazos"/>
-			<item value="JPanel"/>
-			<item value="textAreaDescricaoCadastroCurso"/>
-			<item value="spinnerQtdPeriodosCadastroCurso"/>
-			<item value="textFieldTipoCadastroCurso"/>
-			<item value="textFieldNomeCadastroCurso"/>
+			<item value="aluno"/>
+			<item value="Aluno"/>
+			<item value="cbDisciplina"/>
+			<item value="textFieldTurnoCadastroTurma"/>
+			<item value="textFieldNomeCadastroTurma"/>
+			<item value="//"/>
+			<item value="usuarios"/>
+			<item value="controllerA"/>
 		</list>
 		<list key="replacehistory">
-			<item value="taDescricao"/>
-			<item value="spNotaTotal"/>
-			<item value="ftfData"/>
-			<item value="spPeriodos"/>
-			<item value="tfTipo"/>
+			<item value="professorr"/>
+			<item value="Professor"/>
+			<item value="cbGradeDisciplina"/>
+			<item value="tfTurno"/>
 			<item value="tfNome"/>
-			<item value="USUARIO"/>
-			<item value="usuario"/>
+			<item value="return "/>
+			<item value="turmas"/>
+			<item value="controllerT"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -1,43 +1,53 @@
 package controller;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
 import model.Turma;
 
 public class TurmaController {
-	public boolean cadastrarTurma(int periodo_turma, int num_alunos_turma, int id_professor, int id_disciplina, String nome_turma, String turno_turma) throws Exception{		
-		if (periodo_turma > 0 && num_alunos_turma > 0 && id_professor > 0 && id_disciplina > 0 && nome_turma != null && nome_turma.length() > 0 &&
-				turno_turma != null && turno_turma.length() > 0){
-			Turma turma = new Turma(periodo_turma, num_alunos_turma, id_professor, id_disciplina, nome_turma, turno_turma);
+	public boolean cadastrarTurma(int periodo, int numAlunos, int numAulas, int idProfessor, int idSala,
+			int idGradeDisciplina, String nome, String turno, Time horaInicio, Time horaFim) throws Exception {
+		if (periodo > 0 && numAlunos > 0 && numAulas > 0 && idProfessor > 0 && idSala > 0 && idGradeDisciplina > 0
+				&& nome != null && nome.length() > 0 && turno != null && turno.length() > 0 && horaInicio != null
+				&& horaFim != null) {
+			Turma turma = new Turma(periodo, numAlunos, numAulas, idProfessor, idSala, idGradeDisciplina, nome, turno,
+					horaInicio, horaFim);
 			turma.cadastrar(turma);
 			return true;
-		} 
-			return false;
-	}	
-	
-public boolean alterarTurma(int id, int periodo_turma, int num_alunos_turma, int id_professor, int id_disciplina, String nome_turma, String turno_turma) throws Exception{
-		
-		if (id > 0 && periodo_turma > 0 && num_alunos_turma > 0 && id_professor > 0 && id_disciplina > 0 && nome_turma != null && nome_turma.length() > 0 &&
-				turno_turma != null && turno_turma.length() > 0){
-			Turma turma = new Turma(periodo_turma, num_alunos_turma, id_professor, id_disciplina, nome_turma, turno_turma);
+		}
+		return false;
+	}
+
+	public boolean alterarTurma(int id, int periodo, int numAlunos, int numAulas, int idProfessor, int idSala,
+			int idGradeDisciplina, String nome, String turno, Time horaInicio, Time horaFim) throws Exception {
+
+		if (id > 0 && periodo > 0 && numAlunos > 0 && numAulas > 0 && idProfessor > 0 && idSala > 0
+				&& idGradeDisciplina > 0 && nome != null && nome.length() > 0 && turno != null && turno.length() > 0
+				&& horaInicio != null && horaFim != null) {
+			Turma turma = new Turma(periodo, numAlunos, numAulas, idProfessor, idSala, idGradeDisciplina, nome, turno,
+					horaInicio, horaFim);
+			turma.setIdTurma(id);
 			turma.alterar(turma);
 			return true;
-		} 
-			return false;
-	}
-	
-	public boolean excluirTurma(int cod) throws Exception {
-		
-		if (cod == 0){
-			return false;
 		}
-		
-		new Turma().excluir(cod);
-			return true;
+		return false;
 	}
-	
-	public ArrayList<String> listarTurma() throws Exception{
-		//return new Turma().listarTurmas();
-		return null;
+
+	public boolean excluirTurma(int cod) throws Exception {
+
+		if (cod > 0) {
+			new Turma().excluir(cod);
+			return true;
+		}
+		return false;
+	}
+
+	public ArrayList<Turma> listarTurmas() throws Exception {
+		return new Turma().listarTurmas();
+	}
+
+	public Turma buscarTurma(int cod) throws Exception {
+		return new Turma().buscar(cod);
 	}
 }

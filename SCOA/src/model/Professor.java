@@ -55,10 +55,10 @@ public class Professor{
 		//new ProfessorDao().excluirProfessor(cod);
 	}	
 	
-	public void buscar(int cod) throws Exception{
-		//new ProfessorDao().buscarProfessor(cod)
+	public Professor buscar(int idUsuario) throws Exception{
+		return new ProfessorDao().buscarProfessor(idUsuario);
 	}
-	public ArrayList<String> listarAtores() throws Exception{
+	public ArrayList<String> listarProfessores() throws Exception{
 		//return new ProfessorDao().listarProfessor();
 		return null;
 	}

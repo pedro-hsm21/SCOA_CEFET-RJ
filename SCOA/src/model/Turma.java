@@ -1,101 +1,144 @@
 package model;
 
+import java.sql.Time;
 import java.util.ArrayList;
 
-public class Turma{
-	int idturma, periodo_turma, num_alunos_turma, id_professor, id_disciplina;
-	String nome_turma, turno_turma;
-	
-	
-	public Turma(int periodo_turma, int num_alunos_turma, int id_professor, int id_disciplina,
-			String nome_turma, String turno_turma) {
+import dao.TurmaDao;
+
+public class Turma {
+	int idTurma, periodo, numAlunos, numAulas, idProfessor, idSala, idGradeDisciplina;
+	String nome, turno;
+	Time horaInicio, horaFim;
+
+	public Turma(int periodo, int numAlunos, int numAulas, int idProfessor, int idSala, int idGradeDisciplina,
+			String nome, String turno, Time horaInicio, Time horaFim) {
 		super();
-		this.periodo_turma = periodo_turma;
-		this.num_alunos_turma = num_alunos_turma;
-		this.id_professor = id_professor;
-		this.id_disciplina = id_disciplina;
-		this.nome_turma = nome_turma;
-		this.turno_turma = turno_turma;
+		this.periodo = periodo;
+		this.numAlunos = numAlunos;
+		this.numAulas = numAulas;
+		this.idProfessor = idProfessor;
+		this.idSala = idSala;
+		this.idGradeDisciplina = idGradeDisciplina;
+		this.nome = nome;
+		this.turno = turno;
+		this.horaInicio = horaInicio;
+		this.horaFim = horaFim;
 	}
-	
+
 	public Turma() {
 
 	}
 
-	public int getIdturma() {
-		return idturma;
+	public int getIdTurma() {
+		return idTurma;
 	}
 
-	public void setIdturma(int idturma) {
-		this.idturma = idturma;
+	public void setIdTurma(int idTurma) {
+		this.idTurma = idTurma;
 	}
 
-	public int getPeriodo_turma() {
-		return periodo_turma;
+	public int getPeriodo() {
+		return periodo;
 	}
 
-	public void setPeriodo_turma(int periodo_turma) {
-		this.periodo_turma = periodo_turma;
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
 	}
 
-	public int getNum_alunos_turma() {
-		return num_alunos_turma;
+	public int getNumAlunos() {
+		return numAlunos;
 	}
 
-	public void setNum_alunos_turma(int num_alunos_turma) {
-		this.num_alunos_turma = num_alunos_turma;
+	public void setNumAlunos(int numAlunos) {
+		this.numAlunos = numAlunos;
 	}
 
-	public int getId_professor() {
-		return id_professor;
+	public int getNumAulas() {
+		return numAulas;
 	}
 
-	public void setId_professor(int id_professor) {
-		this.id_professor = id_professor;
+	public void setNumAulas(int numAulas) {
+		this.numAulas = numAulas;
 	}
 
-	public int getId_disciplina() {
-		return id_disciplina;
+	public int getIdProfessor() {
+		return idProfessor;
 	}
 
-	public void setId_disciplina(int id_disciplina) {
-		this.id_disciplina = id_disciplina;
+	public void setIdProfessor(int idProfessor) {
+		this.idProfessor = idProfessor;
 	}
 
-	public String getNome_turma() {
-		return nome_turma;
+	public int getIdSala() {
+		return idSala;
 	}
 
-	public void setNome_turma(String nome_turma) {
-		this.nome_turma = nome_turma;
+	public void setIdSala(int idSala) {
+		this.idSala = idSala;
 	}
 
-	public String getTurno_turma() {
-		return turno_turma;
+	public int getIdGradeDisciplina() {
+		return idGradeDisciplina;
 	}
 
-	public void setTurno_turma(String turno_turma) {
-		this.turno_turma = turno_turma;
+	public void setIdGradeDisciplina(int idGradeDisciplina) {
+		this.idGradeDisciplina = idGradeDisciplina;
 	}
 
-	public void cadastrar(Turma turma) throws Exception{
-		//new TurmaDao().cadastrarTurma(turma);
-	}	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTurno() {
+		return turno;
+	}
+
+	public void setTurno(String turno) {
+		this.turno = turno;
+	}
+
+	public Time getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(Time horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public Time getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(Time horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public void cadastrar(Turma turma) throws Exception {
+		new TurmaDao().cadastrarTurma(turma);
+	}
+
+	public void alterar(Turma turma) throws Exception {
+		new TurmaDao().alterarTurma(turma);
+	}
+
+	public void excluir(int cod) throws Exception {
+		new TurmaDao().excluirTurma(cod);
+	}
+
+	public Turma buscar(int cod) throws Exception {
+		return new TurmaDao().buscarTurma(cod);
+	}
+
+	public ArrayList<Turma> listarTurmas() throws Exception {
+		return new TurmaDao().listarTurmas();
+	}
 	
-	public void alterar(Turma turma) throws Exception{
-		//new TurmaDao().alterarTurma(turma);
-	}	
-	
-	public void excluir(int cod) throws Exception{
-		//new TurmaDao().excluirTurma(cod);
-	}	
-	
-	public void buscar(int cod) throws Exception{
-		//new TurmaDao().buscarTurma(cod)
+	public String toString(){
+		return getNome();
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new TurmaDao().listarTurma();
-		return null;
-	}
-	
-	}
+
+}
