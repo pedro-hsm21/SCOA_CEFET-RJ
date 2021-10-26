@@ -1,0 +1,166 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import controller.GradeDisciplinaController;
+import model.GradeDisciplina;
+import model.Professor;
+import model.Sala;
+import model.Usuario;
+
+public class TelaCadastroGradeDisciplina extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JComboBox cbDisciplina;
+	private JComboBox cbGrade;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroGradeDisciplina frame = new TelaCadastroGradeDisciplina();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public TelaCadastroGradeDisciplina() throws ParseException {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Cadastrar Grade Disciplina");
+		setResizable(false);
+		setBounds(100, 100, 1024, 600);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblCadastrarGradeDisciplina = new JLabel("Cadastrar Grade Disciplina");
+		lblCadastrarGradeDisciplina.setForeground(new Color(31, 58, 104));
+		lblCadastrarGradeDisciplina
+				.setIcon(new ImageIcon(TelaCadastroGradeDisciplina.class.getResource("/images/_007f97-removebg-preview100.png")));
+		lblCadastrarGradeDisciplina.setBounds(10, 11, 998, 70);
+		contentPane.add(lblCadastrarGradeDisciplina);
+		lblCadastrarGradeDisciplina.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastrarGradeDisciplina.setFont(new Font("Tahoma", Font.BOLD, 40));
+
+		JPanel panelCadastroGradeDisciplina = new JPanel();
+		panelCadastroGradeDisciplina.setBorder(new LineBorder(new Color(31, 58, 104), 2, true));
+		panelCadastroGradeDisciplina.setBounds(10, 87, 998, 474);
+		contentPane.add(panelCadastroGradeDisciplina);
+		panelCadastroGradeDisciplina.setLayout(null);
+
+		JButton btnLimparCadastroGradeDisciplina = new JButton("Limpar");
+		btnLimparCadastroGradeDisciplina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limpar();
+			}
+		});
+		btnLimparCadastroGradeDisciplina.setBackground(new Color(122, 97, 171));
+		btnLimparCadastroGradeDisciplina.setForeground(new Color(31, 58, 104));
+		btnLimparCadastroGradeDisciplina.setBounds(683, 413, 301, 50);
+		panelCadastroGradeDisciplina.add(btnLimparCadastroGradeDisciplina);
+		btnLimparCadastroGradeDisciplina.setFont(new Font("Tahoma", Font.BOLD, 16));
+
+		JButton btnSalvarGradeDisciplina = new JButton("Salvar");
+		btnSalvarGradeDisciplina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					hinicio = new java.sql.Time(fmt.parse(horainicio).getTime());
+					hfim = new java.sql.Time(fmt.parse(horafim).getTime());
+				} catch (ParseException e2) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Erro na data");
+				}
+				try {
+					GradeDisciplinaController controller = new GradeDisciplinaController();
+					boolean status = false;
+					if (codigo == 0) {
+						status = controller.cadastrarGradeDisciplina(periodo, numalunos, numaulas, idprofessor, idsala,
+								idgradedisciplina, nome, turno, hinicio, hfim);
+					} else {
+						status = controller.alterarGradeDisciplina(codigo, periodo, numalunos, numaulas, idprofessor, idsala,
+								idgradedisciplina, nome, turno, hinicio, hfim);
+					}
+					if (status == true) {
+						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+						TelaGradeDisciplinas tela = new TelaGradeDisciplinas();
+						dispose();
+						tela.setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Falhou, verifique se os campos estão preenchidos corretamente.");
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnSalvarGradeDisciplina.setBackground(new Color(122, 97, 171));
+		btnSalvarGradeDisciplina.setForeground(new Color(31, 58, 104));
+		btnSalvarGradeDisciplina.setBounds(12, 413, 301, 50);
+		panelCadastroGradeDisciplina.add(btnSalvarGradeDisciplina);
+		btnSalvarGradeDisciplina.setFont(new Font("Tahoma", Font.BOLD, 16));
+
+		JLabel lblProfessorCadastroGradeDisciplina = new JLabel("Professor:");
+		lblProfessorCadastroGradeDisciplina.setForeground(new Color(122, 97, 171));
+		lblProfessorCadastroGradeDisciplina.setBackground(new Color(31, 58, 104));
+		lblProfessorCadastroGradeDisciplina.setBounds(12, 42, 83, 20);
+		panelCadastroGradeDisciplina.add(lblProfessorCadastroGradeDisciplina);
+		lblProfessorCadastroGradeDisciplina.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblProfessorCadastroGradeDisciplina.setHorizontalAlignment(SwingConstants.LEFT);
+		lblProfessorCadastroGradeDisciplina.setFont(new Font("Tahoma", Font.BOLD, 16));
+
+		cbProfessor = new JComboBox<Usuario>();
+		cbProfessor.setBounds(105, 44, 885, 20);
+		panelCadastroGradeDisciplina.add(cbProfessor);
+
+		JLabel lblGradeDisciplinaCadastroGradeDisciplina = new JLabel("Grade Disciplina:");
+		lblGradeDisciplinaCadastroGradeDisciplina.setHorizontalAlignment(SwingConstants.LEFT);
+		lblGradeDisciplinaCadastroGradeDisciplina.setForeground(new Color(122, 97, 171));
+		lblGradeDisciplinaCadastroGradeDisciplina.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblGradeDisciplinaCadastroGradeDisciplina.setBackground(new Color(31, 58, 104));
+		lblGradeDisciplinaCadastroGradeDisciplina.setAlignmentX(0.5f);
+		lblGradeDisciplinaCadastroGradeDisciplina.setBounds(14, 73, 138, 20);
+		panelCadastroGradeDisciplina.add(lblGradeDisciplinaCadastroGradeDisciplina);
+
+		cbGradeDisciplina = new JComboBox<GradeDisciplina>();
+		cbGradeDisciplina.setBounds(162, 75, 828, 20);
+		panelCadastroGradeDisciplina.add(cbGradeDisciplina);
+
+}
