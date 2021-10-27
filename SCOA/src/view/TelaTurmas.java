@@ -21,7 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import controller.TurmaController;
-import controller.UsuarioController;
 import model.Turma;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -205,10 +204,9 @@ public class TelaTurmas extends JFrame {
 							"Aten��o", JOptionPane.YES_NO_OPTION);
 					if (rs == JOptionPane.YES_OPTION) {
 						try {
-							UsuarioController controller = new UsuarioController();
 							TurmaController controllerT = new TurmaController();
 							Turma turma = controllerT.buscarTurma(turmas.get(clicou).getIdTurma());
-							boolean status = controllerT.excluirTurma(turma.getIdTurma()) && controller.excluirUsuario(turmas.get(clicou).getIdTurma());
+							boolean status = controllerT.excluirTurma(turma.getIdTurma());
 							if (status == true) {
 								JOptionPane.showMessageDialog(null, "Removida com sucesso!");
 							}

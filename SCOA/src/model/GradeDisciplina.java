@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.GradeDao;
 import dao.GradeDisciplinaDao;
 
 public class GradeDisciplina {
@@ -61,7 +62,7 @@ public class GradeDisciplina {
 		return new GradeDisciplinaDao().listarGradeDisciplinas();
 	}
 	public String toString(){
-		return getMatriculaGrade();
+		return new GradeDao().buscarGrade(getIdGrade()).getMatriculaGrade();
 	}
 
 }

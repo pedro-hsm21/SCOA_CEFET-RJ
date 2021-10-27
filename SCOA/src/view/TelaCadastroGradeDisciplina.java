@@ -180,10 +180,10 @@ public class TelaCadastroGradeDisciplina extends JFrame {
 		cbGrade.setSelectedIndex(0);
 	}
 
-	public void carregarValores(Turma turma) {
-		cbDisciplina.setSelectedItem(turma.getIdProfessor());
-		cbGrade.setSelectedItem(turma.getIdSala());
-		codigo = turma.getIdTurma();
+	public void carregarValores(GradeDisciplina gradedisciplina) {
+		cbDisciplina.setSelectedItem(gradedisciplina.getIdDisciplina());
+		cbGrade.setSelectedItem(gradedisciplina.getIdGrade());
+		codigo = gradedisciplina.getIdGradeDisciplina();
 	}
 
 	public void povoarComboBox() throws Exception {

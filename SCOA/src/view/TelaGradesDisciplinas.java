@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.GradeDisciplinaController;
 import controller.UsuarioController;
+import dao.GradeDao;
 import model.GradeDisciplina;
 
 public class TelaGradesDisciplinas extends JFrame {
@@ -200,7 +201,7 @@ public class TelaGradesDisciplinas extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int clicou = table.getSelectedRow();
 				if (clicou >= 0) {
-					int rs = JOptionPane.showConfirmDialog(null, "Excluir " + gradesdisciplinas.get(clicou).getNome(),
+					int rs = JOptionPane.showConfirmDialog(null, "Excluir " + gradesdisciplinas.get(clicou).getIdGrade(),
 							"Aten��o", JOptionPane.YES_NO_OPTION);
 					if (rs == JOptionPane.YES_OPTION) {
 						try {
@@ -233,7 +234,12 @@ public class TelaGradesDisciplinas extends JFrame {
 		try {
 			gradesdisciplinas = controllerT.listarGradeDisciplinas();
 			gradesdisciplinas.forEach((GradeDisciplina gradedisciplina) -> {
-				tablemodel.addRow(new Object[] { gradedisciplina.getIdGradeDisciplina(), gradedisciplina.getMatriculaGrade() });
+				try {
+					tablemodel.addRow(new Object[] { gradedisciplina.getIdGrade(), new GradeDao().buscarGrade(gradedisciplina.getIdGrade()).getMatriculaGrade()});
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			});
 			table.setModel(tablemodel);
 		} catch (Exception e) {
