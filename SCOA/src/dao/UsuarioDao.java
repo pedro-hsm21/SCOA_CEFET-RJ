@@ -23,7 +23,7 @@ public class UsuarioDao extends Connection {
 	
 public int cadastrarUsuario(Usuario usuario) throws Exception{
 		int id = 0;
-		String sql= "INSERT INTO usuario" + "(NOME_USUARIO, EMAIL_USUARIO, INGRESSO, SENHA, UF, CIDADE, BAIRRO, RUA, TIPO, CPF)" + 
+		String sql= "INSERT INTO usuario" + "(NOME_USUARIO, EMAIL_USUARIO, INGRESSO, SENHA, UF, CIDADE, BAIRRO, RUA, TIPO_USUARIO, CPF)" + 
 	          "  VALUES (?,?,?,?,?,?,?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
@@ -138,7 +138,7 @@ public void alterarUsuario(Usuario usuario) throws Exception {
 public ArrayList<Usuario> listarUsuarios(  int tipo) throws Exception {
 	
 	ArrayList<Usuario> lista = new ArrayList<Usuario>();
-	String sql="SELECT * FROM usuario where tipo= ?";
+	String sql="SELECT * FROM usuario where tipo_usuario= ?";
 	try {
 		pstm=con.prepareStatement(sql);
 		pstm.setInt(1, tipo);
@@ -154,7 +154,7 @@ public ArrayList<Usuario> listarUsuarios(  int tipo) throws Exception {
 			usuario.setCidade(rs.getString("CIDADE"));
 			usuario.setBairro(rs.getString("BAIRRO"));
 			usuario.setRua(rs.getString("RUA"));
-			usuario.setTipo(rs.getInt("TIPO"));
+			usuario.setTipo(rs.getInt("TIPO_usuario"));
 			usuario.setCPF(rs.getInt("CPF"));
 			lista.add(usuario);
 	    	}

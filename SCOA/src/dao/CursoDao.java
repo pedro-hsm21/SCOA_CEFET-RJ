@@ -18,7 +18,7 @@ public class CursoDao extends Connection {
 	
 public void cadastrarCurso(Curso curso) throws Exception{
 		
-		String sql= "INSERT INTO curso" + "(PERIODOS, NOME_CURSO, TIPO_CURSO, DESCRICAO_CURSO)" + 
+		String sql= "INSERT INTO curso" + "(PERIODOS_CURSO, NOME_CURSO, TIPO_CURSO, DESCRICAO_CURSO)" + 
 	          "  VALUES (?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql);
@@ -77,7 +77,7 @@ public void excluirCurso(int id) throws Exception{
 }
 
 public void alterarCurso(Curso curso) throws Exception {
-	String sql= "UPDATE curso SET PERIODOS = ?, NOME_CURSO = ?, TIPO_CURSO = ?, DESCRICAO_CURSO = ?"
+	String sql= "UPDATE curso SET PERIODOS_CURSO = ?, NOME_CURSO = ?, TIPO_CURSO = ?, DESCRICAO_CURSO = ?"
 			+ " WHERE IDCURSO = ?";
 		try{
 		pstm = con.prepareStatement(sql);
@@ -118,7 +118,7 @@ public ArrayList<Curso> listarCursos() throws Exception {
 		rs=pstm.executeQuery();
 		while (rs.next()){
 			Curso curso = new Curso();
-			curso.setPeriodos(rs.getInt("PERIODOS"));
+			curso.setPeriodos(rs.getInt("PERIODOS_CURSO"));
 			curso.setNome_curso(rs.getString("NOME_CURSO"));
 			curso.setTipo_curso(rs.getString("TIPO_CURSO"));
 			curso.setDescricao_curso(rs.getString("DESCRICAO_CURSO"));

@@ -18,7 +18,7 @@ public class Curso_AlunoDao extends Connection {
 	
 public void cadastrarcurso_aluno(Curso_Aluno curso_aluno) throws Exception{
 		
-		String sql= "INSERT INTO curso_aluno" + "(ID_CURSO,ID_ALUNO,MATRICULA,STATUS_MATRICULA,DATA_ENCERRAMENTO)" + 
+		String sql= "INSERT INTO curso_aluno" + "(ID_CURSO,ID_ALUNO,MATRICULA_ALUNO,STATUS_MATRICULA,DATA_ENCERRAMENTO)" + 
 	          "  VALUES (?,?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql);
@@ -78,7 +78,7 @@ public void excluircurso_aluno(int id) throws Exception{
 }
 
 public void alterarcurso_aluno(Curso_Aluno curso_aluno) throws Exception {
-	String sql= "UPDATE curso_aluno SET ID_CURSO = ?, ID_ALUNO = ?, MATRICULA = ?,"
+	String sql= "UPDATE curso_aluno SET ID_CURSO = ?, ID_ALUNO = ?, MATRICULA_ALUNO = ?,"
 			+ " STATUS_MATRICULA = ?, DATA_ENCERRAMENTO = ?  WHERE IDCURSO_ALUNO = ? ";
 		try{
 		pstm = con.prepareStatement(sql);
@@ -123,7 +123,7 @@ public ArrayList<Curso_Aluno> listarcurso_alunos(int id) throws Exception {
 			Curso_Aluno curso_aluno = new Curso_Aluno();
 			curso_aluno.setId_curso(rs.getInt("ID_CURSO"));
 			curso_aluno.setId_aluno(rs.getInt("ID_ALUNO"));
-			curso_aluno.setMatricula(rs.getString("MATRICULA"));
+			curso_aluno.setMatricula(rs.getString("MATRICULA_ALUNO"));
 			curso_aluno.setStatus_matricula(rs.getInt("STATUS_MATRICULA"));
 			curso_aluno.setData_fim(rs.getDate("DATA_ENCERRAMENTO"));
 			curso_aluno.setId_curso_aluno(rs.getInt("IDCURSO_ALUNO"));

@@ -120,6 +120,7 @@ public class TelaCadastroTurma extends JFrame {
 		JButton btnSalvarTurma = new JButton("Salvar");
 		btnSalvarTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
 				String nome = tfNome.getText();
 				int periodo = Integer.parseInt(spPeriodo.getValue().toString());
 				String turno = tfTurno.getText();
@@ -140,7 +141,7 @@ public class TelaCadastroTurma extends JFrame {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Erro na data");
 				}
-				try {
+				
 					TurmaController controller = new TurmaController();
 					boolean status = false;
 					if (codigo == 0) {

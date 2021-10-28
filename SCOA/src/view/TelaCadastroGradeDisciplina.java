@@ -26,11 +26,13 @@ import controller.GradeDisciplinaController;
 import dao.GradeDisciplinaDao;
 import dao.SalaDao;
 import dao.DisciplinaDao;
+import dao.GradeDao;
 import model.GradeDisciplina;
 import model.Professor;
 import model.Sala;
 import model.Turma;
 import model.Disciplina;
+import model.Grade;
 
 public class TelaCadastroGradeDisciplina extends JFrame {
 
@@ -191,7 +193,7 @@ public class TelaCadastroGradeDisciplina extends JFrame {
 		for (Disciplina disciplina : disciplinadao.listarDisciplinas()) {
 			cbDisciplina.addItem(disciplina);
 		}
-		GradeaDao gradedao = new GradeDao();
+		GradeDao gradedao = new GradeDao();
 		for (Grade grade : gradedao.listarGrades()) {
 			cbGrade.addItem(grade);
 		}

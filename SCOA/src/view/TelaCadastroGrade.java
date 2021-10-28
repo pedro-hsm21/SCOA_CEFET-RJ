@@ -179,7 +179,7 @@ public class TelaCadastroGrade extends JFrame {
 		lblCursoGradeCadastroTurma.setBounds(12, 73, 52, 20);
 		panelCadastroGrade.add(lblCursoGradeCadastroTurma);
 		
-		cbCurso = new JComboBox<GradeDisciplina>();
+		cbCurso = new JComboBox<Curso>();
 		cbCurso.setBounds(74, 75, 916, 20);
 		panelCadastroGrade.add(cbCurso);
 

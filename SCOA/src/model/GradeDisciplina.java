@@ -61,8 +61,8 @@ public class GradeDisciplina {
 	public ArrayList<GradeDisciplina> listarGradeDisciplinas() throws Exception {
 		return new GradeDisciplinaDao().listarGradeDisciplinas();
 	}
-	public String toString(){
-		return new GradeDao().buscarGrade(getIdGrade()).getMatriculaGrade();
-	}
+	//public String toString(){
+	//	return new GradeDao().buscarGrade(getIdGrade()).getMatriculaGrade();
+	//}
 
 }
