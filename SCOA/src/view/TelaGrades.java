@@ -151,6 +151,7 @@ public class TelaGrades extends JFrame {
 						 //JOptionPane.showMessageDialog(null,"enviou codigo" + grade.getId_grade() + "e periodo" + grade.getPeriodo_grade());
 						tela.povoarComboBox();
 						tela.carregarValores(grade);
+						tela.carregarTable(grade.getIdGrade());
 						dispose();
 						tela.setVisible(true);
 
@@ -216,7 +217,7 @@ public class TelaGrades extends JFrame {
 						}
 					}
 				} else
-					JOptionPane.showMessageDialog(null, "nenhum selecionado");
+					JOptionPane.showMessageDialog(null, "Nenhum selecionado.");
 
 			}
 		});

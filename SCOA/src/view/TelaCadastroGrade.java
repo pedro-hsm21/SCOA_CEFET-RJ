@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,15 +17,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controller.GradeController;
+import controller.GradeDisciplinaController;
 import dao.CursoDao;
 import model.Curso;
+import model.Disciplina;
 import model.Grade;
 import model.GradeDisciplina;
 
@@ -35,7 +44,10 @@ public class TelaCadastroGrade extends JFrame {
 	private JSpinner spAnoGrade;
 	private JTextField tfMatriculaGrade;
 	private JComboBox<Curso> cbCurso;
+	private JComboBox<Disciplina> cbDisciplina;
 	int codigo;
+	private JTable table;
+	private ArrayList<GradeDisciplina> gradesdisciplinas;
 
 	/**
 	 * Launch the application.
@@ -128,7 +140,7 @@ public class TelaCadastroGrade extends JFrame {
 		btnSalvarGrade.setBounds(12, 413, 301, 50);
 		panelCadastroGrade.add(btnSalvarGrade);
 		btnSalvarGrade.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
+
 		JButton btnvoltar = new JButton("Voltar");
 		btnvoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -142,11 +154,11 @@ public class TelaCadastroGrade extends JFrame {
 		btnvoltar.setBackground(new Color(122, 97, 171));
 		btnvoltar.setBounds(350, 413, 301, 50);
 		panelCadastroGrade.add(btnvoltar);
-		
+
 		JLabel lblAnoGradeCadastroTurma = new JLabel("Ano:");
 		lblAnoGradeCadastroTurma.setForeground(new Color(122, 97, 171));
 		lblAnoGradeCadastroTurma.setBackground(new Color(31, 58, 104));
-		lblAnoGradeCadastroTurma.setBounds(10, 11, 38, 20);
+		lblAnoGradeCadastroTurma.setBounds(12, 11, 38, 20);
 		panelCadastroGrade.add(lblAnoGradeCadastroTurma);
 		lblAnoGradeCadastroTurma.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblAnoGradeCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
@@ -155,7 +167,7 @@ public class TelaCadastroGrade extends JFrame {
 		spAnoGrade = new JSpinner();
 		spAnoGrade.setBounds(58, 13, 58, 20);
 		panelCadastroGrade.add(spAnoGrade);
-		
+
 		JLabel lblMatriculaGradeGradeCadastroTurma = new JLabel("Matr\u00EDcula:");
 		lblMatriculaGradeGradeCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMatriculaGradeGradeCadastroTurma.setForeground(new Color(122, 97, 171));
@@ -164,12 +176,12 @@ public class TelaCadastroGrade extends JFrame {
 		lblMatriculaGradeGradeCadastroTurma.setAlignmentX(0.5f);
 		lblMatriculaGradeGradeCadastroTurma.setBounds(12, 42, 82, 20);
 		panelCadastroGrade.add(lblMatriculaGradeGradeCadastroTurma);
-		
+
 		tfMatriculaGrade = new JTextField();
 		tfMatriculaGrade.setBounds(104, 44, 884, 20);
 		panelCadastroGrade.add(tfMatriculaGrade);
 		tfMatriculaGrade.setColumns(10);
-		
+
 		JLabel lblCursoGradeCadastroTurma = new JLabel("Curso:");
 		lblCursoGradeCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCursoGradeCadastroTurma.setForeground(new Color(122, 97, 171));
@@ -178,13 +190,69 @@ public class TelaCadastroGrade extends JFrame {
 		lblCursoGradeCadastroTurma.setAlignmentX(0.5f);
 		lblCursoGradeCadastroTurma.setBounds(12, 73, 52, 20);
 		panelCadastroGrade.add(lblCursoGradeCadastroTurma);
-		
+
 		cbCurso = new JComboBox<Curso>();
 		cbCurso.setBounds(74, 75, 916, 20);
 		panelCadastroGrade.add(cbCurso);
+		
+		cbDisciplina = new JComboBox<Disciplina>();
+		cbDisciplina.setBounds(104, 106, 688, 20);
+		panelCadastroGrade.add(cbDisciplina);
+
+		JLabel lblDisciplinasGradeCadastroTurma = new JLabel("Disciplina:");
+		lblDisciplinasGradeCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDisciplinasGradeCadastroTurma.setForeground(new Color(122, 97, 171));
+		lblDisciplinasGradeCadastroTurma.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDisciplinasGradeCadastroTurma.setBackground(new Color(31, 58, 104));
+		lblDisciplinasGradeCadastroTurma.setAlignmentX(0.5f);
+		lblDisciplinasGradeCadastroTurma.setBounds(12, 104, 89, 20);
+		panelCadastroGrade.add(lblDisciplinasGradeCadastroTurma);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 135, 976, 267);
+		panelCadastroGrade.add(scrollPane);
+
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		table.setModel(new DefaultTableModel(new Object[][] { { null }, }, new String[] { "Disciplinas:" }) {
+			boolean[] columnEditables = new boolean[] { false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		scrollPane.setViewportView(table);
+		
+		JButton btnAdicionar = new JButton("Adicionar");
+		/*btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (codigo > 0) {
+					try {
+						TelaDisciplina tela = new TelaDisciplina();
+						tela.carregarValores();
+						tela.setVisible(true);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else JOptionPane.showMessageDialog(null, "Aluno não cadastrado");
+			}
+		});*/
+		btnAdicionar.setBounds(800, 105, 89, 23);
+		panelCadastroGrade.add(btnAdicionar);
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.setBounds(895, 105, 89, 23);
+		panelCadastroGrade.add(btnRemover);
 
 	}
 	
+
 	public void limpar() {
 		spAnoGrade.setValue(0);
 		tfMatriculaGrade.setText("");
@@ -197,11 +265,29 @@ public class TelaCadastroGrade extends JFrame {
 		cbCurso.setSelectedItem(grade.getIdCurso());
 		codigo = grade.getIdGrade();
 	}
-	
-	public void povoarComboBox() throws Exception{
+
+	public void povoarComboBox() throws Exception {
 		CursoDao cursodao = new CursoDao();
-		for (Curso curso: cursodao.listarCursos()){
+		for (Curso curso : cursodao.listarCursos()) {
 			cbCurso.addItem(curso);
 		}
+	}
+
+	void carregarTable(int idgrade) {
+		DefaultTableModel tablemodel = (DefaultTableModel) table.getModel();
+		tablemodel.setRowCount(0);
+		GradeDisciplinaController controllerGD = new GradeDisciplinaController();
+
+		try {
+			gradesdisciplinas = controllerGD.listarGradesDisciplinas(idgrade);
+			gradesdisciplinas.forEach((GradeDisciplina gradedisciplina) -> {
+				tablemodel.addRow(new Object[] { gradedisciplina.toString()});
+			});
+			table.setModel(tablemodel);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

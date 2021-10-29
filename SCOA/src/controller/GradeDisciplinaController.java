@@ -34,8 +34,8 @@ public class GradeDisciplinaController {
 		return false;
 	}
 
-	public ArrayList<GradeDisciplina> listarGradeDisciplinas() throws Exception {
-		return new GradeDisciplina().listarGradeDisciplinas();
+	public ArrayList<GradeDisciplina> listarGradesDisciplinas(int idgrade) throws Exception {
+		return new GradeDisciplina().listarGradeDisciplinas(idgrade);
 	}
 
 	public GradeDisciplina buscarGradeDisciplina(int cod) throws Exception {

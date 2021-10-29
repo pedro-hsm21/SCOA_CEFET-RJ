@@ -80,4 +80,8 @@ public class Curso{
 		return new CursoDao().listarCursos();
 		
 	}
+	
+	public String toString(){
+		return getNome_curso();
+	}
 }

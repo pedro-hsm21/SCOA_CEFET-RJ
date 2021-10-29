@@ -2,14 +2,15 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.DisciplinaDao;
+
 public class Disciplina{
-	int id_disciplina, id_curso, periodo_disciplina;
+	int id_disciplina, periodo_disciplina;
 	String nome_disciplina, descricao_disciplina;
 	
-	public Disciplina(int id_curso, int periodo_disciplina, String nome_disciplina,
+	public Disciplina(int periodo_disciplina, String nome_disciplina,
 			String descricao_disciplina) {
 		super();
-		this.id_curso = id_curso;
 		this.periodo_disciplina = periodo_disciplina;
 		this.nome_disciplina = nome_disciplina;
 		this.descricao_disciplina = descricao_disciplina;
@@ -25,14 +26,6 @@ public class Disciplina{
 
 	public void setId_disciplina(int id_disciplina) {
 		this.id_disciplina = id_disciplina;
-	}
-
-	public int getId_curso() {
-		return id_curso;
-	}
-
-	public void setId_curso(int id_curso) {
-		this.id_curso = id_curso;
 	}
 
 	public int getPeriodo_disciplina() {
@@ -60,22 +53,21 @@ public class Disciplina{
 	}
 
 	public void cadastrar(Disciplina disciplina) throws Exception{
-		//new DisciplinaDao().cadastrarDisciplina(disciplina);
+		new DisciplinaDao().cadastrarDisciplina(disciplina);
 	}	
 	
 	public void alterar(Disciplina disciplina) throws Exception{
-		//new DisciplinaDao().alterarDisciplina(disciplina);
+		new DisciplinaDao().alterarDisciplina(disciplina);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new DisciplinaDao().excluirDisciplina(cod);
+		new DisciplinaDao().excluirDisciplina(cod);
 	}	
 	
-	public void buscar(int cod) throws Exception{
-		//new DisciplinaDao().buscarDisciplina(cod)
+	public Disciplina buscar(int cod) throws Exception{
+		return new DisciplinaDao().buscarDisciplina(cod);
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new DisciplinaDao().listarDisciplina();
-		return null;
+	public ArrayList<Disciplina> listarDisciplinas() throws Exception{
+		return new DisciplinaDao().listarDisciplinas();
 	}
 }

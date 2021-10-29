@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-import dao.GradeDao;
+import controller.DisciplinaController;
 import dao.GradeDisciplinaDao;
 
 public class GradeDisciplina {
@@ -58,11 +58,18 @@ public class GradeDisciplina {
 		return new GradeDisciplinaDao().buscarGradeDisciplina(cod);
 	}
 
-	public ArrayList<GradeDisciplina> listarGradeDisciplinas() throws Exception {
-		return new GradeDisciplinaDao().listarGradeDisciplinas();
+	public ArrayList<GradeDisciplina> listarGradeDisciplinas(int idgrade) throws Exception {
+		return new GradeDisciplinaDao().listarGradeDisciplinas(idgrade);
 	}
-	//public String toString(){
-	//	return new GradeDao().buscarGrade(getIdGrade()).getMatriculaGrade();
-	//}
+	
+	public String toString(){
+		try {
+			return new DisciplinaController().buscarDisciplina(getIdDisciplina()).getNome_disciplina();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

@@ -15,136 +15,173 @@ public class DisciplinaDao extends Connection {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-public void cadastrarDisciplina(Disciplina disciplina) throws Exception{
-		
-		String sql= "INSERT INTO disciplina" + "(ID_CURSO, PERIODO_DISCIPLINA, NOME_DISCIPLINA, DESCRICAO_DISCIPLINA)" + 
-	          "  VALUES (?,?,?,?)";
-		try{
-		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, disciplina.getId_curso());
-		pstm.setInt(2, disciplina.getPeriodo_disciplina());
-		pstm.setString(3, disciplina.getNome_disciplina());
-		pstm.setString(4, disciplina.getDescricao_disciplina());
-		
-		
-		pstm.executeUpdate();
-		
-		} catch(SQLException e){
+
+	public void cadastrarDisciplina(Disciplina disciplina) throws Exception {
+
+		String sql = "INSERT INTO disciplina" + "(PERIODO_DISCIPLINA, NOME_DISCIPLINA, DESCRICAO_DISCIPLINA)"
+				+ "  VALUES (?,?,?)";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, disciplina.getPeriodo_disciplina());
+			pstm.setString(2, disciplina.getNome_disciplina());
+			pstm.setString(3, disciplina.getDescricao_disciplina());
+
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
 			throw new Exception("Erro ao cadastrar:" + e);
 		} finally {
 			try {
-				if (pstm != null){ 
-						pstm.close();
-					};
-			}catch (SQLException e){
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar o Statement:" + e);
 			}
 			try {
-				if (con != null){
+				if (con != null) {
 					con.close();
 				}
-			}catch(SQLException e){
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar a conexão:" + e);
 			}
 		}
 	}
 
-public void excluirDisciplina(int id) throws Exception{
-	try{
-		String sql="DELETE FROM disciplina WHERE IDDISCIPLINA = ?";
-		pstm=con.prepareStatement(sql);		
-		pstm.setInt(1, id);		
-		pstm.executeUpdate();
-	} catch (SQLException e) {
-		throw new Exception("Erro:" + e);
-	} finally {
+	public void excluirDisciplina(int id) throws Exception {
 		try {
-			if (pstm != null){ 
-					pstm.close();
-				};
-		}catch (SQLException e){
-			throw new Exception("Erro ao fechar o Statement:" + e);
-		}
-		try {
-			if (con != null){
-				con.close();
-			}
-		}catch(SQLException e){
-			throw new Exception("Erro ao fechar a conexão:" + e);
-		}
-	}	
-}
-
-public void alterarDisciplina(Disciplina disciplina) throws Exception {
-	String sql= "UPDATE disciplina SET ID_CURSO = ?, PERIODO_DISCIPLINA = ?, NOME_DISCIPLINA = ?, DESCRICAO_DISCIPLINA = ?"
-			+ " WHERE IDDISCIPLINA = ?";
-		try{
-		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, disciplina.getId_curso());
-		pstm.setInt(2, disciplina.getPeriodo_disciplina());
-		pstm.setString(3, disciplina.getNome_disciplina());
-		pstm.setString(4, disciplina.getDescricao_disciplina());
-		pstm.setInt(5,  disciplina.getId_disciplina());
-		
-		pstm.executeUpdate();
-		
-		} catch(SQLException e){
-			throw new Exception("Erro no update:" + e);
-		} finally {
-			try {
-				if (pstm != null){ 
-						pstm.close();
-					};
-			}catch (SQLException e){
-				throw new Exception("Erro ao fechar o Statement:" + e);
-			}
-			try {
-				if (con != null){
-					con.close();
-				}
-			}catch(SQLException e){
-				throw new Exception("Erro ao fechar a conexão:" + e);
-			}
-		}
-}
-
-public ArrayList<Disciplina> listarDisciplinas() throws Exception {
-	
-	ArrayList<Disciplina> lista = new ArrayList<Disciplina>();
-	String sql="SELECT * FROM disciplina";
-	try {
-		pstm=con.prepareStatement(sql);
-		rs=pstm.executeQuery();
-		while (rs.next()){
-			Disciplina disciplina = new Disciplina();
-			disciplina.setId_curso(rs.getInt("ID_CURSO"));
-			disciplina.setPeriodo_disciplina(rs.getInt("PERIODO_DISCIPLINA"));
-			disciplina.setNome_disciplina(rs.getString("NOME_DISCIPLINA"));
-			disciplina.setDescricao_disciplina(rs.getString("DESCRICAO_DISCIPLINA"));
-			disciplina.setId_disciplina(rs.getInt("IDDISCIPLINA"));
-			lista.add(disciplina);
-	    	}
+			String sql = "DELETE FROM disciplina WHERE IDDISCIPLINA = ?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, id);
+			pstm.executeUpdate();
 		} catch (SQLException e) {
 			throw new Exception("Erro:" + e);
 		} finally {
 			try {
-				if (pstm != null){ 
-						pstm.close();
-					};
-			}catch (SQLException e){
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar o Statement:" + e);
 			}
 			try {
-				if (con != null){
+				if (con != null) {
 					con.close();
 				}
-			}catch(SQLException e){
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar a conexão:" + e);
 			}
 		}
-		
-	return  lista;
+	}
+
+	public void alterarDisciplina(Disciplina disciplina) throws Exception {
+		String sql = "UPDATE disciplina SET PERIODO_DISCIPLINA = ?, NOME_DISCIPLINA = ?, DESCRICAO_DISCIPLINA = ?"
+				+ " WHERE IDDISCIPLINA = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, disciplina.getPeriodo_disciplina());
+			pstm.setString(2, disciplina.getNome_disciplina());
+			pstm.setString(3, disciplina.getDescricao_disciplina());
+			pstm.setInt(4, disciplina.getId_disciplina());
+
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new Exception("Erro no update:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+	}
+
+	public ArrayList<Disciplina> listarDisciplinas() throws Exception {
+
+		ArrayList<Disciplina> lista = new ArrayList<Disciplina>();
+		String sql = "SELECT * FROM disciplina";
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				Disciplina disciplina = new Disciplina();
+				disciplina.setPeriodo_disciplina(rs.getInt("PERIODO_DISCIPLINA"));
+				disciplina.setNome_disciplina(rs.getString("NOME_DISCIPLINA"));
+				disciplina.setDescricao_disciplina(rs.getString("DESCRICAO_DISCIPLINA"));
+				disciplina.setId_disciplina(rs.getInt("IDDISCIPLINA"));
+				lista.add(disciplina);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+
+		return lista;
 
 	}
+
+	public Disciplina buscarDisciplina(int cod) throws Exception {
+		Disciplina disciplina = new Disciplina();
+		String sql = "SELECT * FROM disciplina WHERE IDDISCIPLINA = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, cod);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				disciplina.setPeriodo_disciplina(rs.getInt("PERIODO_DISCIPLINA"));
+				disciplina.setNome_disciplina(rs.getString("NOME_DISCIPLINA"));
+				disciplina.setDescricao_disciplina(rs.getString("DESCRICAO_DISCIPLINA"));
+				disciplina.setId_disciplina(rs.getInt("IDDISCIPLINA"));
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+
+		return disciplina;
+	}
+
 }

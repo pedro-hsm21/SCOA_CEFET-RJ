@@ -105,12 +105,13 @@ public class GradeDisciplinaDao extends Connection {
 		}
 	}
 
-	public ArrayList<GradeDisciplina> listarGradeDisciplinas() throws Exception {
+	public ArrayList<GradeDisciplina> listarGradeDisciplinas(int idgrade) throws Exception {
 
 		ArrayList<GradeDisciplina> lista = new ArrayList<GradeDisciplina>();
-		String sql = "SELECT * FROM grade_disciplina";
+		String sql = "SELECT * FROM grade_disciplina WHERE ID_GRADE = ?";
 		try {
 			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, idgrade);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				GradeDisciplina gradedisciplina = new GradeDisciplina();

@@ -1,16 +1,14 @@
+/*
 package view;
 
-import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,31 +21,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import controller.GradeDisciplinaController;
-import dao.GradeDisciplinaDao;
-import dao.SalaDao;
 import dao.DisciplinaDao;
 import dao.GradeDao;
 import model.GradeDisciplina;
-import model.Professor;
-import model.Sala;
-import model.Turma;
 import model.Disciplina;
 import model.Grade;
 
 public class TelaCadastroGradeDisciplina extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<Disciplina> cbDisciplina;
 	private JComboBox<Grade> cbGrade;
 	int codigo;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -61,9 +50,7 @@ public class TelaCadastroGradeDisciplina extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public TelaCadastroGradeDisciplina() throws ParseException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastrar Grade Disciplina");
@@ -199,3 +186,4 @@ public class TelaCadastroGradeDisciplina extends JFrame {
 		}
 	}
 }
+*/

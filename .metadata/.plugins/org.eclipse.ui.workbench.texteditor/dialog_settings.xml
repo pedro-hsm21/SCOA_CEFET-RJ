@@ -6,29 +6,29 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="gradedisciplina" key="selection"/>
+		<item value="Disciplina" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Curso_Aluno"/>
+			<item value="GRADE_"/>
+			<item value="grade"/>
+			<item value="Grade"/>
 			<item value="turma"/>
 			<item value="TelaGradeDisciplinas"/>
 			<item value="turmas"/>
 			<item value="Turma"/>
-			<item value="Disciplina"/>
-			<item value="usuario"/>
-			<item value="Usuario"/>
-			<item value="cbSala"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Disciplina"/>
+			<item value=""/>
 			<item value="gradedisciplina"/>
 			<item value="TelaGradesDisciplinas"/>
 			<item value="gradesdisciplinas"/>
 			<item value="GradeDisciplina"/>
-			<item value=""/>
 			<item value="disciplina"/>
-			<item value="Disciplina"/>
 			<item value="cbGrade"/>
 		</list>
 	</section>

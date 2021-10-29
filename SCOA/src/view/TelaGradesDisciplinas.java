@@ -1,3 +1,4 @@
+/*
 package view;
 
 import java.awt.BorderLayout;
@@ -26,26 +27,21 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controller.GradeController;
 import controller.GradeDisciplinaController;
-import controller.UsuarioController;
-import dao.GradeDao;
 import model.GradeDisciplina;
 
 public class TelaGradesDisciplinas extends JFrame {
 
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField tfBusca;
 	private ArrayList<GradeDisciplina> gradesdisciplinas;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -59,13 +55,7 @@ public class TelaGradesDisciplinas extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	/**
-	 * Launch the application. @ -31,12 +59,178 @@ public class TelaTurrmas
-	 * extends JFrame { Create the frame.
-	 */
+	
 	public TelaGradesDisciplinas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -201,14 +191,13 @@ public class TelaGradesDisciplinas extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int clicou = table.getSelectedRow();
 				if (clicou >= 0) {
-					int rs = JOptionPane.showConfirmDialog(null, "Excluir " + gradesdisciplinas.get(clicou).getIdGrade(),
+					int rs = JOptionPane.showConfirmDialog(null, "Excluir " + gradesdisciplinas.get(clicou).toString(),
 							"Aten��o", JOptionPane.YES_NO_OPTION);
 					if (rs == JOptionPane.YES_OPTION) {
 						try {
-							UsuarioController controller = new UsuarioController();
 							GradeDisciplinaController controllerT = new GradeDisciplinaController();
 							GradeDisciplina gradedisciplina = controllerT.buscarGradeDisciplina(gradesdisciplinas.get(clicou).getIdGradeDisciplina());
-							boolean status = controllerT.excluirGradeDisciplina(gradedisciplina.getIdGradeDisciplina()) && controller.excluirUsuario(gradesdisciplinas.get(clicou).getIdGradeDisciplina());
+							boolean status = controllerT.excluirGradeDisciplina(gradedisciplina.getIdGradeDisciplina());
 							if (status == true) {
 								JOptionPane.showMessageDialog(null, "Removida com sucesso!");
 							}
@@ -218,7 +207,7 @@ public class TelaGradesDisciplinas extends JFrame {
 						}
 					}
 				} else
-					JOptionPane.showMessageDialog(null, "nenhum selecionado");
+					JOptionPane.showMessageDialog(null, "Nenhum selecionado.");
 
 			}
 		});
@@ -235,7 +224,7 @@ public class TelaGradesDisciplinas extends JFrame {
 			gradesdisciplinas = controllerT.listarGradeDisciplinas();
 			gradesdisciplinas.forEach((GradeDisciplina gradedisciplina) -> {
 				try {
-					tablemodel.addRow(new Object[] { gradedisciplina.getIdGrade(), new GradeDao().buscarGrade(gradedisciplina.getIdGrade()).getMatriculaGrade()});
+					tablemodel.addRow(new Object[] { gradedisciplina.getIdGrade(), new GradeController().buscarGrade(gradedisciplina.getIdGrade()).getMatriculaGrade()});
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -250,3 +239,4 @@ public class TelaGradesDisciplinas extends JFrame {
 	}
 
 }
+*/

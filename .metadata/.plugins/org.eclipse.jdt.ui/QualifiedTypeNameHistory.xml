@@ -20,7 +20,6 @@
 <fullyQualifiedTypeName name="model.Avaliacao"/>
 <fullyQualifiedTypeName name="dao.TurmaDao"/>
 <fullyQualifiedTypeName name="model.Professor"/>
-<fullyQualifiedTypeName name="model.Disciplina"/>
 <fullyQualifiedTypeName name="model.Sala"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
@@ -32,6 +31,11 @@
 <fullyQualifiedTypeName name="dao.SalaDao"/>
 <fullyQualifiedTypeName name="dao.GradeDisciplinaDao"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="model.GradeDisciplina"/>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+<fullyQualifiedTypeName name="controller.GradeController"/>
+<fullyQualifiedTypeName name="controller.GradeDisciplinaController"/>
+<fullyQualifiedTypeName name="model.GradeDisciplina"/>
+<fullyQualifiedTypeName name="controller.DisciplinaController"/>
+<fullyQualifiedTypeName name="dao.DisciplinaDao"/>
+<fullyQualifiedTypeName name="model.Disciplina"/>
 </qualifiedTypeNameHistroy>
