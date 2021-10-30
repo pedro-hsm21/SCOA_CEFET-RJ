@@ -160,7 +160,7 @@ public class ProfessorDao extends Connection {
 				professor.setId_professor(rs.getInt("IDPROFESSOR"));
 				professor.setId_usuario(rs.getInt("ID_USUARIO"));
 				professor.setDescricao_academica(rs.getString("DESCRICAO_ACADEMICA"));
-				//professor.setMatricula_professor(rs.getString("MATRICULA_PROFESSOR"));
+				professor.setMatricula(rs.getString("MATRICULA_PROFESSOR"));
 		    	}
 			} catch (SQLException e) {
 				throw new Exception("Erro:" + e);

@@ -1,3 +1,5 @@
+//public class TelaUsuarios 
+
 
 package view;
 
@@ -20,9 +22,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import controller.AlunoController;
 import controller.UsuarioController;
-import model.Aluno;
+import controller.UsuarioController;
+import model.Usuario;
 import model.Usuario;
 
 import java.awt.event.ActionListener;
@@ -34,7 +36,7 @@ import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class TelaAlunos extends JFrame {
+public class TelaUsuarios  extends JFrame {
 
 	/**
 	 * 
@@ -52,7 +54,7 @@ public class TelaAlunos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAlunos frame = new TelaAlunos();
+					TelaUsuarios frame = new TelaUsuarios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,10 +67,10 @@ public class TelaAlunos extends JFrame {
 	 * Create the frame.
 	 */
 	/**
-	 * Launch the application. @ -31,12 +59,178 @@ public class TelaAlunos
+	 * Launch the application. @ -31,12 +59,178 @@ public class TelaUsuarios
 	 * extends JFrame { Create the frame.
 	 */
-	public TelaAlunos() {
+	public TelaUsuarios() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		addWindowListener(new WindowAdapter() {
@@ -78,7 +80,7 @@ public class TelaAlunos extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Cadastrar Aluno");
+		setTitle("Cadastrar Usuario");
 		setResizable(false);
 		setBounds(100, 100, 1024, 600);
 		contentPane = new JPanel();
@@ -88,14 +90,14 @@ public class TelaAlunos extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblCadastrarAluno = new JLabel("Alunos");
-		lblCadastrarAluno.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCadastrarAluno.setForeground(new Color(31, 58, 104));
-		lblCadastrarAluno
-				.setIcon(new ImageIcon(TelaCadastroAluno.class.getResource("/images/_007f97-removebg-preview100.png")));
-		lblCadastrarAluno.setFont(new Font("Tahoma", Font.BOLD, 40));
-		lblCadastrarAluno.setBounds(10, 11, 998, 57);
-		contentPane.add(lblCadastrarAluno);
+		JLabel lblCadastrarUsuario = new JLabel("Usuarios");
+		lblCadastrarUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCadastrarUsuario.setForeground(new Color(31, 58, 104));
+		lblCadastrarUsuario
+				.setIcon(new ImageIcon(TelaCadastroUsuario.class.getResource("/images/_007f97-removebg-preview100.png")));
+		lblCadastrarUsuario.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblCadastrarUsuario.setBounds(10, 11, 998, 57);
+		contentPane.add(lblCadastrarUsuario);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 121, 998, 439);
@@ -123,11 +125,11 @@ public class TelaAlunos extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(477);
 		scrollPane.setViewportView(table);
 
-		JButton btnNewButton = new JButton("Novo aluno");
+		JButton btnNewButton = new JButton("Novo Usuario");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					TelaCadastroAluno tela = new TelaCadastroAluno();
+					TelaCadastroUsuario tela = new TelaCadastroUsuario();
 					dispose();
 					tela.setVisible(true);
 				} catch (ParseException e) {
@@ -151,11 +153,10 @@ public class TelaAlunos extends JFrame {
 					// usuarios.get(clicou).getNome_usuario() + " na linha " +
 					// clicou);
 					try {
-						TelaCadastroAluno tela = new TelaCadastroAluno();
-						AlunoController controllerA = new AlunoController();
-						Aluno aluno = controllerA.buscarAluno(usuarios.get(clicou).getId_usuario());
-						 //JOptionPane.showMessageDialog(null,"enviou codigo" + aluno.getId_aluno() + "e periodo" + aluno.getPeriodo_aluno());
-						tela.carregarValores(aluno, usuarios.get(clicou));
+						TelaCadastroUsuario tela = new TelaCadastroUsuario();
+						UsuarioController controllerA = new UsuarioController();						
+						 //JOptionPane.showMessageDialog(null,"enviou codigo" + Usuario.getId_Usuario() + "e periodo" + Usuario.getPeriodo_Usuario());
+						tela.carregarValores(usuarios.get(clicou));
 						dispose();
 						tela.setVisible(true);
 
@@ -209,15 +210,13 @@ public class TelaAlunos extends JFrame {
 							"Aten��o", JOptionPane.YES_NO_OPTION);
 					if (rs == JOptionPane.YES_OPTION) {
 						try {
-							UsuarioController controller = new UsuarioController();
-							AlunoController controllerA = new AlunoController();
-							Aluno aluno = controllerA.buscarAluno(usuarios.get(clicou).getId_usuario());
-							boolean status = controllerA.excluirAluno(aluno.getId_aluno()) && controller.excluirUsuario(usuarios.get(clicou).getId_usuario())  ;
+							UsuarioController controller = new UsuarioController();						
+							boolean status = controller.excluirUsuario(usuarios.get(clicou).getId_usuario())  ;
 							if (status == true) {
 								JOptionPane.showMessageDialog(null, "Removido com sucesso!");
 							}
 						} catch (Exception ex) {
-							JOptionPane.showMessageDialog(null, "ERRO!", ex.getLocalizedMessage(),
+							JOptionPane.showMessageDialog(null,  ex.getLocalizedMessage(),"ERRO!",
 									JOptionPane.ERROR_MESSAGE);
 						}
 					}
@@ -236,7 +235,7 @@ public class TelaAlunos extends JFrame {
 		UsuarioController controllerU = new UsuarioController();
 
 		try {
-			usuarios = controllerU.listarUsuario(1);
+			usuarios = controllerU.listarUsuario(0);
 			usuarios.forEach((Usuario usuario) -> {
 				tablemodel.addRow(new Object[] { usuario.getId_usuario(), usuario.getNome_usuario() });
 			});

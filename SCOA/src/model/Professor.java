@@ -62,7 +62,7 @@ public class Professor{
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new ProfessorDao().excluirProfessor(cod);
+		new ProfessorDao().excluirProfessor(cod);
 	}	
 	
 	public Professor buscar(int idUsuario) throws Exception{
