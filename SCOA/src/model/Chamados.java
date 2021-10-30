@@ -2,21 +2,41 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.ChamadosDao;
+
 public class Chamados{
-	int idchamado, id_usuario;
-	String titulo,	mensagem, tipo_chamado;
+	int idchamado, id_aluno, status;
+	String titulo,	mensagem, tipo_chamado, solucao;
 	
 	
-	public Chamados(int id_usuario, String titulo, String mensagem, String tipo_chamado) {
+	public Chamados(int id, String titulo, String mensagem, String tipo_chamado, int status, String solucao) {
 		super();
-		this.id_usuario = id_usuario;
+		this.id_aluno = id;
 		this.titulo = titulo;
 		this.mensagem = mensagem;
 		this.tipo_chamado = tipo_chamado;
+		this.status = status;
+		this.solucao = solucao;
 	}
 	
 	public Chamados() {
 
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getSolucao() {
+		return solucao;
+	}
+
+	public void setSolucao(String solucao) {
+		this.solucao = solucao;
 	}
 
 	public int getIdchamado() {
@@ -27,12 +47,13 @@ public class Chamados{
 		this.idchamado = idchamado;
 	}
 
-	public int getId_usuario() {
-		return id_usuario;
+	
+	public int getId_aluno() {
+		return id_aluno;
 	}
 
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setId_aluno(int id_aluno) {
+		this.id_aluno = id_aluno;
 	}
 
 	public String getTitulo() {
@@ -60,22 +81,21 @@ public class Chamados{
 	}
 
 	public void cadastrar(Chamados chamados) throws Exception{
-		//new ChamadosDao().cadastrarChamados(chamados);
+		new ChamadosDao().cadastrarChamados(chamados);
 	}	
 	
 	public void alterar(Chamados chamados) throws Exception{
-		//new ChamadosDao().alterarChamados(chamados);
+		new ChamadosDao().alterarChamados(chamados);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new ChamadosDao().excluirChamados(cod);
+		new ChamadosDao().excluirChamados(cod);
 	}	
 	
 	public void buscar(int cod) throws Exception{
 		//new ChamadosDao().buscaChamadosr(cod)
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new ChamadosDao().listarChamados();
-		return null;
+	public ArrayList<Chamados> listarChamados(int id) throws Exception{
+		return new ChamadosDao().listarChamados(id);
 	}
 	}

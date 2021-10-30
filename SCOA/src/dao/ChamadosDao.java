@@ -18,11 +18,11 @@ public class ChamadosDao extends Connection {
 	
 public void cadastrarChamados(Chamados chamados) throws Exception{
 		
-		String sql= "INSERT INTO chamado" + "(ID_USUARIO, TITULO, MENSAGEM, TIPO_CHAMADO)" + 
+		String sql= "INSERT INTO chamado" + "(ID_ALUNO, TITULO, MENSAGEM, TIPO_CHAMADO)" + 
 	          "  VALUES (?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, chamados.getId_usuario());
+		pstm.setInt(1, chamados.getId_aluno());
 		pstm.setString(2, chamados.getTitulo());
 		pstm.setString(3, chamados.getMensagem());
 		pstm.setString(4, chamados.getTipo_chamado());
@@ -77,15 +77,17 @@ public void excluirChamados(int id) throws Exception{
 }
 
 public void alterarChamados(Chamados chamados) throws Exception {
-	String sql= "UPDATE chamado SET ID_USUARIO = ?, TITULO = ?, MENSAGEM = ?, TIPO_CHAMADO = ?"
+	String sql= "UPDATE chamado SET ID_ALUNO = ?, TITULO = ?, MENSAGEM = ?, TIPO_CHAMADO = ?, STATUS_CHAMADO = ?, SOLUCAO = ?"
 			+ " WHERE IDCHAMADO = ?";
 		try{
 		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, chamados.getId_usuario());
+		pstm.setInt(1, chamados.getId_aluno());
 		pstm.setString(2, chamados.getTitulo());
 		pstm.setString(3, chamados.getMensagem());
 		pstm.setString(4, chamados.getTipo_chamado());
-		pstm.setInt(5, chamados.getIdchamado());
+		pstm.setInt(5, chamados.getStatus());
+		pstm.setString(6, chamados.getSolucao());
+		pstm.setInt(7, chamados.getIdchamado());
 		
 		pstm.executeUpdate();
 		
@@ -109,20 +111,29 @@ public void alterarChamados(Chamados chamados) throws Exception {
 		}
 }
 
-public ArrayList<Chamados> listarChamados() throws Exception {
+public ArrayList<Chamados> listarChamados(int id) throws Exception {
 	
 	ArrayList<Chamados> lista = new ArrayList<Chamados>();
-	String sql="SELECT * FROM chamado";
-	try {
+	if (id < 0){
+		String sql="SELECT * FROM chamado";
 		pstm=con.prepareStatement(sql);
+	} else {
+		String sql="SELECT * FROM chamado where STATUS_CHAMADO = ?";
+		pstm=con.prepareStatement(sql);
+		pstm.setInt(1, id);
+	}
+	
+	try {		
 		rs=pstm.executeQuery();
 		while (rs.next()){
 			Chamados chamados = new Chamados();
-			chamados.setId_usuario(rs.getInt("ID_USUARIO"));
+			chamados.setId_aluno(rs.getInt("ID_ALUNO"));
 			chamados.setTitulo(rs.getString("TITULO"));
 			chamados.setMensagem(rs.getString("MENSAGEM"));
 			chamados.setTipo_chamado(rs.getString("TIPO_CHAMADO"));
 			chamados.setIdchamado(rs.getInt("IDCHAMADO"));
+			chamados.setStatus(rs.getInt("STATUS_CHAMADO"));
+			chamados.setSolucao(rs.getString("SOLUCAO"));
 			lista.add(chamados);
 	    	}
 		} catch (SQLException e) {
