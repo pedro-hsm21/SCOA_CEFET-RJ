@@ -20,6 +20,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import controller.UsuarioController;
+import model.Aluno;
+import model.Usuario;
+
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -369,6 +372,26 @@ public class TelaCadastroUsuario extends JFrame {
 		
 		
 
+	}
+	
+	public void carregarValores(Usuario user){
+	
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");	  
+		ftfIngresso.setText(format.format(user.getIngresso()));
+		tfNome.setText(user.getNome_usuario());		
+		tfEmail.setText(user.getEmail_usuario());
+		passwordField.setText(user.getSenha());
+		passwordField_1.setText(user.getSenha());
+		tfBairro.setText(user.getBairro());
+		tfCidade.setText(user.getCidade());
+		tfCPF.setText(String.valueOf(user.getCPF()));
+		tfRua.setText(user.getRua());
+		tfUF.setText(user.getUf());
+		tftelefone.setText(user.getTel());
+		tfNum.setText(String.valueOf(user.getNum()));
+		tfComp.setText(user.getComp());
+		codigo = user.getId_usuario();
+		
 	}
 	
 	public void limpar(){

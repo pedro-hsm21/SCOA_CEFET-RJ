@@ -21,6 +21,9 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import controller.ProfessorController;
 import controller.UsuarioController;
+import model.Professor;
+import model.Usuario;
+
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -177,8 +180,11 @@ public class TelaCadastroProfessor extends JFrame {
 						}
 						
 						if (status == true){
-							JOptionPane.showMessageDialog(null, "Sucesso!"); 		
-							limpar();
+							JOptionPane.showMessageDialog(null, "Sucesso!"); 	
+							TelaProfessores tela = new TelaProfessores();
+							dispose();
+							tela.setVisible(true);
+						
 						} else {
 							JOptionPane.showMessageDialog(null, "Falhou, verifique se os campos estão preenchidos corretamente.");
 						}									
@@ -405,6 +411,7 @@ public class TelaCadastroProfessor extends JFrame {
 	}
 	
 	public void limpar(){
+		tfMatricula.setText("");
 		taDescricaoAcademica.setText("");;
 		ftfIngresso.setText("");
 		tfNome.setText("");
@@ -419,6 +426,29 @@ public class TelaCadastroProfessor extends JFrame {
 		tfUF.setText("");
 		tfNum.setText("");
 		tfComp.setText("");
+		
+	}
+	
+	public void carregarValores(Professor prof, Usuario user){
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");	  
+		ftfIngresso.setText(format.format(user.getIngresso()));
+		tfNome.setText(user.getNome_usuario());		
+		tfEmail.setText(user.getEmail_usuario());
+		passwordField.setText(user.getSenha());
+		passwordField_1.setText(user.getSenha());
+		tfBairro.setText(user.getBairro());
+		tfCidade.setText(user.getCidade());
+		tfCPF.setText(String.valueOf(user.getCPF()));
+		tfRua.setText(user.getRua());
+		tftelefone.setText("");
+		tfUF.setText(user.getUf());
+		tftelefone.setText(user.getTel());
+		tfNum.setText(String.valueOf(user.getNum()));
+		tfComp.setText(user.getComp());
+		codigo = user.getId_usuario();
+		tfMatricula.setText(prof.getMatricula());
+		taDescricaoAcademica.setText(prof.getDescricao_academica());
+		codigoP = prof.getId_professor();
 		
 	}
 }

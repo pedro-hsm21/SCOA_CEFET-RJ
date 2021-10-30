@@ -524,8 +524,10 @@ public class TelaCadastroAluno extends JFrame {
 		tfCidade.setText(user.getCidade());
 		tfCPF.setText(String.valueOf(user.getCPF()));
 		tfRUA.setText(user.getRua());
-		tftelefone.setText("");
 		tfUF.setText(user.getUf());
+		tftelefone.setText(user.getTel());
+		tfNum.setText(String.valueOf(user.getNum()));
+		tfComp.setText(user.getComp());
 		codigo = user.getId_usuario();
 		codigoA = aluno.getId_aluno();
 		
