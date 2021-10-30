@@ -23,8 +23,8 @@ public class UsuarioDao extends Connection {
 	
 public int cadastrarUsuario(Usuario usuario) throws Exception{
 		int id = 0;
-		String sql= "INSERT INTO usuario" + "(NOME_USUARIO, EMAIL_USUARIO, INGRESSO, SENHA, UF, CIDADE, BAIRRO, RUA, TIPO_USUARIO, CPF)" + 
-	          "  VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String sql= "INSERT INTO usuario" + "(NOME_USUARIO, EMAIL_USUARIO, INGRESSO, SENHA, UF, CIDADE, BAIRRO, RUA, NUMERO_ENDERECO, COMPLEMENTO, TIPO_USUARIO, CPF, NUMERO_TELEFONE)" + 
+	          "  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try{
 		pstm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		pstm.setString(1, usuario.getNome_usuario());
@@ -38,8 +38,11 @@ public int cadastrarUsuario(Usuario usuario) throws Exception{
 		pstm.setString(6, usuario.getCidade());
 		pstm.setString(7, usuario.getBairro());
 		pstm.setString(8, usuario.getRua());
-		pstm.setInt(9, usuario.getTipo());
-		pstm.setInt(10,usuario.getCPF());
+		pstm.setInt(9, usuario.getNum());
+		pstm.setString(10, usuario.getComp());
+		pstm.setInt(11,usuario.getTipo());
+		pstm.setString(12, usuario.getCPF());
+		pstm.setString(13, usuario.getTel());
 		
 		
 		pstm.executeUpdate();		
@@ -98,7 +101,8 @@ public void excluirUsuario(int id) throws Exception{
 }
 
 public void alterarUsuario(Usuario usuario) throws Exception {
-	String sql= "UPDATE usuario SET NOME_USUARIO = ?, EMAIL_USUARIO = ?, INGRESSO = ?, SENHA = ?, UF = ?, CIDADE = ?, BAIRRO = ?, RUA = ?, TIPO = ?, CPF = ?"
+	String sql= "UPDATE usuario SET NOME_USUARIO = ?, EMAIL_USUARIO = ?, INGRESSO = ?, SENHA = ?, UF = ?, CIDADE = ?,"
+			+ " BAIRRO = ?, RUA = ?,  NUMERO_ENDERECO = ?, COMPLEMENTO = ?, TIPO_USUARIO = ?, CPF = ?, NUMERO_TELEFONE = ?"
 			+ " WHERE IDUSUARIO = ?";
 		try{
 		pstm = con.prepareStatement(sql);
@@ -110,9 +114,12 @@ public void alterarUsuario(Usuario usuario) throws Exception {
 		pstm.setString(6, usuario.getCidade());
 		pstm.setString(7, usuario.getBairro());
 		pstm.setString(8, usuario.getRua());
-		pstm.setInt(9, usuario.getTipo());
-		pstm.setInt(10,usuario.getCPF());
-		pstm.setInt(11, usuario.getId_usuario());
+		pstm.setInt(9, usuario.getNum());
+		pstm.setString(10, usuario.getComp());
+		pstm.setInt(11,usuario.getTipo());
+		pstm.setString(12, usuario.getCPF());
+		pstm.setString(13, usuario.getTel());
+		pstm.setInt(14, usuario.getId_usuario());
 		
 		pstm.executeUpdate();
 		} catch(SQLException e){
@@ -155,7 +162,10 @@ public ArrayList<Usuario> listarUsuarios(  int tipo) throws Exception {
 			usuario.setBairro(rs.getString("BAIRRO"));
 			usuario.setRua(rs.getString("RUA"));
 			usuario.setTipo(rs.getInt("TIPO_usuario"));
-			usuario.setCPF(rs.getInt("CPF"));
+			usuario.setCPF( rs.getString("CPF"));
+			usuario.setNum(rs.getInt("NUMERO_ENDERECO"));
+			usuario.setComp(rs.getString("COMPLEMENTO"));
+			usuario.setTel(rs.getString("NUMERO_TELEFONE"));
 			lista.add(usuario);
 	    	}
 		} catch (SQLException e) {
@@ -199,7 +209,10 @@ public Usuario buscarUsuario(String email) throws Exception {
 			usuario.setBairro(rs.getString("BAIRRO"));
 			usuario.setRua(rs.getString("RUA"));
 			usuario.setTipo(rs.getInt("TIPO"));
-			usuario.setCPF(rs.getInt("CPF"));
+			usuario.setCPF( rs.getString("CPF"));
+			usuario.setNum(rs.getInt("NUMERO_ENDERECO"));
+			usuario.setComp(rs.getString("COMPLEMENTO"));
+			usuario.setTel(rs.getString("NUMERO_TELEFONE"));
 	    	}
 		} catch (SQLException e) {
 			throw new Exception("Erro:" + e);

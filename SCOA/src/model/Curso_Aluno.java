@@ -76,16 +76,16 @@ public class Curso_Aluno{
 		this.data_fim = data_fim;
 	}
 
-	public void cadastrar(Curso_Aluno aluno_turma) throws Exception{
-		//new AlunoTurmaDao().cadastrarAlunoTurma(aluno_turma);
+	public void cadastrar(Curso_Aluno curso_aluno) throws Exception{
+		new Curso_AlunoDao().cadastrarcurso_aluno(curso_aluno);
 	}	
 	
-	public void alterar(Curso_Aluno aluno_turma) throws Exception{
-		//new AlunoTurmaDao().alterarAlunoTurma(aluno_turma);
-	}	
+	public void alterar(Curso_Aluno curso_aluno) throws Exception{
+		new Curso_AlunoDao().alterarcurso_aluno(curso_aluno);
+	}
 	
 	public void excluir(int cod) throws Exception{
-		//new AlunoTurmaDao().excluirAlunoTurma(cod);
+		new Curso_AlunoDao().excluircurso_aluno(cod);
 	}	
 	
 	public void buscar(int cod) throws Exception{

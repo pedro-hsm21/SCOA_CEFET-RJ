@@ -6,17 +6,27 @@ import dao.ProfessorDao;
 
 public class Professor{
 	int id_professor, id_usuario;
-	String descricao_academica;
+	String descricao_academica,matricula;
 	
 	
-	public Professor(int id_usuario, String descricao_academica) {
+	public Professor(int id_usuario, String descricao_academica, String matricula) {
 		super();
 		this.id_usuario = id_usuario;
 		this.descricao_academica = descricao_academica;
+		this.matricula = matricula;
 	}
 	
 	public Professor() {
 
+	}
+
+	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 	public int getId_professor() {
@@ -48,7 +58,7 @@ public class Professor{
 	}	
 	
 	public void alterar(Professor professor) throws Exception{
-		//new ProfessorDao().alterarProfessor(professor);
+		new ProfessorDao().alterarProfessor(professor);
 	}	
 	
 	public void excluir(int cod) throws Exception{
@@ -58,8 +68,8 @@ public class Professor{
 	public Professor buscar(int idUsuario) throws Exception{
 		return new ProfessorDao().buscarProfessor(idUsuario);
 	}
-	public ArrayList<String> listarProfessores() throws Exception{
-		//return new ProfessorDao().listarProfessor();
-		return null;
+	public ArrayList<Professor> listarProfessores() throws Exception{
+		return new ProfessorDao().listarProfessores();
+		
 	}
 }
