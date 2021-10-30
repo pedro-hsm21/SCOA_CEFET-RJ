@@ -15,132 +15,172 @@ public class PreRequisitoDao extends Connection {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-public void cadastrarPreRequisito(PreRequisito prerequisito) throws Exception{
-		
-		String sql= "INSERT INTO pre_requisito" + "(ID_DISCIPLINA, ID_REQUISITO)" + 
-	          "  VALUES (?,?)";
-		try{
-		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, prerequisito.getId_disciplina());
-		pstm.setInt(2, prerequisito.getId_disciplina_requisito());
 
-		
-		
-		pstm.executeUpdate();
-		
-		} catch(SQLException e){
+	public void cadastrarPreRequisito(PreRequisito prerequisito) throws Exception {
+
+		String sql = "INSERT INTO pre_requisito" + "(ID_DISCIPLINA, ID_PRE_REQUISITO)" + "  VALUES (?,?)";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, prerequisito.getIdDisciplina());
+			pstm.setInt(2, prerequisito.getIdDisciplinaRequisito());
+
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
 			throw new Exception("Erro ao cadastrar:" + e);
 		} finally {
 			try {
-				if (pstm != null){ 
-						pstm.close();
-					};
-			}catch (SQLException e){
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar o Statement:" + e);
 			}
 			try {
-				if (con != null){
+				if (con != null) {
 					con.close();
 				}
-			}catch(SQLException e){
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar a conexão:" + e);
 			}
 		}
 	}
 
-public void excluirPreRequisito(int id) throws Exception{
-	try{
-		String sql="DELETE FROM pre_requisito WHERE IDPREREQUISITO = ?";
-		pstm=con.prepareStatement(sql);		
-		pstm.setInt(1, id);		
-		pstm.executeUpdate();
-	} catch (SQLException e) {
-		throw new Exception("Erro:" + e);
-	} finally {
+	public void excluirPreRequisito(PreRequisito prerequisito) throws Exception {
 		try {
-			if (pstm != null){ 
-					pstm.close();
-				};
-		}catch (SQLException e){
-			throw new Exception("Erro ao fechar o Statement:" + e);
-		}
-		try {
-			if (con != null){
-				con.close();
-			}
-		}catch(SQLException e){
-			throw new Exception("Erro ao fechar a conexão:" + e);
-		}
-	}	
-}
-
-public void alterarPreRequisito(PreRequisito prerequisito) throws Exception {
-	String sql= "UPDATE pre_requisito SET ID_DISCIPLINA = ?, ID_REQUISITO = ?"
-			+ " WHERE IDPREREQUISITO = ?";
-		try{
-		pstm = con.prepareStatement(sql);
-		pstm.setInt(1, prerequisito.getId_disciplina());
-		pstm.setInt(2, prerequisito.getId_disciplina_requisito());
-		pstm.setInt(3, prerequisito.getIdpre_requisito());
-
-		
-		pstm.executeUpdate();
-		
-		} catch(SQLException e){
-			throw new Exception("Erro no update:" + e);
-		} finally {
-			try {
-				if (pstm != null){ 
-						pstm.close();
-					};
-			}catch (SQLException e){
-				throw new Exception("Erro ao fechar o Statement:" + e);
-			}
-			try {
-				if (con != null){
-					con.close();
-				}
-			}catch(SQLException e){
-				throw new Exception("Erro ao fechar a conexão:" + e);
-			}
-		}
-}
-
-public ArrayList<PreRequisito> listarPreRequisitos() throws Exception {
-	
-	ArrayList<PreRequisito> lista = new ArrayList<PreRequisito>();
-	String sql="SELECT * FROM prerequisito";
-	try {
-		pstm=con.prepareStatement(sql);
-		rs=pstm.executeQuery();
-		while (rs.next()){
-			PreRequisito prerequisito = new PreRequisito();
-			prerequisito.setIdpre_requisito(rs.getInt("IDPREREQUISITO"));
-			prerequisito.setId_disciplina(rs.getInt("ID_DISCIPLINA"));
-			prerequisito.setId_disciplina_requisito(rs.getInt("ID_REQUISITO"));
-			lista.add(prerequisito);
-	    	}
+			String sql = "DELETE FROM pre_requisito WHERE ID_DISCIPLINA = ? AND ID_PRE_REQUISITO = ?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, prerequisito.getIdDisciplina());
+			pstm.setInt(2, prerequisito.getIdDisciplinaRequisito());
+			pstm.executeUpdate();
 		} catch (SQLException e) {
 			throw new Exception("Erro:" + e);
 		} finally {
 			try {
-				if (pstm != null){ 
-						pstm.close();
-					};
-			}catch (SQLException e){
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar o Statement:" + e);
 			}
 			try {
-				if (con != null){
+				if (con != null) {
 					con.close();
 				}
-			}catch(SQLException e){
+			} catch (SQLException e) {
 				throw new Exception("Erro ao fechar a conexão:" + e);
 			}
 		}
-		
-	return  lista;
+	}
+
+	public void alterarPreRequisito(PreRequisito prerequisito) throws Exception {
+		String sql = "UPDATE pre_requisito SET ID_DISCIPLINA = ?, ID_PRE_REQUISITO = ?"
+				+ " WHERE ID_DISCIPLINA = ? AND ID_PRE_REQUISITO = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, prerequisito.getIdDisciplina());
+			pstm.setInt(2, prerequisito.getIdDisciplinaRequisito());
+			pstm.setInt(3, prerequisito.getIdDisciplina());
+			pstm.setInt(4, prerequisito.getIdDisciplinaRequisito());
+
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new Exception("Erro no update:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+	}
+
+	public ArrayList<PreRequisito> listarPreRequisitos() throws Exception {
+
+		ArrayList<PreRequisito> lista = new ArrayList<PreRequisito>();
+		String sql = "SELECT * FROM pre_requisito";
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				PreRequisito prerequisito = new PreRequisito();
+				prerequisito.setIdDisciplinaRequisito(rs.getInt("ID_PRE_REQUISITO"));
+				prerequisito.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
+				lista.add(prerequisito);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+
+		return lista;
 
 	}
+
+	public ArrayList<PreRequisito> listarPreRequisitos(int iddisciplina) throws Exception {
+
+		ArrayList<PreRequisito> lista = new ArrayList<PreRequisito>();
+		String sql = "SELECT * FROM pre_requisito WHERE ID_DISCIPLINA = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, iddisciplina);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				PreRequisito prerequisito = new PreRequisito();
+				prerequisito.setIdDisciplinaRequisito(rs.getInt("ID_PRE_REQUISITO"));
+				prerequisito.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
+				lista.add(prerequisito);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+
+		return lista;
+
+	}
+
 }

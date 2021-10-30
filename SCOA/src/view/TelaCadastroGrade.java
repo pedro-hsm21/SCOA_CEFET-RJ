@@ -26,9 +26,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controller.CursoController;
+import controller.DisciplinaController;
 import controller.GradeController;
 import controller.GradeDisciplinaController;
-import dao.CursoDao;
 import model.Curso;
 import model.Disciplina;
 import model.Grade;
@@ -219,6 +220,10 @@ public class TelaCadastroGrade extends JFrame {
 			}
 		});
 		table.setModel(new DefaultTableModel(new Object[][] { { null }, }, new String[] { "Disciplinas:" }) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] { false };
 
 			public boolean isCellEditable(int row, int column) {
@@ -229,24 +234,61 @@ public class TelaCadastroGrade extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
-		/*btnNewButton.addActionListener(new ActionListener() {
+		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (codigo > 0) {
+					int iddisciplina = ((Disciplina) cbDisciplina.getSelectedItem()).getIdDisciplina();
 					try {
-						TelaDisciplina tela = new TelaDisciplina();
-						tela.carregarValores();
-						tela.setVisible(true);
-					} catch (ParseException e) {
+						GradeDisciplinaController controllerGD = new GradeDisciplinaController();
+						boolean status = false;
+						status = controllerGD.cadastrarGradeDisciplina(iddisciplina, codigo);
+						if (status == true){
+							JOptionPane.showMessageDialog(null, "Disciplina cadastrada nesta grade.");
+							carregarTable(codigo);
+						}else{
+							JOptionPane.showMessageDialog(null, "Falhou, verifique se os campos estão preenchidos corretamente.");
+						}
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				} else JOptionPane.showMessageDialog(null, "Aluno não cadastrado");
+				} else JOptionPane.showMessageDialog(null, "Cadastre a grade antes de adicionar as diciplinas.");
 			}
-		});*/
+		});
 		btnAdicionar.setBounds(800, 105, 89, 23);
 		panelCadastroGrade.add(btnAdicionar);
 		
 		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int clicou = table.getSelectedRow();
+				if (clicou >= 0) {
+					int rs = 0;
+					try {
+						rs = JOptionPane.showConfirmDialog(null, "Excluir " + new DisciplinaController().buscarDisciplina(gradesdisciplinas.get(clicou).getIdDisciplina()).getNome(),
+								"Atenção", JOptionPane.YES_NO_OPTION);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (rs == JOptionPane.YES_OPTION) {
+						try {
+							GradeDisciplinaController controllerGD = new GradeDisciplinaController();
+							GradeDisciplina gradedisciplina = controllerGD.buscarGradeDisciplina(gradesdisciplinas.get(clicou).getIdGradeDisciplina());
+							boolean status = controllerGD.excluirGradeDisciplina(gradedisciplina.getIdGradeDisciplina());
+							if (status == true) {
+								JOptionPane.showMessageDialog(null, "Disciplina removida desta grade!");
+								carregarTable(codigo);
+							}
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(null, "ERRO!", ex.getLocalizedMessage(),
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "Nenhum selecionado.");
+			}
+		});
 		btnRemover.setBounds(895, 105, 89, 23);
 		panelCadastroGrade.add(btnRemover);
 
@@ -267,9 +309,13 @@ public class TelaCadastroGrade extends JFrame {
 	}
 
 	public void povoarComboBox() throws Exception {
-		CursoDao cursodao = new CursoDao();
-		for (Curso curso : cursodao.listarCursos()) {
+		CursoController controllerC = new CursoController();
+		for (Curso curso : controllerC.listarCursos()) {
 			cbCurso.addItem(curso);
+		}
+		DisciplinaController controllerD = new DisciplinaController();
+		for (Disciplina disciplina: controllerD.listarDisciplinas()){
+			cbDisciplina.addItem(disciplina);
 		}
 	}
 

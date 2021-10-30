@@ -65,7 +65,7 @@ public class Sala{
 	public void buscar(int cod) throws Exception{
 		//new SalaDao().buscarSala(cod)
 	}
-	public ArrayList<String> listarAtores() throws Exception{
+	public ArrayList<Sala> listarSalas() throws Exception{
 		//return new SalaDao().listarSala();
 		return null;
 	}

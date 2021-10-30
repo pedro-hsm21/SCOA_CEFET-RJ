@@ -62,9 +62,13 @@ public class GradeDisciplina {
 		return new GradeDisciplinaDao().listarGradeDisciplinas(idgrade);
 	}
 	
+	public ArrayList<GradeDisciplina> listarGradeDisciplinas() throws Exception {
+		return new GradeDisciplinaDao().listarGradeDisciplinas();
+	}
+	
 	public String toString(){
 		try {
-			return new DisciplinaController().buscarDisciplina(getIdDisciplina()).getNome_disciplina();
+			return new DisciplinaController().buscarDisciplina(getIdDisciplina()).getNome();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

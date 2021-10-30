@@ -1,0 +1,76 @@
+package model;
+
+import java.util.ArrayList;
+
+import controller.DisciplinaController;
+import dao.PreRequisitoDao;
+
+public class PreRequisito{
+	int idDisciplina, idDisciplinaRequisito;
+
+	public PreRequisito(int idDisciplina, int idDisciplinaRequisito) {
+		super();
+		this.idDisciplina = idDisciplina;
+		this.idDisciplinaRequisito = idDisciplinaRequisito;
+	} 
+	
+	public PreRequisito() {
+
+	}
+
+	public int getIdDisciplina() {
+		return idDisciplina;
+	}
+
+	public void setIdDisciplina(int idDisciplina) {
+		this.idDisciplina = idDisciplina;
+	}
+
+	public int getIdDisciplinaRequisito() {
+		return idDisciplinaRequisito;
+	}
+
+	public void setIdDisciplinaRequisito(int idDisciplinaRequisito) {
+		this.idDisciplinaRequisito = idDisciplinaRequisito;
+	}
+
+	public void cadastrar(PreRequisito prerequisito) throws Exception{
+		new PreRequisitoDao().cadastrarPreRequisito(prerequisito);
+	}	
+	
+	public void alterar(PreRequisito prerequisito) throws Exception{
+		new PreRequisitoDao().alterarPreRequisito(prerequisito);
+	}	
+	
+	public void excluir(PreRequisito prerequisito) throws Exception{
+		new PreRequisitoDao().excluirPreRequisito(prerequisito);
+	}	
+	
+	public ArrayList<PreRequisito> listarPreRequisitos() throws Exception{
+		return new PreRequisitoDao().listarPreRequisitos();
+	}
+	
+	public ArrayList<PreRequisito> listarPreRequisitos(int iddisciplina) throws Exception{
+		return new PreRequisitoDao().listarPreRequisitos(iddisciplina);
+	}
+	
+	public String toStringDisciplina(int iddisciplina){
+		try {
+			return new DisciplinaController().buscarDisciplina(getIdDisciplina()).getNome();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String toStringPreRequisito(int idprerequisito){
+		try {
+			return new DisciplinaController().buscarDisciplina(getIdDisciplina()).getNome();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

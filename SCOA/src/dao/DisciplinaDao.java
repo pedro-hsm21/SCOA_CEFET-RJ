@@ -22,9 +22,9 @@ public class DisciplinaDao extends Connection {
 				+ "  VALUES (?,?,?)";
 		try {
 			pstm = con.prepareStatement(sql);
-			pstm.setInt(1, disciplina.getPeriodo_disciplina());
-			pstm.setString(2, disciplina.getNome_disciplina());
-			pstm.setString(3, disciplina.getDescricao_disciplina());
+			pstm.setInt(1, disciplina.getPeriodo());
+			pstm.setString(2, disciplina.getNome());
+			pstm.setString(3, disciplina.getDescricao());
 
 			pstm.executeUpdate();
 
@@ -81,10 +81,10 @@ public class DisciplinaDao extends Connection {
 				+ " WHERE IDDISCIPLINA = ?";
 		try {
 			pstm = con.prepareStatement(sql);
-			pstm.setInt(1, disciplina.getPeriodo_disciplina());
-			pstm.setString(2, disciplina.getNome_disciplina());
-			pstm.setString(3, disciplina.getDescricao_disciplina());
-			pstm.setInt(4, disciplina.getId_disciplina());
+			pstm.setInt(1, disciplina.getPeriodo());
+			pstm.setString(2, disciplina.getNome());
+			pstm.setString(3, disciplina.getDescricao());
+			pstm.setInt(4, disciplina.getIdDisciplina());
 
 			pstm.executeUpdate();
 
@@ -118,10 +118,10 @@ public class DisciplinaDao extends Connection {
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				Disciplina disciplina = new Disciplina();
-				disciplina.setPeriodo_disciplina(rs.getInt("PERIODO_DISCIPLINA"));
-				disciplina.setNome_disciplina(rs.getString("NOME_DISCIPLINA"));
-				disciplina.setDescricao_disciplina(rs.getString("DESCRICAO_DISCIPLINA"));
-				disciplina.setId_disciplina(rs.getInt("IDDISCIPLINA"));
+				disciplina.setPeriodo(rs.getInt("PERIODO_DISCIPLINA"));
+				disciplina.setNome(rs.getString("NOME_DISCIPLINA"));
+				disciplina.setDescricao(rs.getString("DESCRICAO_DISCIPLINA"));
+				disciplina.setIdDisciplina(rs.getInt("IDDISCIPLINA"));
 				lista.add(disciplina);
 			}
 		} catch (SQLException e) {
@@ -156,10 +156,10 @@ public class DisciplinaDao extends Connection {
 			pstm.setInt(1, cod);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				disciplina.setPeriodo_disciplina(rs.getInt("PERIODO_DISCIPLINA"));
-				disciplina.setNome_disciplina(rs.getString("NOME_DISCIPLINA"));
-				disciplina.setDescricao_disciplina(rs.getString("DESCRICAO_DISCIPLINA"));
-				disciplina.setId_disciplina(rs.getInt("IDDISCIPLINA"));
+				disciplina.setPeriodo(rs.getInt("PERIODO_DISCIPLINA"));
+				disciplina.setNome(rs.getString("NOME_DISCIPLINA"));
+				disciplina.setDescricao(rs.getString("DESCRICAO_DISCIPLINA"));
+				disciplina.setIdDisciplina(rs.getInt("IDDISCIPLINA"));
 			}
 		} catch (SQLException e) {
 			throw new Exception("Erro:" + e);

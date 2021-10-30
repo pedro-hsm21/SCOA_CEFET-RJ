@@ -34,8 +34,7 @@ public boolean alterarSala(int id, int numero_sala, int id_turma, String localiz
 			return true;
 	}
 	
-	public ArrayList<String> listarSalas() throws Exception{
-		//return new Sala().listarSalas();
-		return null;
+	public ArrayList<Sala> listarSalas() throws Exception{
+		return new Sala().listarSalas();
 	}
 }

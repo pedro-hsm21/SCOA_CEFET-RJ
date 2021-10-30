@@ -4,70 +4,74 @@ import java.util.ArrayList;
 
 import dao.DisciplinaDao;
 
-public class Disciplina{
-	int id_disciplina, periodo_disciplina;
-	String nome_disciplina, descricao_disciplina;
-	
-	public Disciplina(int periodo_disciplina, String nome_disciplina,
-			String descricao_disciplina) {
+public class Disciplina {
+	int idDisciplina, periodo;
+	String nome, descricao;
+
+	public Disciplina(int periodo, String nome, String descricao) {
 		super();
-		this.periodo_disciplina = periodo_disciplina;
-		this.nome_disciplina = nome_disciplina;
-		this.descricao_disciplina = descricao_disciplina;
+		this.periodo = periodo;
+		this.nome = nome;
+		this.descricao = descricao;
 	}
-	
+
 	public Disciplina() {
 
 	}
 
-	public int getId_disciplina() {
-		return id_disciplina;
+	public int getIdDisciplina() {
+		return idDisciplina;
 	}
 
-	public void setId_disciplina(int id_disciplina) {
-		this.id_disciplina = id_disciplina;
+	public void setIdDisciplina(int idDisciplina) {
+		this.idDisciplina = idDisciplina;
 	}
 
-	public int getPeriodo_disciplina() {
-		return periodo_disciplina;
+	public int getPeriodo() {
+		return periodo;
 	}
 
-	public void setPeriodo_disciplina(int periodo_disciplina) {
-		this.periodo_disciplina = periodo_disciplina;
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
 	}
 
-	public String getNome_disciplina() {
-		return nome_disciplina;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNome_disciplina(String nome_disciplina) {
-		this.nome_disciplina = nome_disciplina;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getDescricao_disciplina() {
-		return descricao_disciplina;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescricao_disciplina(String descricao_disciplina) {
-		this.descricao_disciplina = descricao_disciplina;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public void cadastrar(Disciplina disciplina) throws Exception{
+	public void cadastrar(Disciplina disciplina) throws Exception {
 		new DisciplinaDao().cadastrarDisciplina(disciplina);
-	}	
-	
-	public void alterar(Disciplina disciplina) throws Exception{
+	}
+
+	public void alterar(Disciplina disciplina) throws Exception {
 		new DisciplinaDao().alterarDisciplina(disciplina);
-	}	
-	
-	public void excluir(int cod) throws Exception{
+	}
+
+	public void excluir(int cod) throws Exception {
 		new DisciplinaDao().excluirDisciplina(cod);
-	}	
-	
-	public Disciplina buscar(int cod) throws Exception{
+	}
+
+	public Disciplina buscar(int cod) throws Exception {
 		return new DisciplinaDao().buscarDisciplina(cod);
 	}
-	public ArrayList<Disciplina> listarDisciplinas() throws Exception{
+
+	public ArrayList<Disciplina> listarDisciplinas() throws Exception {
 		return new DisciplinaDao().listarDisciplinas();
+	}
+
+	public String toString() {
+		return getNome();
 	}
 }

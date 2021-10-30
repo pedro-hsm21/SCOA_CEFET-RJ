@@ -105,6 +105,10 @@ public class TelaGrades extends JFrame {
 			}
 		});
 		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "ID", "Grade" }) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] { false, false };
 
 			public boolean isCellEditable(int row, int column) {

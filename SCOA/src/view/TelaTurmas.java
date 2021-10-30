@@ -105,6 +105,10 @@ public class TelaTurmas extends JFrame {
 			}
 		});
 		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "ID", "Turma" }) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] { false, false };
 
 			public boolean isCellEditable(int row, int column) {
@@ -185,7 +189,7 @@ public class TelaTurmas extends JFrame {
 					}
 				}
 				if (indiceLocalizado < 0)
-					JOptionPane.showMessageDialog(null, "Não encontrado", "Erro na busca",
+					JOptionPane.showMessageDialog(null, "Não encontrado.", "Erro na busca.",
 							JOptionPane.INFORMATION_MESSAGE);
 				else
 					table.setRowSelectionInterval(indiceLocalizado, indiceLocalizado);
@@ -216,7 +220,7 @@ public class TelaTurmas extends JFrame {
 						}
 					}
 				} else
-					JOptionPane.showMessageDialog(null, "nenhum selecionado");
+					JOptionPane.showMessageDialog(null, "Nenhum selecionado.");
 
 			}
 		});

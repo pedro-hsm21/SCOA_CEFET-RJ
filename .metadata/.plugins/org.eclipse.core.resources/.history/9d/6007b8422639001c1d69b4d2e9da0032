@@ -1,0 +1,54 @@
+package model;
+
+import java.util.ArrayList;
+
+import dao.PreRequisitoDao;
+
+public class PreRequisito{
+	int idDisciplina, idDisciplinaRequisito;
+
+	public PreRequisito(int idDisciplina, int idDisciplinaRequisito) {
+		super();
+		this.idDisciplina = idDisciplina;
+		this.idDisciplinaRequisito = idDisciplinaRequisito;
+	} 
+	
+	public PreRequisito() {
+
+	}
+
+	public int getIdDisciplina() {
+		return idDisciplina;
+	}
+
+	public void setIdDisciplina(int idDisciplina) {
+		this.idDisciplina = idDisciplina;
+	}
+
+	public int getIdDisciplinaRequisito() {
+		return idDisciplinaRequisito;
+	}
+
+	public void setIdDisciplinaRequisito(int idDisciplinaRequisito) {
+		this.idDisciplinaRequisito = idDisciplinaRequisito;
+	}
+
+	public void cadastrar(PreRequisito prerequisito) throws Exception{
+		new PreRequisitoDao().cadastrarPreRequisito(prerequisito);
+	}	
+	
+	public void alterar(PreRequisito prerequisito) throws Exception{
+		new PreRequisitoDao().alterarPreRequisito(prerequisito);
+	}	
+	
+	public void excluir(int cod) throws Exception{
+		new PreRequisitoDao().excluirPreRequisito(cod);
+	}	
+	
+	public PreRequisito buscar(int cod) throws Exception{
+		return new PreRequisitoDao().buscarPreRequisito(cod);
+	}
+	public ArrayList<String> listarPreRequisitos() throws Exception{
+		return new PreRequisitoDao().listarPreRequisitos();
+	}
+}

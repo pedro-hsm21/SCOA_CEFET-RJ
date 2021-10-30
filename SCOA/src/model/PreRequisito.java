@@ -2,60 +2,75 @@ package model;
 
 import java.util.ArrayList;
 
-public class PreRequisito{
-	int idpre_requisito, id_disciplina, id_disciplina_requisito;
+import controller.DisciplinaController;
+import dao.PreRequisitoDao;
 
-	public PreRequisito(int id_disciplina, int id_disciplina_requisito) {
+public class PreRequisito{
+	int idDisciplina, idDisciplinaRequisito;
+
+	public PreRequisito(int idDisciplina, int idDisciplinaRequisito) {
 		super();
-		this.id_disciplina = id_disciplina;
-		this.id_disciplina_requisito = id_disciplina_requisito;
+		this.idDisciplina = idDisciplina;
+		this.idDisciplinaRequisito = idDisciplinaRequisito;
 	} 
 	
 	public PreRequisito() {
 
 	}
 
-	public int getIdpre_requisito() {
-		return idpre_requisito;
+	public int getIdDisciplina() {
+		return idDisciplina;
 	}
 
-	public void setIdpre_requisito(int idpre_requisito) {
-		this.idpre_requisito = idpre_requisito;
+	public void setIdDisciplina(int idDisciplina) {
+		this.idDisciplina = idDisciplina;
 	}
 
-	public int getId_disciplina() {
-		return id_disciplina;
+	public int getIdDisciplinaRequisito() {
+		return idDisciplinaRequisito;
 	}
 
-	public void setId_disciplina(int id_disciplina) {
-		this.id_disciplina = id_disciplina;
-	}
-
-	public int getId_disciplina_requisito() {
-		return id_disciplina_requisito;
-	}
-
-	public void setId_disciplina_requisito(int id_disciplina_requisito) {
-		this.id_disciplina_requisito = id_disciplina_requisito;
+	public void setIdDisciplinaRequisito(int idDisciplinaRequisito) {
+		this.idDisciplinaRequisito = idDisciplinaRequisito;
 	}
 
 	public void cadastrar(PreRequisito prerequisito) throws Exception{
-		//new PreRequisitoDao().cadastrarPreRequisito(prerequisito);
+		new PreRequisitoDao().cadastrarPreRequisito(prerequisito);
 	}	
 	
 	public void alterar(PreRequisito prerequisito) throws Exception{
-		//new PreRequisitoDao().alterarPreRequisito(prerequisito);
+		new PreRequisitoDao().alterarPreRequisito(prerequisito);
 	}	
 	
-	public void excluir(int cod) throws Exception{
-		//new PreRequisitoDao().excluirPreRequisito(cod);
+	public void excluir(PreRequisito prerequisito) throws Exception{
+		new PreRequisitoDao().excluirPreRequisito(prerequisito);
 	}	
 	
-	public void buscar(int cod) throws Exception{
-		//new PreRequisitoDao().buscarPreRequisito(cod)
+	public ArrayList<PreRequisito> listarPreRequisitos() throws Exception{
+		return new PreRequisitoDao().listarPreRequisitos();
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new PreRequisitoDao().listarPreRequisito();
-		return null;
+	
+	public ArrayList<PreRequisito> listarPreRequisitos(int iddisciplina) throws Exception{
+		return new PreRequisitoDao().listarPreRequisitos(iddisciplina);
+	}
+	
+	public String toStringDisciplina(){
+		try {
+			return new DisciplinaController().buscarDisciplina(getIdDisciplina()).getNome();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String toStringPreRequisito(){
+		try {
+			return new DisciplinaController().buscarDisciplina(getIdDisciplinaRequisito()).getNome();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

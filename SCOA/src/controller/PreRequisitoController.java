@@ -5,37 +5,40 @@ import java.util.ArrayList;
 import model.PreRequisito;
 
 public class PreRequisitoController {
-	public boolean cadastrarPreRequisito(int id_disciplina, int id_disciplina_requisito) throws Exception{		
-		if (id_disciplina > 0 && id_disciplina_requisito > 0){
-			PreRequisito prerequisito = new PreRequisito(id_disciplina, id_disciplina_requisito);
+	public boolean cadastrarPreRequisito(int iddisciplina, int iddisciplinarequisito) throws Exception{		
+		if (iddisciplina > 0 && iddisciplinarequisito > 0){
+			PreRequisito prerequisito = new PreRequisito(iddisciplina, iddisciplinarequisito);
 			prerequisito.cadastrar(prerequisito);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterarPreRequisito(int id, int id_disciplina, int id_disciplina_requisito) throws Exception{
+public boolean alterarPreRequisito(int iddisciplina, int iddisciplinarequisito) throws Exception{
 		
-		if (id > 0 && id_disciplina > 0 && id_disciplina_requisito > 0){
-			PreRequisito prerequisito = new PreRequisito(id_disciplina, id_disciplina_requisito);
+		if (iddisciplina > 0 && iddisciplinarequisito > 0){
+			PreRequisito prerequisito = new PreRequisito(iddisciplina, iddisciplinarequisito);
 			prerequisito.alterar(prerequisito);
 			return true;
 		} 
 			return false;
 	}
 	
-	public boolean excluirPreRequisito(int cod) throws Exception {
+	public boolean excluirPreRequisito(int iddisciplina, int iddisciplinarequisito) throws Exception {
 		
-		if (cod == 0){
-			return false;
-		}
-		
-		new PreRequisito().excluir(cod);;
+		if (iddisciplina > 0 && iddisciplinarequisito > 0){
+			PreRequisito prerequisito = new PreRequisito(iddisciplina, iddisciplinarequisito);
+			prerequisito.excluir(prerequisito);
 			return true;
+		}
+			return false;
 	}
 	
-	public ArrayList<String> listarPreRequisito() throws Exception{
-		//return new PreRequisito().listarPreRequisitos();
-		return null;
+	public ArrayList<PreRequisito> listarPreRequisitos() throws Exception{
+		return new PreRequisito().listarPreRequisitos();
+	}
+	
+	public ArrayList<PreRequisito> listarPreRequisitos(int iddisciplina) throws Exception{
+		return new PreRequisito().listarPreRequisitos(iddisciplina);
 	}
 }

@@ -1,4 +1,4 @@
-package view;
+/*package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -18,16 +18,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastroPreRequisito extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tablePreRequisitosCadastroPreRequisito;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,9 +37,7 @@ public class TelaCadastroPreRequisito extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public TelaCadastroPreRequisito() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastrar PreRequisito");
@@ -131,9 +125,7 @@ public class TelaCadastroPreRequisito extends JFrame {
 				"Disciplina", "Pr\u00E9 Requisito"
 			}
 		) {
-			/**
-			 * 
-			 */
+			
 			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] {
 				String.class, String.class
@@ -152,3 +144,4 @@ public class TelaCadastroPreRequisito extends JFrame {
 
 	}
 }
+*/

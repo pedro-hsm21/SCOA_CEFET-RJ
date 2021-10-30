@@ -22,12 +22,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
+import controller.GradeDisciplinaController;
+import controller.SalaController;
 import controller.TurmaController;
-import dao.GradeDisciplinaDao;
-import dao.ProfessorDao;
-import dao.SalaDao;
-import dao.UsuarioDao;
-import model.Disciplina;
+import controller.UsuarioController;
 import model.GradeDisciplina;
 import model.Professor;
 import model.Usuario;
@@ -350,16 +348,16 @@ public class TelaCadastroTurma extends JFrame {
 	}
 	
 	public void povoarComboBox() throws Exception{
-		UsuarioDao usuariodao = new UsuarioDao();
-		for (Usuario professor: usuariodao.listarUsuarios(2)){
+		UsuarioController controllerU = new UsuarioController();
+		for (Usuario professor: controllerU.listarUsuario(2)){
 			cbProfessor.addItem(professor);
 		}
-		GradeDisciplinaDao gradedisciplinadao = new GradeDisciplinaDao();
-		for (GradeDisciplina gradedisciplina: gradedisciplinadao.listarGradeDisciplinas()){
+		GradeDisciplinaController controllerGD = new GradeDisciplinaController();
+		for (GradeDisciplina gradedisciplina: controllerGD.listarGradesDisciplinas()){
 			cbGradeDisciplina.addItem(gradedisciplina);
 		}
-		SalaDao saladao = new SalaDao();
-		for (Sala sala: saladao.listarSalas()){
+		SalaController controllerS = new SalaController();
+		for (Sala sala: controllerS.listarSalas()){
 			cbSala.addItem(sala);
 		}
 	}
