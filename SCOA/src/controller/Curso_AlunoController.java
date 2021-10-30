@@ -7,7 +7,7 @@ import model.Curso_Aluno;
 
 public class Curso_AlunoController {
 	
-public boolean cadastrarAluno_Turma(int curso, int aluno, String matricula, int status, Date data) throws Exception{		
+public boolean cadastrarCurso_Aluno(int curso, int aluno, String matricula, int status, Date data) throws Exception{		
 		if (curso > 0 && aluno > 0 && matricula.length() > 0 && matricula != null && status > 0){
 			Curso_Aluno cursoAluno = new Curso_Aluno(curso,aluno,matricula,status,data);
 			cursoAluno.cadastrar(cursoAluno);
@@ -16,7 +16,7 @@ public boolean cadastrarAluno_Turma(int curso, int aluno, String matricula, int 
 			return false;
 	}	
 	
-public boolean alterarAluno_Turma(int curso_aluno, int curso, int aluno, String matricula, int status, Date data) throws Exception{
+public boolean alterarCurso_Aluno(int curso_aluno, int curso, int aluno, String matricula, int status, Date data) throws Exception{
 		
 		if (curso_aluno > 0 && curso > 0 && aluno > 0 && matricula.length() > 0 && matricula != null && status > 0){
 			Curso_Aluno cursoAluno = new Curso_Aluno(curso,aluno,matricula,status,data);
@@ -27,7 +27,7 @@ public boolean alterarAluno_Turma(int curso_aluno, int curso, int aluno, String 
 			return false;
 	}
 	
-	public boolean excluirAluno_Turma(int cod) throws Exception {
+	public boolean excluirCurso_Aluno(int cod) throws Exception {
 		
 		if (cod == 0){
 			new Curso_Aluno().excluir(cod);
@@ -38,8 +38,18 @@ public boolean alterarAluno_Turma(int curso_aluno, int curso, int aluno, String 
 		
 	}
 	
-	public ArrayList<Curso_Aluno> listar(int id) throws Exception{
+	public ArrayList<Curso_Aluno> listarCurso_Alunos() throws Exception{
+		return new Curso_Aluno().listar();
+		
+	}
+	
+	public ArrayList<Curso_Aluno> listarCurso_Alunos(int id) throws Exception{
 		return new Curso_Aluno().listar(id);
+		
+	}
+	
+	public Curso_Aluno buscarCurso_Aluno(int id) throws Exception{
+		return new Curso_Aluno().buscar(id);
 		
 	}
 

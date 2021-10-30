@@ -155,6 +155,7 @@ public class TelaTurmas extends JFrame {
 						 //JOptionPane.showMessageDialog(null,"enviou codigo" + turma.getId_turma() + "e periodo" + turma.getPeriodo_turma());
 						tela.povoarComboBox();
 						tela.carregarValores(turma);
+						tela.carregarTable(turma.getIdTurma());
 						dispose();
 						tela.setVisible(true);
 
@@ -163,7 +164,7 @@ public class TelaTurmas extends JFrame {
 						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "nenhum selecionado");
+					JOptionPane.showMessageDialog(null, "Nenhum selecionado.");
 				}
 			}
 		});
@@ -205,7 +206,7 @@ public class TelaTurmas extends JFrame {
 				int clicou = table.getSelectedRow();
 				if (clicou >= 0) {
 					int rs = JOptionPane.showConfirmDialog(null, "Excluir " + turmas.get(clicou).getNome(),
-							"Aten��o", JOptionPane.YES_NO_OPTION);
+							"Atenção", JOptionPane.YES_NO_OPTION);
 					if (rs == JOptionPane.YES_OPTION) {
 						try {
 							TurmaController controllerT = new TurmaController();

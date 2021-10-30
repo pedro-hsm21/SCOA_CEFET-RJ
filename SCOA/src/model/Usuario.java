@@ -5,16 +5,15 @@ import java.util.ArrayList;
 
 import dao.UsuarioDao;
 
+public class Usuario {
+	int id_usuario, tipo, num;
 
-public class Usuario {	
-	int id_usuario,tipo,num; 
-	
 	String nome_usuario, email_usuario, senha;
-	String uf, cidade, bairro, rua,tel,comp,CPF;
+	String uf, cidade, bairro, rua, tel, comp, CPF;
 	Date ingresso;
-	
 
-	public Usuario(String nome_usuario, String email_usuario, Date ingresso, String senha, String uf, String cidade, String bairro, String rua,int num, String comp, int tipo, String CPF, String tel) {
+	public Usuario(String nome_usuario, String email_usuario, Date ingresso, String senha, String uf, String cidade,
+			String bairro, String rua, int num, String comp, int tipo, String CPF, String tel) {
 		super();
 		this.nome_usuario = nome_usuario;
 		this.email_usuario = email_usuario;
@@ -30,11 +29,11 @@ public class Usuario {
 		this.num = num;
 		this.comp = comp;
 	}
-	
+
 	public Usuario() {
 
-	}	
-		
+	}
+
 	public String getCPF() {
 		return CPF;
 	}
@@ -107,7 +106,6 @@ public class Usuario {
 		this.email_usuario = email_usuario;
 	}
 
-	
 	public Date getIngresso() {
 		return ingresso;
 	}
@@ -123,7 +121,6 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
 
 	public int getNum() {
 		return num;
@@ -149,25 +146,34 @@ public class Usuario {
 		this.comp = comp;
 	}
 
-	public int cadastrar(Usuario usuario) throws Exception{
+	public int cadastrar(Usuario usuario) throws Exception {
 		UsuarioDao dao = new UsuarioDao();
 		return dao.cadastrarUsuario(usuario);
-	}	
-	
-	public void alterar(Usuario usuario) throws Exception{
+	}
+
+	public void alterar(Usuario usuario) throws Exception {
 		new UsuarioDao().alterarUsuario(usuario);
-	}	
-	
-	public void excluir(int cod) throws Exception{
+	}
+
+	public void excluir(int cod) throws Exception {
 		new UsuarioDao().excluirUsuario(cod);
-	}	
-	
-	public Usuario buscar(String email) throws Exception{
+	}
+
+	public Usuario buscar(String email) throws Exception {
 		return new UsuarioDao().buscarUsuario(email);
 	}
-	public ArrayList<Usuario> listarUsuarios(int tipo) throws Exception{
+
+	public Usuario buscar(int idusuario) throws Exception {
+		return new UsuarioDao().buscarUsuario(idusuario);
+	}
+
+	public ArrayList<Usuario> listarUsuarios(int tipo) throws Exception {
 		return new UsuarioDao().listarUsuarios(tipo);
-		
+
 	}
 	
+	public String toString(){
+		return getNome_usuario();
+	}
+
 }

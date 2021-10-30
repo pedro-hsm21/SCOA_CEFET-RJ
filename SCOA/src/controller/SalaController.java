@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import model.Sala;
 
 public class SalaController {
-	public boolean cadastrarSala(int numero_sala, int id_turma, String localizacao) throws Exception{		
-		if (numero_sala > 0 && id_turma > 0 && localizacao != null && localizacao.length() > 0){
-			Sala sala = new Sala(numero_sala, id_turma, localizacao);
+	public boolean cadastrarSala(int numero_sala, String localizacao) throws Exception{		
+		if (numero_sala > 0 && localizacao != null && localizacao.length() > 0){
+			Sala sala = new Sala(numero_sala, localizacao);
 			sala.cadastrar(sala);
 			return true;
 		} 
 			return false;
 	}	
 	
-public boolean alterarSala(int id, int numero_sala, int id_turma, String localizacao) throws Exception{
+public boolean alterarSala(int id, int numero_sala, String localizacao) throws Exception{
 		
-		if (id > 0 && numero_sala > 0 && id_turma > 0 && localizacao != null && localizacao.length() > 0){
-			Sala sala = new Sala(numero_sala, id_turma, localizacao);
+		if (id > 0 && numero_sala > 0 && localizacao != null && localizacao.length() > 0){
+			Sala sala = new Sala(numero_sala, localizacao);
 			sala.alterar(sala);
 			return true;
 		} 
@@ -35,6 +35,6 @@ public boolean alterarSala(int id, int numero_sala, int id_turma, String localiz
 	}
 	
 	public ArrayList<Sala> listarSalas() throws Exception{
-		return new Sala().listarSalas();
+		return new Sala().listar();
 	}
 }

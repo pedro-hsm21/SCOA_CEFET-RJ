@@ -1,0 +1,214 @@
+package dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import model.MatriculaTurma;
+
+public class MatriculaTurmaDao extends Connection {
+	private PreparedStatement pstm = null;
+	private ResultSet rs = null;
+
+	public MatriculaTurmaDao() throws Exception {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void cadastrarMatriculaTurma(MatriculaTurma matriculaturma) throws Exception {
+
+		String sql = "INSERT INTO matricula_turma" + "(ID_TURMA, ID_CURSO_ALUNO)" + "  VALUES (?,?)";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, matriculaturma.getIdTurma());
+			pstm.setInt(2, matriculaturma.getIdCursoAluno());
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new Exception("Erro ao cadastrar:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+	}
+
+	public void excluirMatriculaTurma(int id) throws Exception {
+		try {
+			String sql = "DELETE FROM matricula_turma WHERE IDGRADE_DISCIPLINA = ?";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, id);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+	}
+
+	public void alterarMatriculaTurma(MatriculaTurma matriculaturma) throws Exception {
+		String sql = "UPDATE matricula_turma SET ID_DISCIPLINA = ?, ID_GRADE = ?" + " WHERE IDGRADE_DISCIPLINA = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, matriculaturma.getIdDisciplina());
+			pstm.setInt(2, matriculaturma.getIdGrade());
+			pstm.setInt(3, matriculaturma.getIdMatriculaTurma());
+			pstm.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new Exception("Erro no update:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+	}
+
+	public ArrayList<MatriculaTurma> listarMatriculaTurmas(int idgrade) throws Exception {
+
+		ArrayList<MatriculaTurma> lista = new ArrayList<MatriculaTurma>();
+		String sql = "SELECT * FROM matricula_turma WHERE ID_GRADE = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, idgrade);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				MatriculaTurma matriculaturma = new MatriculaTurma();
+				matriculaturma.setIdMatriculaTurma(rs.getInt("IDGRADE_DISCIPLINA"));
+				matriculaturma.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
+				matriculaturma.setIdGrade(rs.getInt("ID_GRADE"));
+				lista.add(matriculaturma);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+		return lista;
+	}
+
+	public ArrayList<MatriculaTurma> listarMatriculaTurmas() throws Exception {
+
+		ArrayList<MatriculaTurma> lista = new ArrayList<MatriculaTurma>();
+		String sql = "SELECT * FROM matricula_turma";
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				MatriculaTurma matriculaturma = new MatriculaTurma();
+				matriculaturma.setIdMatriculaTurma(rs.getInt("IDGRADE_DISCIPLINA"));
+				matriculaturma.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
+				matriculaturma.setIdGrade(rs.getInt("ID_GRADE"));
+				lista.add(matriculaturma);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+		return lista;
+	}
+
+	public MatriculaTurma buscarMatriculaTurma(int cod) throws Exception {
+		MatriculaTurma matriculaturma = new MatriculaTurma();
+		String sql = "SELECT * FROM matricula_turma WHERE IDGRADE_DISCIPLINA = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, cod);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				matriculaturma.setIdMatriculaTurma(rs.getInt("IDGRADE_DISCIPLINA"));
+				matriculaturma.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
+				matriculaturma.setIdGrade(rs.getInt("ID_GRADE"));
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+
+		return matriculaturma;
+	}
+
+}
