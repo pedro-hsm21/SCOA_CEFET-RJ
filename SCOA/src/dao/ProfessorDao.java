@@ -20,12 +20,13 @@ public class ProfessorDao extends Connection {
 	}
 
 	public void cadastrarProfessor(Professor professor) throws Exception {
-		JOptionPane.showMessageDialog(null, "Entrou na dao");
-		String sql = "INSERT INTO professor" + "(ID_USUARIO, DESCRICAO_ACADEMICA)" + "  VALUES (?,?)";
+		
+		String sql = "INSERT INTO professor" + "(ID_USUARIO, DESCRICAO_ACADEMICA,MATRICULA_PROFESSOR)" + "  VALUES (?,?,?)";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, professor.getId_usuario());
 			pstm.setString(2, professor.getDescricao_academica());
+			pstm.setString(3, professor.getMatricula());
 
 			pstm.executeUpdate();
 
@@ -78,12 +79,13 @@ public class ProfessorDao extends Connection {
 	}
 
 	public void alterarProfessor(Professor professor) throws Exception {
-		String sql = "UPDATE professor SET ID_USUARIO = ?, DESCRICAO_ACADEMICA = ?" + " WHERE IDPROFESSOR = ?";
+		String sql = "UPDATE professor SET ID_USUARIO = ?, DESCRICAO_ACADEMICA = ?, MATRICULA_PROFESSOR = ?" + " WHERE IDPROFESSOR = ?";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, professor.getId_usuario());
 			pstm.setString(2, professor.getDescricao_academica());
-			pstm.setInt(3, professor.getId_professor());
+			pstm.setString(3, professor.getMatricula());
+			pstm.setInt(4, professor.getId_professor());
 
 			pstm.executeUpdate();
 
@@ -120,6 +122,7 @@ public class ProfessorDao extends Connection {
 				professor.setId_professor(rs.getInt("IDPROFESSOR"));
 				professor.setId_usuario(rs.getInt("ID_USUARIO"));
 				professor.setDescricao_academica(rs.getString("DESCRICAO_ACADEMICA"));
+				professor.setMatricula(rs.getString("MATRICULA_PROFESSOR"));
 				lista.add(professor);
 			}
 		} catch (SQLException e) {

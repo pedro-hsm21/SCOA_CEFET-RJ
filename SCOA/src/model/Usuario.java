@@ -7,18 +7,42 @@ import dao.UsuarioDao;
 
 
 public class Usuario {	
-	int id_usuario,tipo,CPF; 
-	public int getCPF() {
+	int id_usuario,tipo,num; 
+	
+	String nome_usuario, email_usuario, senha;
+	String uf, cidade, bairro, rua,tel,comp,CPF;
+	Date ingresso;
+	
+
+	public Usuario(String nome_usuario, String email_usuario, Date ingresso, String senha, String uf, String cidade, String bairro, String rua,int num, String comp, int tipo, String CPF, String tel) {
+		super();
+		this.nome_usuario = nome_usuario;
+		this.email_usuario = email_usuario;
+		this.ingresso = ingresso;
+		this.senha = senha;
+		this.uf = uf;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.tipo = tipo;
+		this.CPF = CPF;
+		this.tel = tel;
+		this.num = num;
+		this.comp = comp;
+	}
+	
+	public Usuario() {
+
+	}	
+		
+	public String getCPF() {
 		return CPF;
 	}
 
-	public void setCPF(int cPF) {
+	public void setCPF(String cPF) {
 		CPF = cPF;
 	}
-	String nome_usuario, email_usuario, senha;
-	String uf, cidade, bairro, rua;
-	Date ingresso;
-	
+
 	public int getTipo() {
 		return tipo;
 	}
@@ -57,24 +81,6 @@ public class Usuario {
 
 	public void setRua(String rua) {
 		this.rua = rua;
-	}
-
-	public Usuario(String nome_usuario, String email_usuario, Date ingresso, String senha, String uf, String cidade, String bairro, String rua,int tipo, int CPF) {
-		super();
-		this.nome_usuario = nome_usuario;
-		this.email_usuario = email_usuario;
-		this.ingresso = ingresso;
-		this.senha = senha;
-		this.uf = uf;
-		this.cidade = cidade;
-		this.bairro = bairro;
-		this.rua = rua;
-		this.tipo = tipo;
-		this.CPF = CPF;
-	}
-	
-	public Usuario() {
-
 	}
 
 	public int getId_usuario() {
@@ -116,6 +122,31 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getComp() {
+		return comp;
+	}
+
+	public void setComp(String comp) {
+		this.comp = comp;
 	}
 
 	public int cadastrar(Usuario usuario) throws Exception{

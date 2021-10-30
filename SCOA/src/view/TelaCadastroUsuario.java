@@ -19,15 +19,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
-import controller.ProfessorController;
 import controller.UsuarioController;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 
-public class TelaCadastroProfessor extends JFrame {
+
+public class TelaCadastroUsuario extends JFrame {
 
 	/**
 	 * 
@@ -45,13 +44,10 @@ public class TelaCadastroProfessor extends JFrame {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JTextField tfCodigo;
-	private JTextArea taDescricaoAcademica;
 	private int codigo;
-	private int codigoP;
 	private JTextField tfRua;
 	private JTextField tfNum;
 	private JTextField tfComp;
-	private JTextField tfMatricula;
 
 	/**
 	 * Launch the application.
@@ -73,7 +69,7 @@ public class TelaCadastroProfessor extends JFrame {
 	 * Create the frame.
 	 * @throws ParseException 
 	 */
-	public TelaCadastroProfessor() throws ParseException {
+	public TelaCadastroUsuario() throws ParseException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastrar Professor");
 		setResizable(false);
@@ -138,7 +134,7 @@ public class TelaCadastroProfessor extends JFrame {
 				
 				if (String.valueOf(passwordField.getPassword()).equals(String.valueOf(passwordField_1.getPassword()))){
 					
-					String descricao_academica = taDescricaoAcademica.getText();
+				
 					String ingresso = ftfIngresso.getText();
 					String nome = tfNome.getText();
 					String email = tfEmail.getText();
@@ -150,7 +146,6 @@ public class TelaCadastroProfessor extends JFrame {
 					String tel = tftelefone.getText();
 					String comp = tfComp.getText();
 					String cpf = tfCPF.getText();
-					String matricula = tfMatricula.getText();
 					int num = Integer.parseInt(tfNum.getText());
 					
 					
@@ -166,17 +161,17 @@ public class TelaCadastroProfessor extends JFrame {
 									
 					try {
 						UsuarioController usercontroller = new UsuarioController();	
-						ProfessorController controller = new ProfessorController();
+
 						
-						boolean status = false;
+						boolean status = false; int id_user = 0;
 						if (codigo == 0) {
-							int id_user = usercontroller.cadastrarUsuario(nome,email,data,senha, UF, cidade, bairro, rua,num,comp,2, cpf,tel);							
-							status = controller.cadastrarProfessor(id_user, descricao_academica,matricula);
+							id_user = usercontroller.cadastrarUsuario(nome,email,data,senha, UF, cidade, bairro, rua,num,comp,2, cpf,tel);							
+							
 						} else {
-							status = controller.alterarProfessor(codigoP,codigo, descricao_academica,matricula) && usercontroller.alterarUsuario(codigo,nome,email,data,senha, UF, cidade, bairro, rua,num,comp,2, cpf,tel);
+							status = usercontroller.alterarUsuario(codigo,nome,email,data,senha, UF, cidade, bairro, rua,num,comp,2, cpf,tel);
 						}
 						
-						if (status == true){
+						if (status == true || id_user > 0){
 							JOptionPane.showMessageDialog(null, "Sucesso!"); 		
 							limpar();
 						} else {
@@ -184,7 +179,7 @@ public class TelaCadastroProfessor extends JFrame {
 						}									
 					
 					} catch (Exception e1) {
-					
+			
 						e1.printStackTrace();
 					}
 				}
@@ -269,7 +264,7 @@ public class TelaCadastroProfessor extends JFrame {
 		
 		tfBairro = new JTextField();
 		tfBairro.setColumns(10);
-		tfBairro.setBounds(73, 139, 260, 20);
+		tfBairro.setBounds(73, 139, 210, 20);
 		panelCadastroProfessor.add(tfBairro);
 		
 		JLabel lblCidade = new JLabel("Cidade:");
@@ -278,12 +273,12 @@ public class TelaCadastroProfessor extends JFrame {
 		lblCidade.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCidade.setBackground(new Color(31, 58, 104));
 		lblCidade.setAlignmentX(0.5f);
-		lblCidade.setBounds(343, 137, 81, 20);
+		lblCidade.setBounds(293, 135, 81, 20);
 		panelCadastroProfessor.add(lblCidade);
 		
 		tfCidade = new JTextField();
 		tfCidade.setColumns(10);
-		tfCidade.setBounds(413, 139, 260, 20);
+		tfCidade.setBounds(363, 137, 210, 20);
 		panelCadastroProfessor.add(tfCidade);
 		
 		JLabel lblUf = new JLabel("UF:");
@@ -292,17 +287,17 @@ public class TelaCadastroProfessor extends JFrame {
 		lblUf.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblUf.setBackground(new Color(31, 58, 104));
 		lblUf.setAlignmentX(0.5f);
-		lblUf.setBounds(683, 137, 29, 20);
+		lblUf.setBounds(583, 135, 29, 20);
 		panelCadastroProfessor.add(lblUf);
 		
 		tfUF = new JTextField();
 		tfUF.setColumns(10);
-		tfUF.setBounds(711, 139, 29, 20);
+		tfUF.setBounds(611, 137, 29, 20);
 		panelCadastroProfessor.add(tfUF);
 		
 		tftelefone = new JTextField();
 		tftelefone.setColumns(10);
-		tftelefone.setBounds(94, 170, 260, 20);
+		tftelefone.setBounds(729, 135, 260, 20);
 		panelCadastroProfessor.add(tftelefone);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
@@ -311,7 +306,7 @@ public class TelaCadastroProfessor extends JFrame {
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTelefone.setBackground(new Color(31, 58, 104));
 		lblTelefone.setAlignmentX(0.5f);
-		lblTelefone.setBounds(10, 170, 88, 20);
+		lblTelefone.setBounds(645, 135, 88, 20);
 		panelCadastroProfessor.add(lblTelefone);
 		
 		passwordField = new JPasswordField();
@@ -321,20 +316,6 @@ public class TelaCadastroProfessor extends JFrame {
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(492, 75, 260, 20);
 		panelCadastroProfessor.add(passwordField_1);
-		
-		JLabel lblDescricaoAcademica = new JLabel("Descri\u00E7\u00E3o Acad\u00EAmica:");
-		lblDescricaoAcademica.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDescricaoAcademica.setForeground(new Color(122, 97, 171));
-		lblDescricaoAcademica.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDescricaoAcademica.setBackground(new Color(31, 58, 104));
-		lblDescricaoAcademica.setAlignmentX(0.5f);
-		lblDescricaoAcademica.setBounds(383, 170, 177, 20);
-		panelCadastroProfessor.add(lblDescricaoAcademica);
-		
-		taDescricaoAcademica = new JTextArea();
-		taDescricaoAcademica.setBounds(572, 170, 414, 50);
-		panelCadastroProfessor.add(taDescricaoAcademica);
-		taDescricaoAcademica.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		
 		JLabel lblLogradouro = new JLabel("Logradouro:");
 		lblLogradouro.setHorizontalAlignment(SwingConstants.LEFT);
@@ -385,27 +366,12 @@ public class TelaCadastroProfessor extends JFrame {
 		btnvoltar.setBounds(343, 413, 301, 50);
 		panelCadastroProfessor.add(btnvoltar);
 		
-		tfMatricula = new JTextField();
-		tfMatricula.setColumns(10);
-		tfMatricula.setBounds(94, 201, 451, 20);
-		panelCadastroProfessor.add(tfMatricula);
-		
-		JLabel lblmat = new JLabel("Matricula:");
-		lblmat.setHorizontalAlignment(SwingConstants.LEFT);
-		lblmat.setForeground(new Color(122, 97, 171));
-		lblmat.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblmat.setBackground(new Color(31, 58, 104));
-		lblmat.setAlignmentX(0.5f);
-		lblmat.setBounds(10, 200, 88, 20);
-		panelCadastroProfessor.add(lblmat);
-		
 		
 		
 
 	}
 	
 	public void limpar(){
-		taDescricaoAcademica.setText("");;
 		ftfIngresso.setText("");
 		tfNome.setText("");
 		tfEmail.setText("");
@@ -422,3 +388,4 @@ public class TelaCadastroProfessor extends JFrame {
 		
 	}
 }
+

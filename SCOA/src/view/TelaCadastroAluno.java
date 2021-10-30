@@ -20,7 +20,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.text.DefaultFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -34,16 +33,16 @@ import model.Curso_Aluno;
 import model.Usuario;
 
 import javax.swing.JFormattedTextField;
-import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPasswordField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaCadastroAluno extends JFrame {
 
@@ -70,6 +69,8 @@ public class TelaCadastroAluno extends JFrame {
 	private int codigoA;
 	private ArrayList<Curso_Aluno> cursos;
 	private ArrayList<Curso> curso;
+	private JTextField tfNum;
+	private JTextField tfComp;
 
 	/**
 	 * Launch the application.
@@ -176,14 +177,18 @@ public class TelaCadastroAluno extends JFrame {
 					String bairro = tfBairro.getText();
 					String cidade = tfCidade.getText();
 					String UF = tfUF.getText();
-					int cpf = Integer.parseInt(tfCPF.getText());
+					String tel = tftelefone.getText();
+					String comp = tfComp.getText();
+					String cpf = tfCPF.getText();
+					int num = Integer.parseInt(tfNum.getText());
+				
 					
 					DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
 					java.sql.Date data = null;
 					try {
 						data = new java.sql.Date(fmt.parse(ingresso).getTime());
 					} catch (ParseException e2) {
-						// TODO Auto-generated catch block
+						
 						JOptionPane.showMessageDialog(null,"Erro na data"); 
 					}
 					
@@ -193,10 +198,10 @@ public class TelaCadastroAluno extends JFrame {
 						AlunoController controller = new AlunoController();		
 						boolean status = false;
 						if (codigo == 0) {
-							int id_user = usercontroller.cadastrarUsuario(nome,email,data,senha, UF, cidade, bairro, rua,1, cpf);					
+							int id_user = usercontroller.cadastrarUsuario(nome,email,data,senha, UF, cidade, bairro, rua,num,comp,1, cpf,tel);					
 							status = controller.cadastrarAluno(periodo,id_user);
 						} else {		
-							status = controller.alterarAluno(codigoA,periodo,codigo) && usercontroller.alterarUsuario(codigo, nome, email, data, senha, UF, cidade, bairro, rua, 1, cpf);
+							status = controller.alterarAluno(codigoA,periodo,codigo) && usercontroller.alterarUsuario(codigo, nome, email, data, senha, UF, cidade, bairro, rua,num,comp, 1, cpf,tel);
 						}
 						
 						if (status == true){
@@ -208,7 +213,7 @@ public class TelaCadastroAluno extends JFrame {
 							JOptionPane.showMessageDialog(null, "Falhou, verifique se os campos estão preenchidos corretamente.");
 						}												
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
+						
 						e1.printStackTrace();
 					}
 				}else		JOptionPane.showMessageDialog(null, "Senhas digitadas são diferentes 1:" + String.valueOf(passwordField.getPassword()) + " 2:" + String.valueOf(passwordField_1.getPassword()));
@@ -295,7 +300,7 @@ public class TelaCadastroAluno extends JFrame {
 		
 		tfRUA = new JTextField();
 		tfRUA.setColumns(10);
-		tfRUA.setBounds(116, 106, 868, 20);
+		tfRUA.setBounds(116, 106, 512, 20);
 		panelCadastroAluno.add(tfRUA);
 		
 		JLabel lblLogradouro = new JLabel("Logradouro:");
@@ -369,16 +374,17 @@ public class TelaCadastroAluno extends JFrame {
 				if (codigo > 0 || codigoA > 0) {
 					try {
 						TelaCurso_Aluno tela = new TelaCurso_Aluno();
-						tela.carregarValores(tfNome.getText(), codigoA);
+						Curso_Aluno ca = new Curso_Aluno(0,codigoA,"",1,null);
+						tela.carregarValores(tfNome.getText(), ca);
 						tela.setVisible(true);
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
+					
 						e.printStackTrace();
 					}
 				} else JOptionPane.showMessageDialog(null, "Aluno não cadastrado");
 			}
 		});
-		btnNewButton.setBounds(895, 212, 89, 23);
+		btnNewButton.setBounds(835, 212, 149, 23);
 		panelCadastroAluno.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -386,6 +392,27 @@ public class TelaCadastroAluno extends JFrame {
 		panelCadastroAluno.add(scrollPane);
 		
 		table = new JTable();
+		table.setToolTipText("Clique para alterar");
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int clicou = table.getSelectedRow();
+				//JOptionPane.showMessageDialog(null, "clicou " + curso.get(cursos.get(clicou).getId_curso()-1).getNome_curso()  );
+				
+				
+				TelaCurso_Aluno tela;
+				try {
+					tela = new TelaCurso_Aluno();
+					tela.carregarcombobox();
+					tela.carregarValores(tfNome.getText(), cursos.get(clicou));
+					tela.setVisible(true);
+				} catch (ParseException e) {
+					
+					e.printStackTrace();
+				}
+				
+			}
+		});
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -394,6 +421,10 @@ public class TelaCadastroAluno extends JFrame {
 				"ID", "Curso", "Matricula"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			boolean[] columnEditables = new boolean[] {
 				false, false, false
 			};
@@ -428,6 +459,34 @@ public class TelaCadastroAluno extends JFrame {
 		btnvoltar.setBounds(350, 413, 301, 50);
 		panelCadastroAluno.add(btnvoltar);
 		
+		JLabel lblN = new JLabel("N\u00BA:");
+		lblN.setHorizontalAlignment(SwingConstants.LEFT);
+		lblN.setForeground(new Color(122, 97, 171));
+		lblN.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblN.setBackground(new Color(31, 58, 104));
+		lblN.setAlignmentX(0.5f);
+		lblN.setBounds(638, 104, 29, 20);
+		panelCadastroAluno.add(lblN);
+		
+		tfNum = new JTextField();
+		tfNum.setColumns(10);
+		tfNum.setBounds(666, 106, 46, 20);
+		panelCadastroAluno.add(tfNum);
+		
+		tfComp = new JTextField();
+		tfComp.setColumns(10);
+		tfComp.setBounds(847, 106, 137, 20);
+		panelCadastroAluno.add(tfComp);
+		
+		JLabel lblComplemento = new JLabel("Complemento:");
+		lblComplemento.setHorizontalAlignment(SwingConstants.LEFT);
+		lblComplemento.setForeground(new Color(122, 97, 171));
+		lblComplemento.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblComplemento.setBackground(new Color(31, 58, 104));
+		lblComplemento.setAlignmentX(0.5f);
+		lblComplemento.setBounds(722, 104, 133, 20);
+		panelCadastroAluno.add(lblComplemento);
+		
 	
 		
 		
@@ -449,7 +508,7 @@ public class TelaCadastroAluno extends JFrame {
 		tftelefone.setText("");
 		tfUF.setText("");
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.setRowCount(0);;
+		model.setRowCount(0);
 		
 	}
 	
@@ -486,7 +545,7 @@ public class TelaCadastroAluno extends JFrame {
 			});
 			table.setModel(tablemodel);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

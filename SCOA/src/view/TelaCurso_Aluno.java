@@ -7,25 +7,28 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.DateFormat;
 import java.text.ParseException;
-
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.JTextField;
-import javax.swing.JSpinner;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import controller.CursoController;
-import model.Aluno;
-import model.Usuario;
+import controller.Curso_AlunoController;
+import model.Curso;
+import model.Curso_Aluno;
 
-import javax.swing.JTextArea;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
@@ -38,8 +41,13 @@ public class TelaCurso_Aluno extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfNome;
-	private JTextField textField;
-	private int codigo;
+	private JTextField tfMatricula;
+	private int codigo = 0;
+	private int codigoA = 0;
+	private JComboBox<String> cbCurso;
+	private ArrayList<Curso> curso;
+	JComboBox<String> cbStatus;
+	JFormattedTextField ftfIngresso;
 
 	/**
 	 * Launch the application.
@@ -65,6 +73,16 @@ public class TelaCurso_Aluno extends JFrame {
 		setTitle("Cadastrar Curso");
 		setResizable(false);
 		setBounds(100, 100, 1024, 600);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+				carregarcombobox();
+				if (codigo == 0) {
+					cbStatus.setEnabled(false);
+					cbStatus.setSelectedIndex(1);
+				}
+			}
+		});
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -121,9 +139,47 @@ public class TelaCurso_Aluno extends JFrame {
 		panelCadastroCurso.add(btnLimparCadastroCurso);
 		btnLimparCadastroCurso.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		JButton btnCadastrarCurso = new JButton("Cadastrar");
+		JButton btnCadastrarCurso = new JButton("Salvar");
 		btnCadastrarCurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+					
+					
+					int statusM = cbStatus.getSelectedIndex();
+					int curso = cbCurso.getSelectedIndex();
+					String matricula = tfMatricula.getText();
+					String encerramento = ftfIngresso.getText();
+					
+					DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
+					java.sql.Date data = null;
+					try {
+						if (!encerramento.equals("")){
+							data = new java.sql.Date(fmt.parse(encerramento).getTime());
+						}	else data = null;				
+					} catch (ParseException e2) {
+						
+						JOptionPane.showMessageDialog(null,"Erro na data"); 
+					}
+				
+					try {
+						Curso_AlunoController controller = new Curso_AlunoController();	
+						boolean status = false;
+						if (codigo == 0) {									
+							status = controller.cadastrarAluno_Turma(curso, codigoA, matricula, statusM, data);
+						} else {		
+							status = controller.alterarAluno_Turma(codigo, curso, codigoA, matricula, statusM, data);
+						}
+						
+						if (status == true){
+							JOptionPane.showMessageDialog(null, "Sucesso!"); 		
+							dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "Falhou, verifique se os campos estão preenchidos corretamente.");
+					}												
+				} catch (Exception e1) {
+					
+					e1.printStackTrace();
+				}
 				
 			}
 		});
@@ -133,15 +189,15 @@ public class TelaCurso_Aluno extends JFrame {
 		panelCadastroCurso.add(btnCadastrarCurso);
 		btnCadastrarCurso.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Selecione"}));
-		comboBox.setBounds(73, 44, 669, 20);
-		panelCadastroCurso.add(comboBox);
+		cbCurso = new JComboBox<String>();
+		cbCurso.setModel(new DefaultComboBoxModel<String>(new String[] {"Selecione"}));
+		cbCurso.setBounds(73, 44, 669, 20);
+		panelCadastroCurso.add(cbCurso);
 		
-		textField = new JTextField();
-		textField.setBounds(100, 75, 291, 20);
-		panelCadastroCurso.add(textField);
-		textField.setColumns(10);
+		tfMatricula = new JTextField();
+		tfMatricula.setBounds(100, 75, 291, 20);
+		panelCadastroCurso.add(tfMatricula);
+		tfMatricula.setColumns(10);
 		
 		JLabel lblMatricula = new JLabel("Matricula:");
 		lblMatricula.setHorizontalAlignment(SwingConstants.LEFT);
@@ -152,8 +208,9 @@ public class TelaCurso_Aluno extends JFrame {
 		lblMatricula.setBounds(10, 73, 94, 20);
 		panelCadastroCurso.add(lblMatricula);
 		
-		JFormattedTextField ftfIngresso = new JFormattedTextField();
+		ftfIngresso = new JFormattedTextField();
 		ftfIngresso.setBounds(620, 114, 70, 20);
+		ftfIngresso.setEnabled(false);
 		panelCadastroCurso.add(ftfIngresso);
 		
 		JLabel lblDataDeEncerramento = new JLabel("Encerramento (dd/mm/aaaa):");
@@ -165,10 +222,25 @@ public class TelaCurso_Aluno extends JFrame {
 		lblDataDeEncerramento.setBounds(369, 112, 277, 20);
 		panelCadastroCurso.add(lblDataDeEncerramento);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Selecione", "Ativada", "Trancada", "Encerrada"}));
-		comboBox_1.setBounds(100, 112, 244, 20);
-		panelCadastroCurso.add(comboBox_1);
+		cbStatus = new JComboBox<String>();		
+		cbStatus.addActionListener( event -> {
+            // Get the source of the component, which is our combo
+            // box.
+            @SuppressWarnings("unchecked")
+			JComboBox<String> aux = (JComboBox<String>) event.getSource();
+            	if (aux.getSelectedIndex() == 2 || aux.getSelectedIndex() == 3){
+            		String data = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        			ftfIngresso.setText(data);
+        			ftfIngresso.setEnabled(true);
+            	}  else   {
+            		ftfIngresso.setText("");
+            		ftfIngresso.setEnabled(false);   
+            	}
+    						   
+            });
+		cbStatus.setModel(new DefaultComboBoxModel<String>(new String[] {"Selecione", "Ativada", "Trancada", "Encerrada"}));
+		cbStatus.setBounds(100, 112, 244, 20);
+		panelCadastroCurso.add(cbStatus);
 		
 		JLabel lblStatus = new JLabel("Status:");
 		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
@@ -182,11 +254,32 @@ public class TelaCurso_Aluno extends JFrame {
 	}
 	
 	public void limpar(){
+		cbStatus.setSelectedIndex(1);
+		cbCurso.setSelectedIndex(0);
+		tfMatricula.setText("");
+	}
+	
+	public void carregarValores(String nome, Curso_Aluno ca){
+			tfNome.setText(nome);
+			codigo = ca.getId_curso_aluno();
+			codigoA = ca.getId_aluno();
+			cbStatus.setSelectedIndex(ca.getStatus_matricula());
+			cbCurso.setSelectedIndex(ca.getId_curso());
+			tfMatricula.setText(ca.getMatricula());
+			
 		
 	}
 	
-	public void carregarValores(String nome, int codigo){
-		tfNome.setText(nome);
-		this.codigo = codigo;
+	public void carregarcombobox(){
+		try {
+			CursoController controller = new CursoController();
+			curso = controller.listarCursos();
+			for (Curso curso: curso){
+				cbCurso.addItem(curso.getNome_curso());
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
 }
