@@ -136,9 +136,9 @@ public class TelaChamados extends JFrame {
 				ch = chamados.get(table.getSelectedRow());
 				try {
 					AbrirChamados tela = new AbrirChamados();
+					tela.carregarcombobox();
 					tela.carregarvalor(ch);
-					tela.carregarEdit();
-					dispose();
+					tela.carregarEdit();					
 					tela.setVisible(true);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -190,13 +190,11 @@ public class TelaChamados extends JFrame {
 		DefaultTableModel tablemodel = (DefaultTableModel) table.getModel();
 		tablemodel.setRowCount(0);
 		ChamadosController controller = new ChamadosController();
-		AlunoController controllerA = new AlunoController();
-		Aluno aluno = new Aluno();
 
 		try {
 			chamados = controller.listarChamados(id);
 			chamados.forEach((Chamados ch) -> { 		
-				tablemodel.addRow(new Object[] {ch.getIdchamado(),ch.getTitulo(),ch.getId_aluno(),verifica(ch.getStatus())});
+				tablemodel.addRow(new Object[] {ch.getIdchamado(),ch.getTitulo(),ch.getUsuario().getNome_usuario(),verifica(ch.getStatus())});
 			});
 			table.setModel(tablemodel);
 		} catch (Exception e) {

@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Disciplina;
+import model.Grade;
 import model.GradeDisciplina;
 
 public class GradeDisciplinaDao extends Connection {
@@ -143,15 +145,23 @@ public class GradeDisciplinaDao extends Connection {
 	public ArrayList<GradeDisciplina> listarGradeDisciplinas() throws Exception {
 
 		ArrayList<GradeDisciplina> lista = new ArrayList<GradeDisciplina>();
-		String sql = "SELECT * FROM grade_disciplina";
-		try {
+		String sql = "SELECT grade_disciplina.* , grade.MATRICULA_GRADE, disciplina.NOME_DISCIPLINA FROM grade_disciplina inner join disciplina on disciplina.IDDISCIPLINA = grade_disciplina.ID_DISCIPLINA inner join grade on grade.IDGRADE = grade_disciplina.ID_GRADE order by disciplina.NOME_DISCIPLINA;";
+				
+			try {
 			pstm = con.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				GradeDisciplina gradedisciplina = new GradeDisciplina();
+				Disciplina disciplina = new Disciplina();
+				Grade grade = new Grade();
 				gradedisciplina.setIdGradeDisciplina(rs.getInt("IDGRADE_DISCIPLINA"));
 				gradedisciplina.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
 				gradedisciplina.setIdGrade(rs.getInt("ID_GRADE"));
+				disciplina.setNome(rs.getString("NOME_DISCIPLINA"));
+				grade.setMatriculaGrade(rs.getString("MATRICULA_GRADE"));
+				gradedisciplina.setDisciplina(disciplina);
+				gradedisciplina.setGrade(grade);			
+				
 				lista.add(gradedisciplina);
 			}
 		} catch (SQLException e) {

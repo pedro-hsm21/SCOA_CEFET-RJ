@@ -165,9 +165,9 @@ public class TelaCurso_Aluno extends JFrame {
 						Curso_AlunoController controller = new Curso_AlunoController();	
 						boolean status = false;
 						if (codigo == 0) {									
-							status = controller.cadastrarAluno_Turma(curso, codigoA, matricula, statusM, data);
+							status = controller.cadastrarCurso_Aluno(curso, codigoA, matricula, statusM, data);
 						} else {		
-							status = controller.alterarAluno_Turma(codigo, curso, codigoA, matricula, statusM, data);
+							status = controller.alterarCurso_Aluno(codigo, curso, codigoA, matricula, statusM, data);
 						}
 						
 						if (status == true){

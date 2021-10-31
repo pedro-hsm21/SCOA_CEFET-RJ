@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Chamados;
+import model.Usuario;
 
 public class ChamadosDao extends Connection {
 	private PreparedStatement pstm = null;
@@ -115,10 +116,10 @@ public ArrayList<Chamados> listarChamados(int id) throws Exception {
 	
 	ArrayList<Chamados> lista = new ArrayList<Chamados>();
 	if (id < 0){
-		String sql="SELECT * FROM chamado";
+		String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario order by STATUS_CHAMADO,IDCHAMADO desc;";
 		pstm=con.prepareStatement(sql);
 	} else {
-		String sql="SELECT * FROM chamado where STATUS_CHAMADO = ?";
+		String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO = ? order by STATUS_CHAMADO,IDCHAMADO desc;";
 		pstm=con.prepareStatement(sql);
 		pstm.setInt(1, id);
 	}
@@ -127,6 +128,7 @@ public ArrayList<Chamados> listarChamados(int id) throws Exception {
 		rs=pstm.executeQuery();
 		while (rs.next()){
 			Chamados chamados = new Chamados();
+			Usuario usuario = new Usuario();
 			chamados.setId_aluno(rs.getInt("ID_ALUNO"));
 			chamados.setTitulo(rs.getString("TITULO"));
 			chamados.setMensagem(rs.getString("MENSAGEM"));
@@ -134,6 +136,8 @@ public ArrayList<Chamados> listarChamados(int id) throws Exception {
 			chamados.setIdchamado(rs.getInt("IDCHAMADO"));
 			chamados.setStatus(rs.getInt("STATUS_CHAMADO"));
 			chamados.setSolucao(rs.getString("SOLUCAO"));
+			usuario.setNome_usuario(rs.getString("NOME_USUARIO"));
+			chamados.setUsuario(usuario);
 			lista.add(chamados);
 	    	}
 		} catch (SQLException e) {

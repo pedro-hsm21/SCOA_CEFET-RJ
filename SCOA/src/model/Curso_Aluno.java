@@ -14,7 +14,16 @@ public class Curso_Aluno{
 
 	int id_curso_aluno, id_curso, id_aluno, status_matricula; 
 	String matricula; Date data_fim;
+	Usuario usuario;
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Curso_Aluno(int id_curso, int id_aluno, String matricula, int status_matricula, Date data_fim) {
 		super();
 		this.id_curso = id_curso;
@@ -102,7 +111,7 @@ public class Curso_Aluno{
 		return new Curso_AlunoDao().listarcurso_alunos(id);
 	}
 	
-	public String toString(){
+	/*public String toString(){
 		int idusuario = 0;
 		String nomeUsuario = null;
 		try {
@@ -118,6 +127,6 @@ public class Curso_Aluno{
 			e.printStackTrace();
 		}
 		return nomeUsuario + " - " + getMatricula();
-	}
+	}*/
 	
 	}

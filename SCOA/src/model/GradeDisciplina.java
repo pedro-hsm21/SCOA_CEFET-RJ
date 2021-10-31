@@ -7,6 +7,8 @@ import dao.GradeDisciplinaDao;
 
 public class GradeDisciplina {
 	int idGradeDisciplina, idDisciplina, idGrade;
+	Grade grade;
+	Disciplina disciplina;
 
 	public GradeDisciplina(int idDisciplina, int idGrade) {
 		super();
@@ -16,6 +18,23 @@ public class GradeDisciplina {
 
 	public GradeDisciplina() {
 	
+	}
+	
+	
+	public Grade getGrade() {
+		return grade;
+	}
+
+	public void setGrade(Grade grade) {
+		this.grade = grade;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 	public int getIdGradeDisciplina() {
@@ -66,7 +85,7 @@ public class GradeDisciplina {
 		return new GradeDisciplinaDao().listarGradeDisciplinas();
 	}
 	
-	public String toString(){
+	/*public String toString(){
 		try {
 			return new DisciplinaController().buscarDisciplina(getIdDisciplina()).getNome();
 		} catch (Exception e) {
@@ -74,6 +93,6 @@ public class GradeDisciplina {
 			e.printStackTrace();
 			return null;
 		}
-	}
+	}*/
 
 }

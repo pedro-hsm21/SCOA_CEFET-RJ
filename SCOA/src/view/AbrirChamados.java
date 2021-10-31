@@ -279,8 +279,7 @@ public class AbrirChamados  extends JFrame {
 	public void carregarvalor(Chamados ch){
 		this.codigoA = ch.getId_aluno();
 		this.codigoCh = ch.getIdchamado();
-		//cbAluno.setSelectedItem(nome);
-		//cbAluno.setEnabled(false);
+		cbAluno.setSelectedItem(ch.getUsuario().getNome_usuario());		
 		tfTitulo.setText(ch.getTitulo());
 		taMsg.setText(ch.getMensagem());
 		taSolucao.setText(ch.getSolucao());

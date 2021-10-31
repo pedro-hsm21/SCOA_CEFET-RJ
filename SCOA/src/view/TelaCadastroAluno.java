@@ -540,7 +540,7 @@ public class TelaCadastroAluno extends JFrame {
 		CursoController controllerC = new CursoController();		
 		try {
 			curso = controllerC.listarCursos();			
-			cursos = controllerA.listar(codigoA);
+			cursos = controllerA.listarCurso_Alunos(codigoA);
 			//JOptionPane.showMessageDialog(null,"Carregou a lista"); 
 			cursos.forEach((Curso_Aluno cursoA) -> {
 				tablemodel.addRow(new Object[] { cursoA.getId_curso(), curso.get(cursoA.getId_curso()-1).getNome_curso(), cursoA.getMatricula()});

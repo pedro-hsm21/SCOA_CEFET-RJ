@@ -7,6 +7,7 @@ import dao.ChamadosDao;
 public class Chamados{
 	int idchamado, id_aluno, status;
 	String titulo,	mensagem, tipo_chamado, solucao;
+	Usuario usuario;
 	
 	
 	public Chamados(int id, String titulo, String mensagem, String tipo_chamado, int status, String solucao) {
@@ -23,6 +24,16 @@ public class Chamados{
 
 	}
 	
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public int getStatus() {
 		return status;
 	}

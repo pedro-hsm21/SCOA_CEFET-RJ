@@ -58,14 +58,14 @@ public class TelaCadastroTurma extends JFrame {
 	private JTextField tfNome;
 	private JTextField tfTurno;
 	private JComboBox<Usuario> cbProfessor;
-	private JComboBox<GradeDisciplina> cbGradeDisciplina;
+	private JComboBox<String> cbGradeDisciplina;
 	private JComboBox<Sala> cbSala;
 	private JSpinner spPeriodo;
 	private JSpinner spNumAlunos;
 	private JSpinner spNumAulas;
 	private JFormattedTextField ftfHoraInicio;
 	private JFormattedTextField ftfHoraFim;
-	private JComboBox<Curso_Aluno> cbCursoAluno;
+	private JComboBox<String> cbCursoAluno;
 	private JTable table;
 	private ArrayList<MatriculaTurma> matriculasturmas;
 	int codigo;
@@ -205,7 +205,7 @@ public class TelaCadastroTurma extends JFrame {
 		lblGradeDisciplinaCadastroTurma.setBounds(14, 73, 138, 20);
 		panelCadastroTurma.add(lblGradeDisciplinaCadastroTurma);
 
-		cbGradeDisciplina = new JComboBox<GradeDisciplina>();
+		cbGradeDisciplina = new JComboBox<String>();
 		cbGradeDisciplina.setBounds(162, 75, 828, 20);
 		panelCadastroTurma.add(cbGradeDisciplina);
 
@@ -340,7 +340,7 @@ public class TelaCadastroTurma extends JFrame {
 		lblALunosCadastroTurma.setBounds(12, 197, 61, 20);
 		panelCadastroTurma.add(lblALunosCadastroTurma);
 
-		cbCursoAluno = new JComboBox<Curso_Aluno>();
+		cbCursoAluno = new JComboBox<String>();
 		cbCursoAluno.setBounds(91, 199, 701, 20);
 		panelCadastroTurma.add(cbCursoAluno);
 
@@ -349,11 +349,6 @@ public class TelaCadastroTurma extends JFrame {
 		panelCadastroTurma.add(scrollPane);
 
 		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
 		table.setModel(
 				new DefaultTableModel(new Object[][] { { null }, }, new String[] { "Aluno - Matrícula:" }) {
 					/**
@@ -465,11 +460,12 @@ public class TelaCadastroTurma extends JFrame {
 		}
 		GradeDisciplinaController controllerGD = new GradeDisciplinaController();
 		for (GradeDisciplina gradedisciplina : controllerGD.listarGradesDisciplinas()) {
-			cbGradeDisciplina.addItem(gradedisciplina);
+			cbGradeDisciplina.addItem(String.valueOf(gradedisciplina.getDisciplina().getNome() + " - " + gradedisciplina.getGrade().getMatriculaGrade()));
 		}
 		Curso_AlunoController controllerCA = new Curso_AlunoController();
 		for (Curso_Aluno cursoaluno : controllerCA.listarCurso_Alunos()) {
-			cbCursoAluno.addItem(cursoaluno);
+			cbCursoAluno.addItem(String.valueOf(cursoaluno.getMatricula() + " - " + cursoaluno.getUsuario().getNome_usuario()));
+			
 		}
 		SalaController controllerS = new SalaController();
 		for (Sala sala : controllerS.listarSalas()) {

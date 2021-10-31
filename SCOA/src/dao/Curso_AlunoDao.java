@@ -5,7 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.Curso_Aluno;
+import model.Usuario;
 
 public class Curso_AlunoDao extends Connection {
 	private PreparedStatement pstm = null;
@@ -115,7 +118,6 @@ public class Curso_AlunoDao extends Connection {
 	}
 
 	public ArrayList<Curso_Aluno> listarcurso_alunos(int id) throws Exception {
-
 		ArrayList<Curso_Aluno> lista = new ArrayList<Curso_Aluno>();
 		String sql = "SELECT * FROM curso_aluno  WHERE ID_ALUNO = ?";
 		try {
@@ -157,20 +159,22 @@ public class Curso_AlunoDao extends Connection {
 	}
 
 	public ArrayList<Curso_Aluno> listarcurso_alunos() throws Exception {
-
 		ArrayList<Curso_Aluno> lista = new ArrayList<Curso_Aluno>();
-		String sql = "SELECT * FROM curso_aluno";
+		String sql = "SELECT * FROM curso_aluno inner join aluno on curso_aluno.id_aluno = aluno.idaluno inner join usuario where aluno.ID_USUARIO = usuario.IDUSUARIO;";
 		try {
 			pstm = con.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				Curso_Aluno curso_aluno = new Curso_Aluno();
+				Usuario usuario = new Usuario();
 				curso_aluno.setId_curso(rs.getInt("ID_CURSO"));
 				curso_aluno.setId_aluno(rs.getInt("ID_ALUNO"));
 				curso_aluno.setMatricula(rs.getString("MATRICULA_ALUNO"));
 				curso_aluno.setStatus_matricula(rs.getInt("STATUS_MATRICULA"));
 				curso_aluno.setData_fim(rs.getDate("DATA_ENCERRAMENTO"));
 				curso_aluno.setId_curso_aluno(rs.getInt("IDCURSO_ALUNO"));
+				usuario.setNome_usuario(rs.getString("NOME_USUARIO"));
+				curso_aluno.setUsuario(usuario);
 				lista.add(curso_aluno);
 			}
 		} catch (SQLException e) {
