@@ -117,15 +117,9 @@ public class PreRequisitoDao extends Connection {
 			pstm = con.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				Disciplina disciplina = new Disciplina();
-				Disciplina disciplinarequisito = new Disciplina();
 				PreRequisito prerequisito = new PreRequisito();
-				disciplina.setNome(rs.getString("DISCIPLINA"));
-				disciplinarequisito.setNome(rs.getString("DISCIPLINA_REQUISITO"));
 				prerequisito.setIdDisciplinaRequisito(rs.getInt("ID_PRE_REQUISITO"));
 				prerequisito.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
-				prerequisito.setDisciplina(disciplina);
-				prerequisito.setDisciplinarequisito(disciplinarequisito);
 				lista.add(prerequisito);
 			}
 		} catch (SQLException e) {

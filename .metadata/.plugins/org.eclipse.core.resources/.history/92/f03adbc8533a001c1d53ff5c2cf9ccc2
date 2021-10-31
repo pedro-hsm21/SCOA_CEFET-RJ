@@ -327,7 +327,7 @@ public class TelaCadastroGrade extends JFrame {
 		try {
 			gradesdisciplinas = controllerGD.listarGradesDisciplinas(idgrade);
 			gradesdisciplinas.forEach((GradeDisciplina gradedisciplina) -> {
-				tablemodel.addRow(new Object[] { gradedisciplina.getDisciplina().getNome()});
+				tablemodel.addRow(new Object[] { gradedisciplina.toString()});
 			});
 			table.setModel(tablemodel);
 		} catch (Exception e) {

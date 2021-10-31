@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.Disciplina;
 import model.PreRequisito;
 
 public class PreRequisitoDao extends Connection {
@@ -112,20 +111,14 @@ public class PreRequisitoDao extends Connection {
 	public ArrayList<PreRequisito> listarPreRequisitos() throws Exception {
 
 		ArrayList<PreRequisito> lista = new ArrayList<PreRequisito>();
-		String sql = "SELECT Z.*, NOME_DISCIPLINA AS DISCIPLINA_REQUISITO FROM(SELECT pre_requisito.ID_DISCIPLINA, pre_requisito.ID_PRE_REQUISITO, disciplina.NOME_DISCIPLINA AS DISCIPLINA FROM pre_requisito INNER JOIN disciplina ON disciplina.IDDISCIPLINA = pre_requisito.ID_DISCIPLINA) AS Z INNER JOIN disciplina ON IDDISCIPLINA = Z.ID_PRE_REQUISITO";
+		String sql = "SELECT * FROM pre_requisito";
 		try {
 			pstm = con.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				Disciplina disciplina = new Disciplina();
-				Disciplina disciplinarequisito = new Disciplina();
 				PreRequisito prerequisito = new PreRequisito();
-				disciplina.setNome(rs.getString("DISCIPLINA"));
-				disciplinarequisito.setNome(rs.getString("DISCIPLINA_REQUISITO"));
 				prerequisito.setIdDisciplinaRequisito(rs.getInt("ID_PRE_REQUISITO"));
 				prerequisito.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
-				prerequisito.setDisciplina(disciplina);
-				prerequisito.setDisciplinarequisito(disciplinarequisito);
 				lista.add(prerequisito);
 			}
 		} catch (SQLException e) {
@@ -155,21 +148,15 @@ public class PreRequisitoDao extends Connection {
 	public ArrayList<PreRequisito> listarPreRequisitos(int iddisciplina) throws Exception {
 
 		ArrayList<PreRequisito> lista = new ArrayList<PreRequisito>();
-		String sql = "SELECT Z.*, NOME_DISCIPLINA AS DISCIPLINA_REQUISITO FROM(SELECT pre_requisito.ID_DISCIPLINA, pre_requisito.ID_PRE_REQUISITO, disciplina.NOME_DISCIPLINA AS DISCIPLINA FROM pre_requisito INNER JOIN disciplina ON disciplina.IDDISCIPLINA = pre_requisito.ID_DISCIPLINA WHERE ID_DISCIPLINA = ?) AS Z INNER JOIN disciplina ON IDDISCIPLINA = Z.ID_PRE_REQUISITO";
+		String sql = "SELECT * FROM pre_requisito WHERE ID_DISCIPLINA = ?";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, iddisciplina);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				Disciplina disciplina = new Disciplina();
-				Disciplina disciplinarequisito = new Disciplina();
 				PreRequisito prerequisito = new PreRequisito();
-				disciplina.setNome(rs.getString("DISCIPLINA"));
-				disciplinarequisito.setNome(rs.getString("DISCIPLINA_REQUISITO"));
 				prerequisito.setIdDisciplinaRequisito(rs.getInt("ID_PRE_REQUISITO"));
 				prerequisito.setIdDisciplina(rs.getInt("ID_DISCIPLINA"));
-				prerequisito.setDisciplina(disciplina);
-				prerequisito.setDisciplinarequisito(disciplinarequisito);
 				lista.add(prerequisito);
 			}
 		} catch (SQLException e) {

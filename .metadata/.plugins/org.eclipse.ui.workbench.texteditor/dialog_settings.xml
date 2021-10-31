@@ -6,30 +6,30 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Disciplina" key="selection"/>
+		<item value="Erro" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="Curso_Aluno"/>
-			<item value="GRADE_"/>
-			<item value="grade"/>
-			<item value="Grade"/>
-			<item value="turma"/>
-			<item value="TelaGradeDisciplinas"/>
-			<item value="turmas"/>
-			<item value="Turma"/>
+			<item value="Erro"/>
+			<item value="MatriculaTurma"/>
+			<item value="cbSala"/>
+			<item value="gradedisciplina"/>
+			<item value="GradeDisciplina"/>
+			<item value="grade_disciplina"/>
+			<item value="buscarMatriculaTurma"/>
+			<item value="listarMatriculaTurma"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Disciplina"/>
-			<item value=""/>
-			<item value="gradedisciplina"/>
-			<item value="TelaGradesDisciplinas"/>
-			<item value="gradesdisciplinas"/>
-			<item value="GradeDisciplina"/>
-			<item value="disciplina"/>
-			<item value="cbGrade"/>
+			<item value="Sala"/>
+			<item value="matriculaturma"/>
+			<item value="MatriculaTurma"/>
+			<item value="matricula_turma"/>
+			<item value="MatriculaTurmaDao"/>
+			<item value="cursoalunos"/>
+			<item value="Curso_AlunoController"/>
+			<item value="matriculasturmas"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

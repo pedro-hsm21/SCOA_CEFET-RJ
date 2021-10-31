@@ -2,11 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.DisciplinaController;
 import dao.PreRequisitoDao;
 
 public class PreRequisito{
 	int idDisciplina, idDisciplinaRequisito;
-	Disciplina disciplina, disciplinarequisito;
 
 	public PreRequisito(int idDisciplina, int idDisciplinaRequisito) {
 		super();
@@ -16,24 +16,6 @@ public class PreRequisito{
 	
 	public PreRequisito() {
 
-	}
-	
-	
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public Disciplina getDisciplinarequisito() {
-		return disciplinarequisito;
-	}
-
-	public void setDisciplinarequisito(Disciplina disciplinarequisito) {
-		this.disciplinarequisito = disciplinarequisito;
 	}
 
 	public int getIdDisciplina() {

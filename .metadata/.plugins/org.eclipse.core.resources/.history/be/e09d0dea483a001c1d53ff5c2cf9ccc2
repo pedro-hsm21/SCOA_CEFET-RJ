@@ -6,7 +6,6 @@ import dao.PreRequisitoDao;
 
 public class PreRequisito{
 	int idDisciplina, idDisciplinaRequisito;
-	Disciplina disciplina, disciplinarequisito;
 
 	public PreRequisito(int idDisciplina, int idDisciplinaRequisito) {
 		super();
@@ -16,24 +15,6 @@ public class PreRequisito{
 	
 	public PreRequisito() {
 
-	}
-	
-	
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public Disciplina getDisciplinarequisito() {
-		return disciplinarequisito;
-	}
-
-	public void setDisciplinarequisito(Disciplina disciplinarequisito) {
-		this.disciplinarequisito = disciplinarequisito;
 	}
 
 	public int getIdDisciplina() {
@@ -59,6 +40,10 @@ public class PreRequisito{
 	public void alterar(PreRequisito prerequisito) throws Exception{
 		new PreRequisitoDao().alterarPreRequisito(prerequisito);
 	}	
+	
+	public void buscar(PreRequisito prerequisito) throws Exception{
+		new PreRequisitoDao().buscarPreRequisito(prerequisito);
+	}
 	
 	public void excluir(PreRequisito prerequisito) throws Exception{
 		new PreRequisitoDao().excluirPreRequisito(prerequisito);
