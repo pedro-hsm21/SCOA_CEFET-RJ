@@ -2,15 +2,16 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.SalaDao;
+
 public class Sala{
-	int idsala, numero_sala, id_turma ;
+	int idsala, numero_sala;
 	String localizacao;
 	
 	
-	public Sala(int numero_sala, int id_turma, String localizacao) {
+	public Sala(int numero_sala, String localizacao) {
 		super();
 		this.numero_sala = numero_sala;
-		this.id_turma = id_turma;
 		this.localizacao = localizacao;
 	}
 	
@@ -34,14 +35,6 @@ public class Sala{
 		this.numero_sala = numero_sala;
 	}
 
-	public int getId_turma() {
-		return id_turma;
-	}
-
-	public void setId_turma(int id_turma) {
-		this.id_turma = id_turma;
-	}
-
 	public String getLocalizacao() {
 		return localizacao;
 	}
@@ -51,22 +44,30 @@ public class Sala{
 	}
 
 	public void cadastrar(Sala sala) throws Exception{
-		//new SalaDao().cadastrarSala(sala);
+		new SalaDao().cadastrarSala(sala);
 	}	
 	
 	public void alterar(Sala sala) throws Exception{
-		//new SalaDao().alterarSala(sala);
+		new SalaDao().alterarSala(sala);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new SalaDao().excluirSala(cod);
+		new SalaDao().excluirSala(cod);
 	}	
 	
-	public void buscar(int cod) throws Exception{
-		//new SalaDao().buscarSala(cod)
+	public Sala buscar(int cod) throws Exception{
+		return new SalaDao().buscarSala(cod);
 	}
-	public ArrayList<Sala> listarSalas() throws Exception{
-		//return new SalaDao().listarSala();
-		return null;
+	
+	public ArrayList<Sala> listar() throws Exception{
+		return new SalaDao().listarSalas();
 	}
+
+	@Override
+	public String toString() {
+		return "Sala" + numero_sala;
+	}
+
+	
+	
 	}

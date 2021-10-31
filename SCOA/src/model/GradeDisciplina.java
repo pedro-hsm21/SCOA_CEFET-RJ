@@ -58,11 +58,11 @@ public class GradeDisciplina {
 		return new GradeDisciplinaDao().buscarGradeDisciplina(cod);
 	}
 
-	public ArrayList<GradeDisciplina> listarGradeDisciplinas(int idgrade) throws Exception {
+	public ArrayList<GradeDisciplina> listar(int idgrade) throws Exception {
 		return new GradeDisciplinaDao().listarGradeDisciplinas(idgrade);
 	}
 	
-	public ArrayList<GradeDisciplina> listarGradeDisciplinas() throws Exception {
+	public ArrayList<GradeDisciplina> listar() throws Exception {
 		return new GradeDisciplinaDao().listarGradeDisciplinas();
 	}
 	

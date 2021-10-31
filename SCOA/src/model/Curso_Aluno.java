@@ -3,6 +3,8 @@ package model;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import controller.AlunoController;
+import controller.UsuarioController;
 import dao.Curso_AlunoDao;
 
 public class Curso_Aluno{
@@ -88,11 +90,34 @@ public class Curso_Aluno{
 		new Curso_AlunoDao().excluircurso_aluno(cod);
 	}	
 	
-	public void buscar(int cod) throws Exception{
-		//new AlunoTurmaDao().buscarAlunoTurma(cod)
+	public Curso_Aluno buscar(int cod) throws Exception{
+		return new Curso_AlunoDao().buscarcurso_aluno(cod);
 	}
+	
+	public ArrayList<Curso_Aluno> listar() throws Exception{
+		return new Curso_AlunoDao().listarcurso_alunos();
+	}
+	
 	public ArrayList<Curso_Aluno> listar(int id) throws Exception{
 		return new Curso_AlunoDao().listarcurso_alunos(id);
-		
 	}
+	
+	public String toString(){
+		int idusuario = 0;
+		String nomeUsuario = null;
+		try {
+			idusuario = new AlunoController().buscarAluno(getId_aluno()).getId_usuario();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			nomeUsuario = new UsuarioController().buscarUsuario(idusuario).getNome_usuario();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nomeUsuario + " - " + getMatricula();
+	}
+	
 	}
