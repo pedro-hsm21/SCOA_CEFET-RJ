@@ -18,6 +18,7 @@ public boolean alterarConteudo(int id, int id_turma, String conteudos) throws Ex
 		
 		if (id > 0 && id_turma > 0 && conteudos != null && conteudos.length() > 0){
 			Conteudo conteudo = new Conteudo(id_turma, conteudos);
+			conteudo.setId_conteudo(id);
 			conteudo.alterar(conteudo);
 			return true;
 		} 

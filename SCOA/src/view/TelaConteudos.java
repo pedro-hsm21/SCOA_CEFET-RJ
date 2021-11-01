@@ -146,7 +146,7 @@ public class TelaConteudos extends JFrame {
 						TelaCadastroConteudoProgramatico tela = new TelaCadastroConteudoProgramatico();
 						ConteudoController controllerCP = new ConteudoController();
 						Conteudo conteudo = controllerCP.buscarConteudo(conteudos.get(clicou).getId_conteudo());
-						 //JOptionPane.showMessageDialog(null,"enviou codigo" + conteudo.getId_conteudo() + "e periodo" + conteudo.getPeriodo_conteudo());
+						//JOptionPane.showMessageDialog(null,"enviou codigo" + conteudo.getId_conteudo() + "e conteudo" + conteudo.getConteudo());
 						tela.povoarComboBox();
 						tela.carregarValores(conteudo);
 						dispose();

@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,6 +34,7 @@ public class TelaCadastroConteudoProgramatico extends JFrame {
 	private JTextArea taConteudo;
 	private JComboBox<Turma> cbTurma;
 	private int codigo;
+	private ArrayList<Turma> turmas;
 
 	/**
 	 * Launch the application.
@@ -95,7 +97,7 @@ public class TelaCadastroConteudoProgramatico extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					String conteudo = taConteudo.getText();
-					int idturma = ((Conteudo) cbTurma.getSelectedItem()).getId_turma();
+					int idturma = turmas.get(cbTurma.getSelectedIndex()).getIdTurma();
 					ConteudoController controller = new ConteudoController();
 					boolean status = false;
 					if (codigo == 0) {
@@ -160,7 +162,7 @@ public class TelaCadastroConteudoProgramatico extends JFrame {
 		lblConteudoCadastroConteudoProgramatico.setBounds(12, 42, 84, 20);
 		panelCadastroConteudoProgramatico.add(lblConteudoCadastroConteudoProgramatico);
 		
-		JTextArea taConteudo = new JTextArea();
+		taConteudo = new JTextArea();
 		taConteudo.setBounds(12, 73, 976, 329);
 		panelCadastroConteudoProgramatico.add(taConteudo);
 		taConteudo.setBorder(new LineBorder(Color.LIGHT_GRAY));
@@ -173,14 +175,15 @@ public class TelaCadastroConteudoProgramatico extends JFrame {
 	}
 
 	public void carregarValores(Conteudo conteudo) {
-		cbTurma.setSelectedItem(0);
+		cbTurma.setSelectedIndex(conteudo.getId_turma()-1);
 		taConteudo.setText(conteudo.getConteudo());
 		codigo = conteudo.getId_conteudo();
 	}
 	
 	public void povoarComboBox() throws Exception{
 		TurmaController controllerT = new TurmaController();
-		for (Turma turma: controllerT.listarTurmas()){
+		turmas = controllerT.listarTurmas();
+		for (Turma turma: turmas){
 			cbTurma.addItem(turma);
 		}
 	}
