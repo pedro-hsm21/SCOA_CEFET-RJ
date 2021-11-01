@@ -46,6 +46,10 @@ public class TurmaController {
 	public ArrayList<Turma> listarTurmas() throws Exception {
 		return new Turma().listarTurmas();
 	}
+	
+	public ArrayList<Turma> listarTurmas(int idprofessor) throws Exception {
+		return new Turma().listarTurmas(idprofessor);
+	}
 
 	public Turma buscarTurma(int cod) throws Exception {
 		return new Turma().buscar(cod);

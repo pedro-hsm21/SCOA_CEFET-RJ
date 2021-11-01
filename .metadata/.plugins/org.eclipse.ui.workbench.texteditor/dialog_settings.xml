@@ -6,30 +6,30 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Erro" key="selection"/>
+		<item value="Sala" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="Erro"/>
-			<item value="MatriculaTurma"/>
-			<item value="cbSala"/>
-			<item value="gradedisciplina"/>
-			<item value="GradeDisciplina"/>
-			<item value="grade_disciplina"/>
-			<item value="buscarMatriculaTurma"/>
-			<item value="listarMatriculaTurma"/>
+			<item value="Turma"/>
+			<item value="textAreaLocalizacaoCadastroSala"/>
+			<item value="spinnerNumeroCadastroSala"/>
+			<item value="turma"/>
+			<item value="controllerT"/>
+			<item value="turmas"/>
+			<item value="Sala"/>
+			<item value="Turmas"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Sala"/>
-			<item value="matriculaturma"/>
-			<item value="MatriculaTurma"/>
-			<item value="matricula_turma"/>
-			<item value="MatriculaTurmaDao"/>
-			<item value="cursoalunos"/>
-			<item value="Curso_AlunoController"/>
-			<item value="matriculasturmas"/>
+			<item value="taLocalizacao"/>
+			<item value="spNumero"/>
+			<item value="sala"/>
+			<item value="controllerS"/>
+			<item value="salas"/>
+			<item value=""/>
+			<item value="Salas"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

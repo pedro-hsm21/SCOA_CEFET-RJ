@@ -164,6 +164,51 @@ public class TurmaDao extends Connection {
 		}
 		return lista;
 	}
+	
+	public ArrayList<Turma> listarTurmas(int idprofessor) throws Exception {
+
+		ArrayList<Turma> lista = new ArrayList<Turma>();
+		String sql = "SELECT * FROM turma WHERE ID_PROFESSOR = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, idprofessor);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				Turma turma = new Turma();
+				turma.setIdTurma(rs.getInt("IDTURMA"));
+				turma.setNome(rs.getString("NOME_TURMA"));
+				turma.setPeriodo(rs.getInt("PERIODO_TURMA"));
+				turma.setTurno(rs.getString("TURNO_TURMA"));
+				turma.setNumAlunos(rs.getInt("NUM_ALUNOS_TURMA"));
+				turma.setNumAulas(rs.getInt("NUM_AULAS"));
+				turma.setHoraInicio(rs.getTime("HORA_INICIO"));
+				turma.setHoraFim(rs.getTime("HORA_FIM"));
+				turma.setIdProfessor(rs.getInt("ID_PROFESSOR"));
+				turma.setIdSala(rs.getInt("ID_SALA"));
+				turma.setIdGradeDisciplina(rs.getInt("ID_GRADE_DISCIPLINA"));				
+				lista.add(turma);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+		return lista;
+	}
 
 	public Turma buscarTurma(int cod) throws Exception {
 		Turma turma = new Turma();
