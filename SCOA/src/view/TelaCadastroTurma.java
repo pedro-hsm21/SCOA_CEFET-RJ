@@ -66,6 +66,10 @@ public class TelaCadastroTurma extends JFrame {
 	private JComboBox<String> cbCursoAluno;
 	private JTable table;
 	private ArrayList<MatriculaTurma> matriculasturmas;
+	private ArrayList<Sala> salas;
+	private ArrayList<Curso_Aluno> curso_alunos; 
+	private ArrayList<GradeDisciplina> gradediscp;
+	private ArrayList<Usuario> usuarios;
 	int codigo;
 
 	/**
@@ -137,8 +141,8 @@ public class TelaCadastroTurma extends JFrame {
 					int numalunos = Integer.parseInt(spNumAlunos.getValue().toString());
 					int numaulas = Integer.parseInt(spNumAulas.getValue().toString());
 					int idprofessor = new Professor().buscar(((Usuario) cbProfessor.getSelectedItem()).getId_usuario()).getId_professor();
-					int idsala = ((Sala) cbSala.getSelectedItem()).getIdsala();
-					int idgradedisciplina = ((GradeDisciplina) cbGradeDisciplina.getSelectedItem()).getIdGradeDisciplina();
+					int idsala = salas.get(cbSala.getSelectedIndex()).getIdsala();//((Sala) cbSala.getSelectedItem()).getIdsala();
+					int idgradedisciplina = gradediscp.get(cbGradeDisciplina.getSelectedIndex()).getIdGradeDisciplina();//((GradeDisciplina) cbGradeDisciplina.getSelectedItem()).getIdGradeDisciplina();
 					DateFormat fmt = new SimpleDateFormat("HH:mm:ss");
 					String horainicio = ftfHoraInicio.getText();
 					String horafim = ftfHoraFim.getText();
@@ -366,7 +370,7 @@ public class TelaCadastroTurma extends JFrame {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (codigo > 0) {
-					int idcursoaluno = ((Curso_Aluno) cbCursoAluno.getSelectedItem()).getId_curso_aluno();
+					int idcursoaluno = curso_alunos.get(cbCursoAluno.getSelectedIndex()).getId_curso_aluno(); //((Curso_Aluno) cbCursoAluno.getSelectedItem()).getId_curso_aluno();
 					try {
 						MatriculaTurmaController controllerMT = new MatriculaTurmaController();
 						boolean status = false;
@@ -453,20 +457,25 @@ public class TelaCadastroTurma extends JFrame {
 
 	public void povoarComboBox() throws Exception {
 		UsuarioController controllerU = new UsuarioController();
-		for (Usuario professor : controllerU.listarUsuario(2)) {
+		usuarios = controllerU.listarUsuario(2);
+		for (Usuario professor : usuarios) {
 			cbProfessor.addItem(professor);
 		}
+		
 		GradeDisciplinaController controllerGD = new GradeDisciplinaController();
-		for (GradeDisciplina gradedisciplina : controllerGD.listarGradesDisciplinas()) {
+		gradediscp = controllerGD.listarGradesDisciplinas();
+		for (GradeDisciplina gradedisciplina : gradediscp) {
 			cbGradeDisciplina.addItem(String.valueOf(gradedisciplina.getDisciplina().getNome() + " - " + gradedisciplina.getGrade().getMatriculaGrade()));
 		}
 		Curso_AlunoController controllerCA = new Curso_AlunoController();
-		for (Curso_Aluno cursoaluno : controllerCA.listarCurso_Alunos()) {
+		curso_alunos = controllerCA.listarCurso_Alunos();
+		for (Curso_Aluno cursoaluno : curso_alunos) {
 			cbCursoAluno.addItem(String.valueOf(cursoaluno.getMatricula() + " - " + cursoaluno.getUsuario().getNome_usuario()));
 			
 		}
 		SalaController controllerS = new SalaController();
-		for (Sala sala : controllerS.listarSalas()) {
+		salas = controllerS.listarSalas();
+		for (Sala sala : salas) {
 			cbSala.addItem(sala);
 		}
 	}

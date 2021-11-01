@@ -146,7 +146,7 @@ public class TelaCurso_Aluno extends JFrame {
 					
 					
 					int statusM = cbStatus.getSelectedIndex();
-					int curso = cbCurso.getSelectedIndex();
+					int idcurso = curso.get(cbCurso.getSelectedIndex()).getId_curso(); //cbCurso.getSelectedIndex();
 					String matricula = tfMatricula.getText();
 					String encerramento = ftfIngresso.getText();
 					
@@ -165,9 +165,9 @@ public class TelaCurso_Aluno extends JFrame {
 						Curso_AlunoController controller = new Curso_AlunoController();	
 						boolean status = false;
 						if (codigo == 0) {									
-							status = controller.cadastrarCurso_Aluno(curso, codigoA, matricula, statusM, data);
+							status = controller.cadastrarCurso_Aluno(idcurso, codigoA, matricula, statusM, data);
 						} else {		
-							status = controller.alterarCurso_Aluno(codigo, curso, codigoA, matricula, statusM, data);
+							status = controller.alterarCurso_Aluno(codigo, idcurso, codigoA, matricula, statusM, data);
 						}
 						
 						if (status == true){
