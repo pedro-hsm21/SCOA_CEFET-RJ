@@ -1,6 +1,3 @@
-//public class TelaChamados 
-
-
 package view;
 
 
@@ -17,9 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import controller.AlunoController;
 import controller.ChamadosController;
-import model.Aluno;
 import model.Chamados;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

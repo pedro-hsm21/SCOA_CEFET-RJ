@@ -149,10 +149,10 @@ public class UsuarioDao extends Connection {
 
 		String sql;
 		if (tipo == 0) {
-			sql = "SELECT * FROM usuario where tipo_usuario";
+			sql = "SELECT * FROM usuario where tipo_usuario order by NOME_USUARIO";
 			pstm = con.prepareStatement(sql);
 		} else {
-			sql = "SELECT * FROM usuario where tipo_usuario= ?";
+			sql = "SELECT * FROM usuario where tipo_usuario= ? order by NOME_USUARIO";
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, tipo);
 		}
