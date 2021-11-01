@@ -137,6 +137,10 @@ public class Turma {
 		return new TurmaDao().listarTurmas();
 	}
 	
+	public ArrayList<Turma> listarTurmas(int idprofessor) throws Exception {
+		return new TurmaDao().listarTurmas(idprofessor);
+	}
+	
 	public String toString(){
 		return getNome();
 	}

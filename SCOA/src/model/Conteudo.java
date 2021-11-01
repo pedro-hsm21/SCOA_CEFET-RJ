@@ -2,10 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
-public class Conteudo{
+import dao.ConteudoDao;
+
+public class Conteudo {
 	int id_conteudo, id_turma;
 	String conteudo;
-	
+	Turma turma;
+
 	public Conteudo(int id_turma, String conteudo) {
 		super();
 		this.id_turma = id_turma;
@@ -14,6 +17,14 @@ public class Conteudo{
 
 	public Conteudo() {
 
+	}
+	
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	public int getId_conteudo() {
@@ -40,23 +51,27 @@ public class Conteudo{
 		this.conteudo = conteudo;
 	}
 
-	public void cadastrar(Conteudo conteudo) throws Exception{
-		//new ConteudoDao().cadastrarConteudo(conteudo);
-	}	
-	
-	public void alterar(Conteudo conteudo) throws Exception{
-		//new ConteudoDao().alterarConteudo(conteudo);
-	}	
-	
-	public void excluir(int cod) throws Exception{
-		//new ConteudoDao().excluirConteudo(cod);
-	}	
-	
-	public void buscar(int cod) throws Exception{
-		//new ConteudoDao().buscaConteudor(cod)
+	public void cadastrar(Conteudo conteudo) throws Exception {
+		new ConteudoDao().cadastrarConteudo(conteudo);
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new ConteudoDao().listarConteudo();
-		return null;
+
+	public void alterar(Conteudo conteudo) throws Exception {
+		new ConteudoDao().alterarConteudo(conteudo);
+	}
+
+	public void excluir(int cod) throws Exception {
+		new ConteudoDao().excluirConteudo(cod);
+	}
+
+	public Conteudo buscar(int cod) throws Exception {
+		return new ConteudoDao().buscarConteudo(cod);
+	}
+
+	public ArrayList<Conteudo> listar() throws Exception {
+		return new ConteudoDao().listarConteudos();
+	}
+	
+	public ArrayList<Conteudo> listar(int idprofessor) throws Exception {
+		return new ConteudoDao().listarConteudos(idprofessor);
 	}
 }
