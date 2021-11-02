@@ -2,8 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+import dao.Plano_EstudosDao;
+
 public class Plano_Estudos{
 	int idplano_estudos, periodo, id_aluno, id_disciplina;
+	Disciplina disciplina;
 
 	public Plano_Estudos(int periodo, int id_aluno, int id_disciplina) {
 		super();
@@ -14,6 +17,14 @@ public class Plano_Estudos{
 	
 	public Plano_Estudos() {
 
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 	public int getIdplano_estudos() {
@@ -49,23 +60,27 @@ public class Plano_Estudos{
 	}
 
 	public void cadastrar(Plano_Estudos planos_estudos) throws Exception{
-		//new Plano_EstudosDao().cadastrarPlanoEstudos(planos_estudos);
+		new Plano_EstudosDao().cadastrarPlano_Estudos(planos_estudos);
 	}	
 	
 	public void alterar(Plano_Estudos planos_estudos) throws Exception{
-		//new Plano_EstudosDao().alterarPlanoEstudos(planos_estudos);
+		new Plano_EstudosDao().alterarPlano_Estudos(planos_estudos);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new Plano_EstudosDao().excluirPlanoEstudos(cod);
+		new Plano_EstudosDao().excluirPlano_Estudos(cod);
 	}	
 	
-	public void buscar(int cod) throws Exception{
-		//new Plano_EstudosDao().buscarPlanoEstudos(cod)
+	public Plano_Estudos buscar(int cod) throws Exception{
+		return new Plano_EstudosDao().buscarPlano_Estudoss(cod);
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new Plano_EstudosDao().listarPlanoEstudos();
-		return null;
+	
+	public ArrayList<Plano_Estudos> listar() throws Exception{
+		return new Plano_EstudosDao().listarPlano_Estudoss();
+	}
+	
+	public ArrayList<Plano_Estudos> listar(int idaluno) throws Exception{
+		return new Plano_EstudosDao().listarPlano_Estudoss(idaluno);
 	}
 	
 	}

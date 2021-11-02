@@ -6,7 +6,6 @@
 <fullyQualifiedTypeName name="javax.swing.text.MaskFormatter"/>
 <fullyQualifiedTypeName name="dao.AlunoDao"/>
 <fullyQualifiedTypeName name="model.Chamados"/>
-<fullyQualifiedTypeName name="model.Conteudo"/>
 <fullyQualifiedTypeName name="model.Curso"/>
 <fullyQualifiedTypeName name="model.Endereco"/>
 <fullyQualifiedTypeName name="model.Plano_Estudos"/>
@@ -21,8 +20,6 @@
 <fullyQualifiedTypeName name="model.Sala"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
-<fullyQualifiedTypeName name="controller.TurmaController"/>
-<fullyQualifiedTypeName name="model.Turma"/>
 <fullyQualifiedTypeName name="java.sql.Time"/>
 <fullyQualifiedTypeName name="dao.ProfessorDao"/>
 <fullyQualifiedTypeName name="dao.UsuarioDao"/>
@@ -47,4 +44,8 @@
 <fullyQualifiedTypeName name="controller.MatriculaTurmaController"/>
 <fullyQualifiedTypeName name="dao.SalaDao"/>
 <fullyQualifiedTypeName name="model.MatriculaTurma"/>
+<fullyQualifiedTypeName name="dao.ConteudoDao"/>
+<fullyQualifiedTypeName name="model.Conteudo"/>
+<fullyQualifiedTypeName name="model.Turma"/>
+<fullyQualifiedTypeName name="controller.TurmaController"/>
 </qualifiedTypeNameHistroy>

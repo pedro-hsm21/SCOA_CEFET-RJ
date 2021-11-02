@@ -6,30 +6,30 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Sala" key="selection"/>
+		<item value="conteudo" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="Turma"/>
-			<item value="textAreaLocalizacaoCadastroSala"/>
-			<item value="spinnerNumeroCadastroSala"/>
 			<item value="turma"/>
 			<item value="controllerT"/>
+			<item value="TelaCadastroConteudo"/>
 			<item value="turmas"/>
+			<item value="Turma"/>
 			<item value="Sala"/>
-			<item value="Turmas"/>
+			<item value="textAreaConteudoCadastroConteudoProgramatico"/>
+			<item value="comboBoxTurmaCadastroConteudoProgramatico"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Sala"/>
-			<item value="taLocalizacao"/>
-			<item value="spNumero"/>
-			<item value="sala"/>
-			<item value="controllerS"/>
-			<item value="salas"/>
-			<item value=""/>
-			<item value="Salas"/>
+			<item value="conteudo"/>
+			<item value="controllerCP"/>
+			<item value="TelaCadastroConteudoProgramatico"/>
+			<item value="conteudos"/>
+			<item value="Conteudo"/>
+			<item value="taConteudo"/>
+			<item value="cbTurma"/>
+			<item value="TURMA"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

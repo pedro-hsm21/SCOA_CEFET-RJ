@@ -34,8 +34,16 @@ public boolean alterarPlanos_Estudos(int id, int periodo, int id_aluno, int id_d
 			return true;
 	}
 	
-	public ArrayList<String> listarPlanos_Estudos() throws Exception{
-		//return new Ator().listarAtores();
-		return null;
+	public ArrayList<Plano_Estudos> listarPlanos_Estudos() throws Exception{
+		return new Plano_Estudos().listar();
+	}
+	
+	public ArrayList<Plano_Estudos> listarPlanos_Estudos(int idaluno) throws Exception{
+		return new Plano_Estudos().listar(idaluno);
+	}
+	
+	public Plano_Estudos buscarPlanos_Estudos(int id) throws Exception{
+		return new Plano_Estudos().buscar(id);
 	}
 }
+
