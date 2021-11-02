@@ -163,7 +163,7 @@ public class TelaChamados extends JFrame {
 		contentPane.add(btnfiltrar);
 		
 		cbFiltro = new JComboBox<String>();
-		cbFiltro.setModel(new DefaultComboBoxModel<String>(new String[] {"Todos", "Aberto", "Em atendimento", "Finalizado"}));
+		cbFiltro.setModel(new DefaultComboBoxModel(new String[] {"Todos", "Aberto", "Em atendimento"}));
 		cbFiltro.setBounds(672, 90, 237, 20);
 		contentPane.add(cbFiltro);
 		
@@ -230,6 +230,19 @@ public class TelaChamados extends JFrame {
 		}
 				
 	} 
+	
+	public void historico(){
+		contentPane.remove(btnfiltrar);
+		contentPane.remove(btnNovo);
+		contentPane.remove(btnNewButton);
+		contentPane.remove(cbFiltro);		
+		lbl1.setText("Historico de chamados");
+		carregarTable(2, -1);
+		
+				
+	} 
+	
+	
 	
 }
 

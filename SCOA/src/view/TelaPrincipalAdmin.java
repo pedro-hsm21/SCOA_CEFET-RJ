@@ -16,6 +16,10 @@ import model.Usuario;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -77,6 +81,7 @@ public class TelaPrincipalAdmin extends javax.swing.JFrame {
         jMenuItemConsultaPreRequisito = new javax.swing.JMenuItem();
         jMenuItemConsultaMetasPrazo = new javax.swing.JMenuItem();
         jMenuItemConsultaSala = new javax.swing.JMenuItem();
+        jMenuItemAtender = new javax.swing.JMenuItem();
         jMenuChamado = new javax.swing.JMenu();
         jMenuSair = new javax.swing.JMenu();
 
@@ -311,12 +316,32 @@ public class TelaPrincipalAdmin extends javax.swing.JFrame {
         jMenuChamado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Occupations-Technical-Support-Representative-Female-Light-icon.png"))); // NOI18N
         jMenuChamado.setText("Chamado");
         jMenuChamado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuChamado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuChamadoMouseClicked(evt);
-            }
-        });
+       
         jMenuBar1.add(jMenuChamado);
+        
+        jMenuItemAtender.setIcon(new ImageIcon(TelaPrincipalAdmin.class.getResource("/images/Badge-plus-icon.png"))); // NOI18N
+        jMenuItemAtender.setText("Sala");
+        jMenuCadastro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItemAtender.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		TelaChamados telaChamados = new TelaChamados();
+                telaChamados.carregarTable(-1, -1);
+                telaChamados.setVisible(true);
+        	}
+        });
+        jMenuItemAtender.setText("Atender");
+        jMenuChamado.add(jMenuItemAtender);
+        
+        mntmHistorico = new JMenuItem("Historico");
+        mntmHistorico.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {        		
+        		TelaChamados telaChamados = new TelaChamados();
+                telaChamados.historico();
+                telaChamados.setVisible(true);
+        	}
+        });
+        mntmHistorico.setIcon(new ImageIcon(TelaPrincipalAdmin.class.getResource("/images/Clock-icon (1).png")));
+        jMenuChamado.add(mntmHistorico);
 
         jMenuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Badge-multiply-icon.png"))); // NOI18N
         jMenuSair.setText("Sair");
@@ -483,11 +508,7 @@ public class TelaPrincipalAdmin extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jMenuItemConsultaPreRequisitoActionPerformed
 
-    private void jMenuChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuChamadoMouseClicked
-        this.setVisible(false);
-        TelaChamados telaChamados = new TelaChamados();
-        telaChamados.setVisible(true);
-    }//GEN-LAST:event_jMenuChamadoMouseClicked
+ 
 
     /**
      * @param args the command line arguments
@@ -562,5 +583,7 @@ public class TelaPrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemCosnultaCurso;
     private javax.swing.JMenu jMenuSair;
     private javax.swing.JPanel jPanel1;
+    private JMenuItem jMenuItemAtender;
+    private JMenuItem mntmHistorico;
     // End of variables declaration//GEN-END:variables
 }

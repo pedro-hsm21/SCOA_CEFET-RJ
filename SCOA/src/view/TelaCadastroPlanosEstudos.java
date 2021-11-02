@@ -107,9 +107,9 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		btnSalvarPlanosEstudos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
-				TelaPlanosEstudos tela = new TelaPlanosEstudos();
-				dispose();
-				tela.setVisible(true);
+				//TelaPlanosEstudos tela = new TelaPlanosEstudos();
+				//dispose();
+				//tela.setVisible(true);
 			}
 		});
 		btnSalvarPlanosEstudos.setBackground(new Color(122, 97, 171));
@@ -121,9 +121,9 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		JButton btnvoltar = new JButton("Voltar");
 		btnvoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaPlanosEstudos tela = new TelaPlanosEstudos();
-				dispose();
-				tela.setVisible(true);
+				//TelaPlanosEstudos tela = new TelaPlanosEstudos();
+				//dispose();
+				//tela.setVisible(true);
 			}
 		});
 		btnvoltar.setForeground(new Color(31, 58, 104));

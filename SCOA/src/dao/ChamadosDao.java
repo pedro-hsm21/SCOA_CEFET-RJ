@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.Chamados;
 import model.Usuario;
 
@@ -124,11 +126,11 @@ public ArrayList<Chamados> listarChamados(int id, int idAluno) throws Exception 
 		pstm=con.prepareStatement(sql);
 		pstm.setInt(1, idAluno);
 		} else		
-			if (id > 0 && idAluno < 0){
+			if (id >= 0 && idAluno < 0){				
 				String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO = ? order by IDCHAMADO desc;";
 				pstm=con.prepareStatement(sql);
 				pstm.setInt(1, id);
-			} else {			
+			} else {
 				String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO = ? and IDUSUARIO = ? order by STATUS_CHAMADO,IDCHAMADO desc;";
 				pstm=con.prepareStatement(sql);
 				pstm.setInt(1, id);
