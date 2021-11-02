@@ -30,7 +30,7 @@ public class TelaLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfEmail;
 	private JPasswordField passwordField;
-	private JLabel lblSenha;
+	private JLabel lblSenha;	
 
 	/**
 	 * Launch the application.
@@ -116,8 +116,24 @@ public class TelaLogin extends JFrame {
 					usuario = controller.buscarUsuario(email);
 					
 					if (senha.equals(usuario.getSenha())){
-						JOptionPane.showMessageDialog(null,"Bom-vindo(a), " + usuario.getNome_usuario() +" !");
 						//habilitar tela principal
+						switch(usuario.getTipo()){
+							case 1:
+									TelaPrincipalAluno telaAluno = new TelaPrincipalAluno();
+									telaAluno.setUsuario(usuario);
+									telaAluno.setVisible(true);
+									break;
+							case 2:
+									TelaPrincipalProfessor telaProf = new TelaPrincipalProfessor();
+									telaProf.setUsuario(usuario);
+									telaProf.setVisible(true);
+									break;
+							case 3:	
+									TelaPrincipalAdmin telaAdm = new TelaPrincipalAdmin();
+									telaAdm.setUsuario(usuario);
+									telaAdm.setVisible(true);
+									break;
+						}
 					}else{
 						JOptionPane.showMessageDialog(null,"Email e/ou senha incorretos!");
 					}
@@ -125,6 +141,7 @@ public class TelaLogin extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
+				dispose();
 			}
 		});
 		btnEntrar.setBackground(new Color(122, 97, 171));

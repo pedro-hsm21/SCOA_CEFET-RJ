@@ -271,7 +271,16 @@ public class AbrirChamados  extends JFrame {
 	}
 	
 	public void carregarvalor(int cod, String nome){
-		this.codigoA = cod;
+		AlunoController controllerA = new AlunoController();
+		Aluno aluno;
+		try {
+			aluno = controllerA.buscarAluno(usuarios.get(cod).getId_usuario());
+			codigoA = aluno.getId_aluno();	
+			this.codigoA = cod;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		cbAluno.setSelectedItem(nome);
 		cbAluno.setEnabled(false);
 	}

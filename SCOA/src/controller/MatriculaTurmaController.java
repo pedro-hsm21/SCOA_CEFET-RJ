@@ -44,6 +44,10 @@ public class MatriculaTurmaController {
 	public ArrayList<MatriculaTurma> listarMatriculasTurmas() throws Exception {
 		return new MatriculaTurma().listar();
 	}
+	
+	public ArrayList<MatriculaTurma> listarMatriculasTurmasT(int id) throws Exception {
+		return new MatriculaTurma().listarT(id);
+	}
 
 	public MatriculaTurma buscarMatriculaTurma(int idTurma, int idCursoAluno) throws Exception {
 		return new MatriculaTurma().buscar(idTurma, idCursoAluno);

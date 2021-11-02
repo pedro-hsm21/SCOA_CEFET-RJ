@@ -35,8 +35,8 @@ public boolean alterarChamados(int id, int id_usuario, String titulo, String men
 		return true;
 	}
 	
-	public ArrayList<Chamados> listarChamados(int id) throws Exception{
-		return new Chamados().listarChamados(id);
+	public ArrayList<Chamados> listarChamados(int id, int idUser) throws Exception{
+		return new Chamados().listarChamados(id, idUser);
 		
 	}
 }

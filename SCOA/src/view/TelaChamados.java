@@ -35,6 +35,10 @@ public class TelaChamados extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JButton btnfiltrar;
+	private JButton btnNewButton;
+	private JButton btnNovo;
+	private JLabel lbl1;
 	private JComboBox<String> cbFiltro;
 	private ArrayList<Chamados> chamados;
 
@@ -64,7 +68,7 @@ public class TelaChamados extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent arg0) {
-				carregarTable(-1);
+				//carregarTable(-1,-1);
 			}
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -78,14 +82,14 @@ public class TelaChamados extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.setLayout(null);
 
-		JLabel lblCadastrarAluno = new JLabel("Atender chamados");
-		lblCadastrarAluno.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCadastrarAluno.setForeground(new Color(31, 58, 104));
-		lblCadastrarAluno
+		lbl1 = new JLabel("Atender chamados");
+		lbl1.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl1.setForeground(new Color(31, 58, 104));
+		lbl1
 				.setIcon(new ImageIcon(TelaCadastroAluno.class.getResource("/images/_007f97-removebg-preview100.png")));
-		lblCadastrarAluno.setFont(new Font("Tahoma", Font.BOLD, 40));
-		lblCadastrarAluno.setBounds(10, 11, 998, 57);
-		contentPane.add(lblCadastrarAluno);
+		lbl1.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lbl1.setBounds(10, 11, 998, 57);
+		contentPane.add(lbl1);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 121, 998, 439);
@@ -123,8 +127,8 @@ public class TelaChamados extends JFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(219);
 		table.getColumnModel().getColumn(3).setResizable(false);
 		scrollPane.setViewportView(table);
-
-		JButton btnNewButton = new JButton("Atender");
+		
+		btnNewButton = new JButton("Atender");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Chamados ch = new Chamados();
@@ -147,11 +151,11 @@ public class TelaChamados extends JFrame {
 		btnNewButton.setBounds(170, 87, 152, 23);
 		contentPane.add(btnNewButton);
 
-		JButton btnfiltrar = new JButton("Filtrar");
+		btnfiltrar = new JButton("Filtrar");
 		btnfiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int id = cbFiltro.getSelectedIndex()-1;
-				carregarTable(id);
+				carregarTable(id,-1);
 			
 			}
 		});
@@ -163,7 +167,7 @@ public class TelaChamados extends JFrame {
 		cbFiltro.setBounds(672, 90, 237, 20);
 		contentPane.add(cbFiltro);
 		
-		JButton btnNovo = new JButton("Abrir novo");
+		btnNovo = new JButton("Abrir novo");
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AbrirChamados tela;
@@ -181,13 +185,13 @@ public class TelaChamados extends JFrame {
 		contentPane.add(btnNovo);
 	}
 
-	void carregarTable(int id) {
+	void carregarTable(int id, int idUser) {
 		DefaultTableModel tablemodel = (DefaultTableModel) table.getModel();
 		tablemodel.setRowCount(0);
 		ChamadosController controller = new ChamadosController();
 
 		try {
-			chamados = controller.listarChamados(id);
+			chamados = controller.listarChamados(id,idUser);
 			chamados.forEach((Chamados ch) -> { 		
 				tablemodel.addRow(new Object[] {ch.getIdchamado(),ch.getTitulo(),ch.getUsuario().getNome_usuario(),verifica(ch.getStatus())});
 			});
@@ -210,6 +214,22 @@ public class TelaChamados extends JFrame {
 		}
 		return string;
 	}
+	
+	public void ViewAluno(int tipo, int id){
+		contentPane.remove(btnfiltrar);
+		contentPane.remove(btnNovo);
+		contentPane.remove(btnNewButton);
+		contentPane.remove(cbFiltro);
+		
+		if (tipo == 2 ){
+			lbl1.setText("Historico");
+			carregarTable(2, id);
+		} else {
+			lbl1.setText("Meus chamados");
+			carregarTable(-1, id);
+		}
+				
+	} 
 	
 }
 

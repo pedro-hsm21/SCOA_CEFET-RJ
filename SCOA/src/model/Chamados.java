@@ -106,7 +106,7 @@ public class Chamados{
 	public void buscar(int cod) throws Exception{
 		//new ChamadosDao().buscaChamadosr(cod)
 	}
-	public ArrayList<Chamados> listarChamados(int id) throws Exception{
-		return new ChamadosDao().listarChamados(id);
+	public ArrayList<Chamados> listarChamados(int id, int idUsuario) throws Exception{
+		return new ChamadosDao().listarChamados(id, idUsuario);
 	}
 	}

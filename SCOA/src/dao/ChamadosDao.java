@@ -112,17 +112,28 @@ public void alterarChamados(Chamados chamados) throws Exception {
 		}
 }
 
-public ArrayList<Chamados> listarChamados(int id) throws Exception {
+public ArrayList<Chamados> listarChamados(int id, int idAluno) throws Exception {
 	
 	ArrayList<Chamados> lista = new ArrayList<Chamados>();
-	if (id < 0){
-		String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario order by STATUS_CHAMADO,IDCHAMADO desc;";
+	if (id < 0 && idAluno < 0){
+		String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO < 2 order by STATUS_CHAMADO,IDCHAMADO desc ;";
 		pstm=con.prepareStatement(sql);
-	} else {
-		String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO = ? order by STATUS_CHAMADO,IDCHAMADO desc;";
+	} else  
+		if (id < 0 && idAluno > 0 ){
+		String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO < 2 and IDUSUARIO = ? order by STATUS_CHAMADO,IDCHAMADO desc ;";
 		pstm=con.prepareStatement(sql);
-		pstm.setInt(1, id);
-	}
+		pstm.setInt(1, idAluno);
+		} else		
+			if (id > 0 && idAluno < 0){
+				String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO = ? order by IDCHAMADO desc;";
+				pstm=con.prepareStatement(sql);
+				pstm.setInt(1, id);
+			} else {			
+				String sql="SELECT chamado.*, usuario.NOME_USUARIO FROM chamado inner join aluno on chamado.ID_ALUNO = aluno.IDALUNO inner join usuario on aluno.id_usuario = usuario.idusuario and STATUS_CHAMADO = ? and IDUSUARIO = ? order by STATUS_CHAMADO,IDCHAMADO desc;";
+				pstm=con.prepareStatement(sql);
+				pstm.setInt(1, id);
+				pstm.setInt(2, idAluno);
+			}		
 	
 	try {		
 		rs=pstm.executeQuery();

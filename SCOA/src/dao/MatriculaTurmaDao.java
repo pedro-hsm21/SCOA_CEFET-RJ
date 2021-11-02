@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.MatriculaTurma;
+import model.Turma;
+import model.Usuario;
 
 public class MatriculaTurmaDao extends Connection {
 	private PreparedStatement pstm = null;
@@ -123,6 +125,54 @@ public class MatriculaTurmaDao extends Connection {
 				matriculaturma.setFrequencia(rs.getFloat("FREQUENCIA"));
 				matriculaturma.setIdCursoAluno(rs.getInt("ID_CURSO_ALUNO"));
 				matriculaturma.setIdTurma(rs.getInt("ID_TURMA"));
+				lista.add(matriculaturma);
+			}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				;
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException e) {
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+		return lista;
+	}
+	
+	public ArrayList<MatriculaTurma> listarMatriculaTurmasT(int idturma) throws Exception {
+
+		ArrayList<MatriculaTurma> lista = new ArrayList<MatriculaTurma>();
+		String sql = "select matricula_turma.* , turma.HORA_FIM, turma.HORA_INICIO, turma.NOME_TURMA, usuario.NOME_USUARIO from matricula_turma inner join turma on ID_TURMA = IDTURMA inner join professor on ID_PROFESSOR = IDPROFESSOR inner join usuario on ID_USUARIO = IDUSUARIO and ID_CURSO_ALUNO = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, idturma);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				MatriculaTurma matriculaturma = new MatriculaTurma();
+				matriculaturma.setIdMatriculaTurma(rs.getInt("IDMATRICULA_TURMA"));
+				matriculaturma.setStatusAluno(rs.getInt("STATUS_ALUNO"));
+				matriculaturma.setMedia(rs.getFloat("MEDIA"));
+				matriculaturma.setFrequencia(rs.getFloat("FREQUENCIA"));
+				matriculaturma.setIdCursoAluno(rs.getInt("ID_CURSO_ALUNO"));
+				matriculaturma.setIdTurma(rs.getInt("ID_TURMA"));
+				Turma turma = new Turma();
+				Usuario usuario = new Usuario();
+				usuario.setNome_usuario(rs.getString("NOME_USUARIO"));
+				turma.setNome(rs.getString("NOME_TURMA"));
+				turma.setHoraInicio(rs.getTime("HORA_INICIO"));
+				turma.setHoraFim(rs.getTime("HORA_FIM"));
+				matriculaturma.setUser(usuario);
+				matriculaturma.setTurma(turma);
 				lista.add(matriculaturma);
 			}
 		} catch (SQLException e) {

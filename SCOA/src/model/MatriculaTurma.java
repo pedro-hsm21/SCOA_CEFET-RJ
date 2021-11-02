@@ -10,6 +10,8 @@ import dao.MatriculaTurmaDao;
 public class MatriculaTurma {
 	int idMatriculaTurma, idTurma, idCursoAluno, statusAluno;
 	float media, frequencia;
+	Turma turma; Usuario user;
+	
 	public MatriculaTurma(int idTurma, int idCursoAluno) {
 		super();
 		this.idTurma = idTurma;
@@ -19,6 +21,19 @@ public class MatriculaTurma {
 
 	}
 	
+	
+	public Turma getTurma() {
+		return turma;
+	}
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	public Usuario getUser() {
+		return user;
+	}
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
 	public int getIdMatriculaTurma() {
 		return idMatriculaTurma;
 	}
@@ -87,11 +102,15 @@ public class MatriculaTurma {
 		return new MatriculaTurmaDao().listarMatriculaTurmas(idturma);
 	}
 	
+	public ArrayList<MatriculaTurma> listarT(int idCursoAluno) throws Exception {
+		return new MatriculaTurmaDao().listarMatriculaTurmasT(idCursoAluno);
+	}
+	
 	public ArrayList<MatriculaTurma> listar() throws Exception {
 		return new MatriculaTurmaDao().listarMatriculaTurmas();
 	}
 	
-	public String toString(){
+	/*public String toString(){
 		int idaluno = 0;
 		int idusuario = 0;
 		String matricula = null;
@@ -121,6 +140,6 @@ public class MatriculaTurma {
 			e.printStackTrace();
 		}
 		return nomeUsuario + " - " + matricula;
-	}
+	}*/
 	
 }
