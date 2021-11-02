@@ -1,0 +1,326 @@
+package view;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import controller.CursoController;
+import controller.DisciplinaController;
+import controller.PlanoEstudoController;
+import controller.PlanoEstudoDisciplinaController;
+import model.Curso;
+import model.Disciplina;
+import model.PlanoEstudo;
+import model.PlanoEstudoDisciplina;
+import model.Plano_Estudos;
+
+public class TelaCadastroPlanoEstudo extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JSpinner spAnoPlanoEstudo;
+	private JTextField tfMatriculaPlanoEstudo;
+	private JComboBox<Disciplina> cbDisciplina;
+	int codigo;
+	private JTable table;
+	private ArrayList<Plano_Estudos> planosestudos;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroPlanoEstudo frame = new TelaCadastroPlanoEstudo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public TelaCadastroPlanoEstudo() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Cadastrar PlanoEstudo");
+		setResizable(false);
+		setBounds(100, 100, 1024, 600);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.LIGHT_GRAY);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblCadastrarPlanoEstudo = new JLabel("Cadastrar Planos de Estudos");
+		lblCadastrarPlanoEstudo.setForeground(new Color(31, 58, 104));
+		lblCadastrarPlanoEstudo
+				.setIcon(new ImageIcon(TelaCadastroPlanoEstudo.class.getResource("/images/_007f97-removebg-preview100.png")));
+		lblCadastrarPlanoEstudo.setBounds(10, 11, 998, 70);
+		contentPane.add(lblCadastrarPlanoEstudo);
+		lblCadastrarPlanoEstudo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastrarPlanoEstudo.setFont(new Font("Tahoma", Font.BOLD, 40));
+
+		JPanel panelCadastroPlanoEstudo = new JPanel();
+		panelCadastroPlanoEstudo.setBorder(new LineBorder(new Color(31, 58, 104), 2, true));
+		panelCadastroPlanoEstudo.setBounds(10, 87, 998, 474);
+		contentPane.add(panelCadastroPlanoEstudo);
+		panelCadastroPlanoEstudo.setLayout(null);
+
+		JButton btnLimparCadastroPlanoEstudo = new JButton("Limpar");
+		btnLimparCadastroPlanoEstudo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limpar();
+			}
+		});
+		btnLimparCadastroPlanoEstudo.setBackground(new Color(122, 97, 171));
+		btnLimparCadastroPlanoEstudo.setForeground(new Color(31, 58, 104));
+		btnLimparCadastroPlanoEstudo.setBounds(683, 413, 301, 50);
+		panelCadastroPlanoEstudo.add(btnLimparCadastroPlanoEstudo);
+		btnLimparCadastroPlanoEstudo.setFont(new Font("Tahoma", Font.BOLD, 16));
+
+		JButton btnSalvarPlanoEstudo = new JButton("Salvar");
+		btnSalvarPlanoEstudo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int anograde = Integer.parseInt(spAnoPlanoEstudo.getValue().toString());
+				String matriculagrade = tfMatriculaPlanoEstudo.getText();
+				int idcurso = ((Curso) cbCurso.getSelectedItem()).getId_curso();
+				try {
+					PlanoEstudoController controller = new PlanoEstudoController();
+					boolean status = false;
+					if (codigo == 0) {
+						status = controller.cadastrarPlanoEstudo(idcurso, anograde, matriculagrade);
+					} else {
+						status = controller.alterarPlanoEstudo(codigo, idcurso, anograde, matriculagrade);
+					}
+					if (status == true) {
+						JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
+						TelaPlanoEstudos tela = new TelaPlanoEstudos();
+						dispose();
+						tela.setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Falhou, verifique se os campos estão preenchidos corretamente.");
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnSalvarPlanoEstudo.setBackground(new Color(122, 97, 171));
+		btnSalvarPlanoEstudo.setForeground(new Color(31, 58, 104));
+		btnSalvarPlanoEstudo.setBounds(12, 413, 301, 50);
+		panelCadastroPlanoEstudo.add(btnSalvarPlanoEstudo);
+		btnSalvarPlanoEstudo.setFont(new Font("Tahoma", Font.BOLD, 16));
+
+		JButton btnvoltar = new JButton("Voltar");
+		btnvoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaPlanoEstudos tela = new TelaPlanoEstudos();
+				dispose();
+				tela.setVisible(true);
+			}
+		});
+		btnvoltar.setForeground(new Color(31, 58, 104));
+		btnvoltar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnvoltar.setBackground(new Color(122, 97, 171));
+		btnvoltar.setBounds(350, 413, 301, 50);
+		panelCadastroPlanoEstudo.add(btnvoltar);
+
+		JLabel lblPeriodoPlanoEstudoCadastroTurma = new JLabel("Per\u00EDodo:");
+		lblPeriodoPlanoEstudoCadastroTurma.setForeground(new Color(122, 97, 171));
+		lblPeriodoPlanoEstudoCadastroTurma.setBackground(new Color(31, 58, 104));
+		lblPeriodoPlanoEstudoCadastroTurma.setBounds(657, 44, 69, 20);
+		panelCadastroPlanoEstudo.add(lblPeriodoPlanoEstudoCadastroTurma);
+		lblPeriodoPlanoEstudoCadastroTurma.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lblPeriodoPlanoEstudoCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPeriodoPlanoEstudoCadastroTurma.setFont(new Font("Tahoma", Font.BOLD, 16));
+
+		spAnoPlanoEstudo = new JSpinner();
+		spAnoPlanoEstudo.setBounds(736, 46, 58, 20);
+		panelCadastroPlanoEstudo.add(spAnoPlanoEstudo);
+
+		JLabel lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma = new JLabel("Matr\u00EDcula:");
+		lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
+		lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma.setForeground(new Color(122, 97, 171));
+		lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma.setBackground(new Color(31, 58, 104));
+		lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma.setAlignmentX(0.5f);
+		lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma.setBounds(12, 11, 82, 20);
+		panelCadastroPlanoEstudo.add(lblMatriculaPlanoEstudoPlanoEstudoCadastroTurma);
+
+		tfMatriculaPlanoEstudo = new JTextField();
+		tfMatriculaPlanoEstudo.setBounds(104, 13, 884, 20);
+		panelCadastroPlanoEstudo.add(tfMatriculaPlanoEstudo);
+		tfMatriculaPlanoEstudo.setColumns(10);
+		
+		cbDisciplina = new JComboBox<Disciplina>();
+		cbDisciplina.setBounds(104, 44, 547, 20);
+		panelCadastroPlanoEstudo.add(cbDisciplina);
+
+		JLabel lblDisciplinasPlanoEstudoCadastroTurma = new JLabel("Disciplina:");
+		lblDisciplinasPlanoEstudoCadastroTurma.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDisciplinasPlanoEstudoCadastroTurma.setForeground(new Color(122, 97, 171));
+		lblDisciplinasPlanoEstudoCadastroTurma.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDisciplinasPlanoEstudoCadastroTurma.setBackground(new Color(31, 58, 104));
+		lblDisciplinasPlanoEstudoCadastroTurma.setAlignmentX(0.5f);
+		lblDisciplinasPlanoEstudoCadastroTurma.setBounds(12, 42, 89, 20);
+		panelCadastroPlanoEstudo.add(lblDisciplinasPlanoEstudoCadastroTurma);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 75, 976, 327);
+		panelCadastroPlanoEstudo.add(scrollPane);
+
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		table.setModel(new DefaultTableModel(new Object[][] { { null }, }, new String[] { "Disciplinas:" }) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] { false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		scrollPane.setViewportView(table);
+		
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (codigo > 0) {
+					int iddisciplina = ((Disciplina) cbDisciplina.getSelectedItem()).getIdDisciplina();
+					try {
+						PlanoEstudoDisciplinaController controllerGD = new PlanoEstudoDisciplinaController();
+						boolean status = false;
+						status = controllerGD.cadastrarPlanoEstudoDisciplina(iddisciplina, codigo);
+						if (status == true){
+							JOptionPane.showMessageDialog(null, "Disciplina cadastrada nesta grade.");
+							carregarTable(codigo);
+						}else{
+							JOptionPane.showMessageDialog(null, "Falhou, verifique se os campos estão preenchidos corretamente.");
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else JOptionPane.showMessageDialog(null, "Cadastre a grade antes de adicionar as diciplinas.");
+			}
+		});
+		btnAdicionar.setBounds(804, 44, 89, 23);
+		panelCadastroPlanoEstudo.add(btnAdicionar);
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int clicou = table.getSelectedRow();
+				if (clicou >= 0) {
+					int rs = 0;
+					try {
+						rs = JOptionPane.showConfirmDialog(null, "Excluir " + new DisciplinaController().buscarDisciplina(gradesdisciplinas.get(clicou).getIdDisciplina()).getNome(),
+								"Atenção", JOptionPane.YES_NO_OPTION);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (rs == JOptionPane.YES_OPTION) {
+						try {
+							PlanoEstudoDisciplinaController controllerGD = new PlanoEstudoDisciplinaController();
+							PlanoEstudoDisciplina gradedisciplina = controllerGD.buscarPlanoEstudoDisciplina(gradesdisciplinas.get(clicou).getIdPlanoEstudoDisciplina());
+							boolean status = controllerGD.excluirPlanoEstudoDisciplina(gradedisciplina.getIdPlanoEstudoDisciplina());
+							if (status == true) {
+								JOptionPane.showMessageDialog(null, "Disciplina removida desta grade!");
+								carregarTable(codigo);
+							}
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(null, "ERRO!", ex.getLocalizedMessage(),
+									JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "Nenhum selecionado.");
+			}
+		});
+		btnRemover.setBounds(899, 44, 89, 23);
+		panelCadastroPlanoEstudo.add(btnRemover);
+
+	}
+	
+
+	public void limpar() {
+		spAnoPlanoEstudo.setValue(0);
+		tfMatriculaPlanoEstudo.setText("");
+		cbCurso.setSelectedIndex(0);
+	}
+
+	public void carregarValores(PlanoEstudo grade) {
+		spAnoPlanoEstudo.setValue(grade.getAnoPlanoEstudo());
+		tfMatriculaPlanoEstudo.setText(grade.getMatriculaPlanoEstudo());
+		cbCurso.setSelectedItem(grade.getIdCurso());
+		codigo = grade.getIdPlanoEstudo();
+	}
+
+	public void povoarComboBox() throws Exception {
+		CursoController controllerC = new CursoController();
+		for (Curso curso : controllerC.listarCursos()) {
+			cbCurso.addItem(curso);
+		}
+		DisciplinaController controllerD = new DisciplinaController();
+		for (Disciplina disciplina: controllerD.listarDisciplinas()){
+			cbDisciplina.addItem(disciplina);
+		}
+	}
+
+	void carregarTable(int idgrade) {
+		DefaultTableModel tablemodel = (DefaultTableModel) table.getModel();
+		tablemodel.setRowCount(0);
+		PlanoEstudoDisciplinaController controllerGD = new PlanoEstudoDisciplinaController();
+
+		try {
+			gradesdisciplinas = controllerGD.listarPlanoEstudosDisciplinas(idgrade);
+			gradesdisciplinas.forEach((PlanoEstudoDisciplina gradedisciplina) -> {
+				tablemodel.addRow(new Object[] { gradedisciplina.getDisciplina().getNome()});
+			});
+			table.setModel(tablemodel);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+}
