@@ -35,10 +35,10 @@ public class TelaLogin extends JFrame {
 	private JTextField tfEmail;
 	private JPasswordField passwordField;
 	private JLabel lblSenha;
-	public int tipoUsuarioSistema;
-	public int idUsuarioSistema;
-	public int idAlunoSistema;
-	public int idProfessorSistema;
+	static int tipoUsuarioSistema;
+	static int idUsuarioSistema;
+	static int idAlunoSistema;
+	static int idProfessorSistema;
 
 	/**
 	 * Launch the application.

@@ -25,7 +25,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.Curso_AlunoController;
 import controller.DisciplinaController;
 import controller.Plano_EstudosController;
 import model.Curso_Aluno;
@@ -41,10 +40,10 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 	private JPanel contentPane;
 	private JSpinner spPeriodo;
 	private JComboBox<Disciplina> cbDisciplina;
-	private JComboBox<Curso_Aluno> cbMatricula;
+	private JLabel lblMatricula;
 	private ArrayList<Plano_Estudos> planosestudos;
 	private JTable table;
-	int codigo;
+	int idcursoaluno;
 
 	/**
 	 * Launch the application.
@@ -107,9 +106,9 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		btnSalvarPlanosEstudos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
-				//TelaPlanosEstudos tela = new TelaPlanosEstudos();
-				//dispose();
-				//tela.setVisible(true);
+				TelaPlanosEstudos tela = new TelaPlanosEstudos();
+				dispose();
+				tela.setVisible(true);
 			}
 		});
 		btnSalvarPlanosEstudos.setBackground(new Color(122, 97, 171));
@@ -121,9 +120,9 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		JButton btnvoltar = new JButton("Voltar");
 		btnvoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//TelaPlanosEstudos tela = new TelaPlanosEstudos();
-				//dispose();
-				//tela.setVisible(true);
+				TelaPlanosEstudos tela = new TelaPlanosEstudos();
+				dispose();
+				tela.setVisible(true);
 			}
 		});
 		btnvoltar.setForeground(new Color(31, 58, 104));
@@ -154,9 +153,9 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		lblMatriculaPlanosEstudosPlanosEstudosCadastroTurma.setBounds(12, 11, 82, 20);
 		panelCadastroPlanosEstudos.add(lblMatriculaPlanosEstudosPlanosEstudosCadastroTurma);
 
-		cbMatricula = new JComboBox<Curso_Aluno>();
-		cbMatricula.setBounds(104, 13, 884, 20);
-		panelCadastroPlanosEstudos.add(cbMatricula);
+		lblMatricula = new JLabel();
+		lblMatricula.setBounds(104, 13, 884, 20);
+		panelCadastroPlanosEstudos.add(lblMatricula);
 
 		cbDisciplina = new JComboBox<Disciplina>();
 		cbDisciplina.setBounds(104, 44, 547, 20);
@@ -201,14 +200,13 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		JButton btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (codigo > 0) {
+				if (idcursoaluno > 0) {
 					int periodo = Integer.parseInt(spPeriodo.getValue().toString());
 					int iddisciplina = ((Disciplina) cbDisciplina.getSelectedItem()).getIdDisciplina();
-					int idaluno = ((Curso_Aluno) cbMatricula.getSelectedItem()).getId_aluno();
 					try {
 						Plano_EstudosController controllerPE = new Plano_EstudosController();
 						boolean status = false;
-						status = controllerPE.cadastrarPlanos_Estudos(periodo, idaluno, iddisciplina);
+						status = controllerPE.cadastrarPlanos_Estudos(periodo, idcursoaluno, iddisciplina);
 						if (status == true) {
 							JOptionPane.showMessageDialog(null, "Disciplina cadastrada neste plano de estudo.");
 							carregarTable();
@@ -269,22 +267,15 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 
 	public void limpar() {
 		spPeriodo.setValue(0);
-		cbMatricula.setSelectedIndex(0);;
 		cbDisciplina.setSelectedIndex(0);
 	}
 
-	public void carregarValores(Plano_Estudos planoestudos) {
-		spPeriodo.setValue(planoestudos.getPeriodo());
-		cbMatricula.setSelectedItem(planoestudos);
-		cbDisciplina.setSelectedItem(planoestudos.getDisciplina());
-		codigo = planoestudos.getIdplano_estudos();
+	public void carregarValores(Curso_Aluno cursoaluno) {
+		idcursoaluno = cursoaluno.getId_curso_aluno();
+		lblMatricula.setText(cursoaluno.getMatricula()); 
 	}
 
 	public void povoarComboBox() throws Exception {
-		Curso_AlunoController controllerCA = new Curso_AlunoController();
-		for (Curso_Aluno cursoaluno : controllerCA.listarCurso_Alunos()) {
-			cbMatricula.addItem(cursoaluno);
-		}
 		DisciplinaController controllerD = new DisciplinaController();
 		for (Disciplina disciplina : controllerD.listarDisciplinas()) {
 			cbDisciplina.addItem(disciplina);
@@ -297,9 +288,9 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		Plano_EstudosController controllerPE = new Plano_EstudosController();
 
 		try {
-			planosestudos = controllerPE.listarPlanos_Estudos();
+			planosestudos = controllerPE.listarPlanos_Estudos(idcursoaluno);
 			planosestudos.forEach((Plano_Estudos planoestudo) -> {
-				tablemodel.addRow(new Object[] { planoestudo.getDisciplina().getNome(), planoestudo.getPeriodo() });
+				tablemodel.addRow(new Object[] { planoestudo.getPeriodo(), planoestudo.getDisciplina().getNome() });
 			});
 			table.setModel(tablemodel);
 		} catch (Exception e) {
@@ -308,4 +299,5 @@ public class TelaCadastroPlanosEstudos extends JFrame {
 		}
 
 	}
+	
 }

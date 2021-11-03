@@ -284,7 +284,7 @@ public class TelaTurmas extends JFrame {
 	public void TelaTurmasProf(int id){
 		ProfessorController controller = new ProfessorController();
 		try {
-			Professor prof = controller.buscarProf(id);
+			Professor prof = controller.buscarProfessor(id);
 			carregarTable(prof.getId_professor());
 		} catch (Exception e) {			
 			e.printStackTrace();

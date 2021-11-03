@@ -13,6 +13,7 @@ public class Curso_Aluno{
 	int id_curso_aluno, id_curso, id_aluno, status_matricula; 
 	String matricula; Date data_fim;
 	Usuario usuario;
+	Curso curso;
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -36,6 +37,14 @@ public class Curso_Aluno{
 	}
 	
 	
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
 
 	public int getId_curso_aluno() {
 		return id_curso_aluno;
@@ -105,8 +114,8 @@ public class Curso_Aluno{
 		return new Curso_AlunoDao().listarcurso_alunos();
 	}
 	
-	public ArrayList<Curso_Aluno> listar(int id) throws Exception{
-		return new Curso_AlunoDao().listarcurso_alunos(id);
+	public ArrayList<Curso_Aluno> listar(int idaluno) throws Exception{
+		return new Curso_AlunoDao().listarcurso_alunos(idaluno);
 	}
 	
 	/*public String toString(){

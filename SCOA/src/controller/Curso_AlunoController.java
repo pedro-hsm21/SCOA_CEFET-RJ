@@ -43,8 +43,8 @@ public boolean alterarCurso_Aluno(int curso_aluno, int curso, int aluno, String 
 		
 	}
 	
-	public ArrayList<Curso_Aluno> listarCurso_Alunos(int id) throws Exception{
-		return new Curso_Aluno().listar(id);
+	public ArrayList<Curso_Aluno> listarCurso_Alunos(int idaluno) throws Exception{
+		return new Curso_Aluno().listar(idaluno);
 		
 	}
 	
