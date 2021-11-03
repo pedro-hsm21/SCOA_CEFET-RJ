@@ -8,7 +8,6 @@
 <fullyQualifiedTypeName name="model.Chamados"/>
 <fullyQualifiedTypeName name="model.Curso"/>
 <fullyQualifiedTypeName name="model.Endereco"/>
-<fullyQualifiedTypeName name="model.Plano_Estudos"/>
 <fullyQualifiedTypeName name="model.Telefone"/>
 <fullyQualifiedTypeName name="model.Usuario"/>
 <fullyQualifiedTypeName name="controller.AvaliacaoController"/>
@@ -27,7 +26,6 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="controller.GradeController"/>
 <fullyQualifiedTypeName name="model.GradeDisciplina"/>
-<fullyQualifiedTypeName name="model.Disciplina"/>
 <fullyQualifiedTypeName name="dao.DisciplinaDao"/>
 <fullyQualifiedTypeName name="controller.CursoController"/>
 <fullyQualifiedTypeName name="controller.GradeDisciplinaController"/>
@@ -37,8 +35,6 @@
 <fullyQualifiedTypeName name="model.PreRequisito"/>
 <fullyQualifiedTypeName name="dao.PreRequisitoDao"/>
 <fullyQualifiedTypeName name="model.Aluno"/>
-<fullyQualifiedTypeName name="model.Curso_Aluno"/>
-<fullyQualifiedTypeName name="controller.Curso_AlunoController"/>
 <fullyQualifiedTypeName name="controller.AlunoController"/>
 <fullyQualifiedTypeName name="controller.UsuarioController"/>
 <fullyQualifiedTypeName name="controller.MatriculaTurmaController"/>
@@ -48,4 +44,9 @@
 <fullyQualifiedTypeName name="model.Conteudo"/>
 <fullyQualifiedTypeName name="model.Turma"/>
 <fullyQualifiedTypeName name="controller.TurmaController"/>
+<fullyQualifiedTypeName name="model.Plano_Estudos"/>
+<fullyQualifiedTypeName name="model.Curso_Aluno"/>
+<fullyQualifiedTypeName name="dao.Plano_EstudosDao"/>
+<fullyQualifiedTypeName name="controller.Curso_AlunoController"/>
+<fullyQualifiedTypeName name="model.Disciplina"/>
 </qualifiedTypeNameHistroy>

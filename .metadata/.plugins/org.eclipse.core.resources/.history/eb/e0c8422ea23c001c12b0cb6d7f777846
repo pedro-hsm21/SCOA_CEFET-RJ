@@ -141,8 +141,8 @@ public class TelaLogin extends JFrame {
 						case 2:
 							Professor professor = new Professor();
 							ProfessorController controllerP = new ProfessorController();
-							professor = controllerP.buscarProfessor(idUsuarioSistema);
-							idProfessorSistema = professor.getId_professor();
+							professor = controllerA.buscarProfessor(idUsuarioSistema);
+							idAlunoSistema = aluno.getId_aluno();
 							TelaPrincipalProfessor telaProf = new TelaPrincipalProfessor();
 							telaProf.setUsuario(usuario);
 							telaProf.setVisible(true);

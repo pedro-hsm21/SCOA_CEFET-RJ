@@ -18,11 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controller.AlunoController;
-import controller.ProfessorController;
 import controller.UsuarioController;
-import model.Aluno;
-import model.Professor;
 import model.Usuario;
 
 public class TelaLogin extends JFrame {
@@ -34,11 +30,7 @@ public class TelaLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfEmail;
 	private JPasswordField passwordField;
-	private JLabel lblSenha;
-	public int tipoUsuarioSistema;
-	public int idUsuarioSistema;
-	public int idAlunoSistema;
-	public int idProfessorSistema;
+	private JLabel lblSenha;	
 
 	/**
 	 * Launch the application.
@@ -122,41 +114,30 @@ public class TelaLogin extends JFrame {
 				try {
 					UsuarioController controller = new UsuarioController();
 					usuario = controller.buscarUsuario(email);
-
-					if (senha.equals(usuario.getSenha())) {
-						// setando variaveis globais
-						idUsuarioSistema = usuario.getId_usuario();
-						tipoUsuarioSistema = usuario.getTipo();
-						// habilitar tela principal
-						switch (usuario.getTipo()) {
-						case 1:
-							Aluno aluno = new Aluno();
-							AlunoController controllerA = new AlunoController();
-							aluno = controllerA.buscarAluno(idUsuarioSistema);
-							idAlunoSistema = aluno.getId_aluno();
-							TelaPrincipalAluno telaAluno = new TelaPrincipalAluno();
-							telaAluno.setUsuario(usuario);
-							telaAluno.setVisible(true);
-							break;
-						case 2:
-							Professor professor = new Professor();
-							ProfessorController controllerP = new ProfessorController();
-							professor = controllerP.buscarProfessor(idUsuarioSistema);
-							idProfessorSistema = professor.getId_professor();
-							TelaPrincipalProfessor telaProf = new TelaPrincipalProfessor();
-							telaProf.setUsuario(usuario);
-							telaProf.setVisible(true);
-							break;
-						case 3:
-							TelaPrincipalAdmin telaAdm = new TelaPrincipalAdmin();
-							telaAdm.setUsuario(usuario);
-							telaAdm.setVisible(true);
-							break;
+					
+					if (senha.equals(usuario.getSenha())){
+						//habilitar tela principal
+						switch(usuario.getTipo()){
+							case 1:
+									TelaPrincipalAluno telaAluno = new TelaPrincipalAluno();
+									telaAluno.setUsuario(usuario);
+									telaAluno.setVisible(true);
+									break;
+							case 2:
+									TelaPrincipalProfessor telaProf = new TelaPrincipalProfessor();
+									telaProf.setUsuario(usuario);
+									telaProf.setVisible(true);
+									break;
+							case 3:	
+									TelaPrincipalAdmin telaAdm = new TelaPrincipalAdmin();
+									telaAdm.setUsuario(usuario);
+									telaAdm.setVisible(true);
+									break;
 						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Email e/ou senha incorretos!");
+					}else{
+						JOptionPane.showMessageDialog(null,"Email e/ou senha incorretos!");
 					}
-
+ 
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

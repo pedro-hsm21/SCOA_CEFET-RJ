@@ -40,7 +40,7 @@ public boolean alterarProfessor(int id, int id_usuario, String descricao_academi
 		return new Professor().listarProfessores();		
 	}
 	
-	public Professor buscarProfessor(int cod) throws Exception{
+	public Professor buscarProf(int cod) throws Exception{
 		return new Professor().buscar(cod);
 	}
 }

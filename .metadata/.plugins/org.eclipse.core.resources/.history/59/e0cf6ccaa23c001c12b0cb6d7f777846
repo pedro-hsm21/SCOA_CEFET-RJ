@@ -22,6 +22,8 @@ import javax.swing.border.LineBorder;
 import controller.CursoController;
 
 import javax.swing.JTextArea;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaCadastroCurso extends JFrame {
 
