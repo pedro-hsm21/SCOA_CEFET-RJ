@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.JMenu;
 
 /**
  *
@@ -72,7 +73,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         jMenuConsulta = new javax.swing.JMenu();
         jMenuItemConsultaTurma = new javax.swing.JMenuItem();
         jMenuItemConsultaAvaliacao = new javax.swing.JMenuItem();
-        jMenuItemConsultaAvaliacao.setText("Avalia\u00E7oes");
+        jMenuItemConsultaAvaliacao.setText("Minhas Avalia\u00E7oes");
         jMenuChamado = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -124,11 +125,11 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
         jMenuBar1.add(jMenuHome);
 
         jMenuConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Zoom-icon.png"))); // NOI18N
-        jMenuConsulta.setText("Consulta");
+        jMenuConsulta.setText("Consultas");
         jMenuConsulta.setFont(new java.awt.Font("Segoe UI", 0, 14));
 
         jMenuItemConsultaTurma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Science-Classroom-icon.png"))); // NOI18N
-        jMenuItemConsultaTurma.setText("Minhas turma");
+        jMenuItemConsultaTurma.setText("Minhas Turmas");
         jMenuItemConsultaTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemConsultaTurmaActionPerformed(evt);
@@ -166,6 +167,10 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
+        
+        mnPlanoDeEstudos = new JMenu("Plano de Estudos");
+        mnPlanoDeEstudos.setIcon(new ImageIcon(TelaPrincipalAluno.class.getResource("/images/Book-icon.png")));
+        jMenuBar1.add(mnPlanoDeEstudos);
         jMenuChamado.add(jMenuItem2);
 
         jMenuBar1.add(jMenuChamado);
@@ -318,4 +323,5 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuSair;
     private javax.swing.JPanel jPanel1;
     private JMenuItem jMenuItem3;
+    private JMenu mnPlanoDeEstudos;
 }
