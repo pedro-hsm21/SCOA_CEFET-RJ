@@ -133,9 +133,6 @@ public class Turma {
 		return new TurmaDao().buscarTurma(cod);
 	}
 
-	public ArrayList<Turma> listarTurmas() throws Exception {
-		return new TurmaDao().listarTurmas();
-	}
 	
 	public ArrayList<Turma> listarTurmas(int idprofessor) throws Exception {
 		return new TurmaDao().listarTurmas(idprofessor);

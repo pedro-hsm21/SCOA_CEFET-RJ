@@ -182,7 +182,7 @@ public class TelaCadastroConteudoProgramatico extends JFrame {
 	
 	public void povoarComboBox() throws Exception{
 		TurmaController controllerT = new TurmaController();
-		turmas = controllerT.listarTurmas();
+		turmas = controllerT.listarTurmas(-1);
 		for (Turma turma: turmas){
 			cbTurma.addItem(turma);
 		}

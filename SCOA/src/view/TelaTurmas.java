@@ -20,7 +20,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controller.ProfessorController;
 import controller.TurmaController;
+import model.Professor;
 import model.Turma;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -41,6 +43,12 @@ public class TelaTurmas extends JFrame {
 	private JTable table;
 	private JTextField tfBusca;
 	private ArrayList<Turma> turmas;
+	private JButton btnAvaliação;
+	private JButton btnExcluir;
+	private JButton btnNewButton;
+	private JButton btnAlterar;
+	private JLabel lblTurmas;
+	private JButton btnconsultar;
 
 	/**
 	 * Launch the application.
@@ -71,7 +79,7 @@ public class TelaTurmas extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent arg0) {
-				carregarTable();
+				carregarTable(-1);
 			}
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -81,11 +89,11 @@ public class TelaTurmas extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		contentPane.setLayout(null);
 
-		JLabel lblTurmas = new JLabel("Turmas");
+		lblTurmas = new JLabel("Turmas");
 		lblTurmas.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTurmas.setForeground(new Color(31, 58, 104));
 		lblTurmas
@@ -98,12 +106,7 @@ public class TelaTurmas extends JFrame {
 		scrollPane.setBounds(10, 121, 998, 439);
 		contentPane.add(scrollPane);
 
-		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
+		table = new JTable();		
 		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "ID", "Turma" }) {
 			/**
 			 * 
@@ -120,7 +123,7 @@ public class TelaTurmas extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(477);
 		scrollPane.setViewportView(table);
 
-		JButton btnNewButton = new JButton("Nova Turma");
+		btnNewButton = new JButton("Nova Turma");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -139,8 +142,8 @@ public class TelaTurmas extends JFrame {
 		});
 		btnNewButton.setBounds(10, 89, 152, 23);
 		contentPane.add(btnNewButton);
-
-		JButton btnAlterar = new JButton("Alterar");
+		
+		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int clicou = table.getSelectedRow();
@@ -200,7 +203,7 @@ public class TelaTurmas extends JFrame {
 		btnBuscar.setBounds(919, 89, 89, 23);
 		contentPane.add(btnBuscar);
 
-		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int clicou = table.getSelectedRow();
@@ -227,15 +230,46 @@ public class TelaTurmas extends JFrame {
 		});
 		btnExcluir.setBounds(334, 89, 152, 23);
 		contentPane.add(btnExcluir);
+		
+		btnAvaliação = new JButton("Lançar Avaliação");
+		btnAvaliação.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int id = turmas.get(table.getSelectedRow()).getIdTurma();
+				try {
+					TelaCadastroAvaliacao tela = new TelaCadastroAvaliacao();
+					tela.carregarValores(id);
+					tela.setVisible(true);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnAvaliação.setBounds(10, 87, 152, 23);
+		//contentPane.add(btnAvaliação);
+		
+		btnconsultar = new JButton("Ver avaliações");
+		btnconsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				TelaAvaliacoes tela = new TelaAvaliacoes();
+				tela.carregarTableAv(turmas.get(table.getSelectedRow()).getIdTurma());
+				tela.setVisible(true);
+			}
+		});
+		btnconsultar.setBounds(172, 87, 152, 23);
+		//contentPane.add(btnconsultar);
+		
+		
 	}
 
-	void carregarTable() {
+	public void carregarTable(int id) {
 		DefaultTableModel tablemodel = (DefaultTableModel) table.getModel();
 		tablemodel.setRowCount(0);
 		TurmaController controllerT = new TurmaController();
 
 		try {
-			turmas = controllerT.listarTurmas();
+			turmas = controllerT.listarTurmas(id);
 			turmas.forEach((Turma turma) -> {
 				tablemodel.addRow(new Object[] { turma.getIdTurma(), turma.getNome() });
 			});
@@ -245,6 +279,22 @@ public class TelaTurmas extends JFrame {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void TelaTurmasProf(int id){
+		ProfessorController controller = new ProfessorController();
+		try {
+			Professor prof = controller.buscarProf(id);
+			carregarTable(prof.getId_professor());
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}		
+		contentPane.remove(btnAlterar);
+		contentPane.remove(btnExcluir);
+		contentPane.remove(btnNewButton);
+		contentPane.add(btnAvaliação);
+		contentPane.add(btnconsultar);
+		lblTurmas.setText("Minhas Turmas");
 	}
 
 }

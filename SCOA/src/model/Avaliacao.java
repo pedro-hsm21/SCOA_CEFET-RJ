@@ -1,24 +1,37 @@
 package model;
 
+import java.sql.Date;
 import java.util.ArrayList;
+
+import dao.AvaliacaoDao;
 
 public class Avaliacao{	
 	String titulo_avaliacao;
 	float nota_total;
-	int idavaliacao;
+	int idavaliacao,idTurma;
 	String descricao_avaliacao;
-	String data_avaliacao;
+	Date data_avaliacao;
 
-	public Avaliacao(String titulo_avaliacao, float nota_total, String descricao_avaliacao, String data_avaliacao) {
+	public Avaliacao(String titulo_avaliacao, float nota_total, String descricao_avaliacao, Date data_avaliacao, int turma) {
 		super();
 		this.titulo_avaliacao = titulo_avaliacao;
 		this.nota_total = nota_total;
 		this.descricao_avaliacao = descricao_avaliacao;
 		this.data_avaliacao = data_avaliacao;
+		this.idTurma = turma;
 	}
 
 	public Avaliacao() {
 
+	}
+	
+	
+	public int getIdTurma() {
+		return idTurma;
+	}
+
+	public void setIdTurma(int idTurma) {
+		this.idTurma = idTurma;
 	}
 
 	public String getTitulo_avaliacao() {
@@ -53,31 +66,32 @@ public class Avaliacao{
 		this.descricao_avaliacao = descricao_avaliacao;
 	}
 
-	public String getData_avaliacao() {
+
+
+	public Date getData_avaliacao() {
 		return data_avaliacao;
 	}
 
-	public void setData_avaliacao(String data_avaliacao) {
+	public void setData_avaliacao(Date data_avaliacao) {
 		this.data_avaliacao = data_avaliacao;
 	}
 
 	public void cadastrar(Avaliacao avaliacao) throws Exception{
-		//new AvaliacaoDao().cadastrarAvaliacao(obj);
+		new AvaliacaoDao().cadastrarAvaliacao(avaliacao);
 	}	
 	
 	public void alterar(Avaliacao avaliacao) throws Exception{
-		//new AvaliacaoDao().alterarAvaliacao(obj);
+		new AvaliacaoDao().alterarAvaliacao(avaliacao);
 	}	
 	
 	public void excluir(int cod) throws Exception{
-		//new AvaliacaoDao().excluirAvaliacao(cod);
+		new AvaliacaoDao().excluirAvaliacao(cod);
 	}	
 	
 	public void buscar(int cod) throws Exception{
-		//new AvaliacaoDao().buscarAvaliacao(cod)
+		//new AvaliacaoDao().buscarAvaliacao(cod);
 	}
-	public ArrayList<String> listarAtores() throws Exception{
-		//return new AvaliacaoDao().listarAvaliacao();
-		return null;
+	public ArrayList<Avaliacao> listar(int idTurma) throws Exception{
+		 return new AvaliacaoDao().listarAvaliacoes(idTurma);	
 	}
 } 

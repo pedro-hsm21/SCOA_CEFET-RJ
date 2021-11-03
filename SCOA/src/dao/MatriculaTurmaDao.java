@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Curso_Aluno;
 import model.MatriculaTurma;
 import model.Turma;
 import model.Usuario;
@@ -112,19 +113,27 @@ public class MatriculaTurmaDao extends Connection {
 	public ArrayList<MatriculaTurma> listarMatriculaTurmas(int idturma) throws Exception {
 
 		ArrayList<MatriculaTurma> lista = new ArrayList<MatriculaTurma>();
-		String sql = "SELECT * FROM matricula_turma WHERE ID_TURMA = ?";
+		String sql = "SELECT matricula_turma.* , usuario.NOME_USUARIO, curso_aluno.MATRICULA_ALUNO " + 
+				"FROM matricula_turma inner join curso_aluno on ID_CURSO_ALUNO = IDCURSO_ALUNO inner join aluno on ID_ALUNO = IDALUNO inner join usuario on ID_USUARIO = IDUSUARIO and ID_TURMA = ?;";
+
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, idturma);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				MatriculaTurma matriculaturma = new MatriculaTurma();
+				Usuario user = new Usuario();
+				Curso_Aluno ca = new Curso_Aluno();
 				matriculaturma.setIdMatriculaTurma(rs.getInt("IDMATRICULA_TURMA"));
 				matriculaturma.setStatusAluno(rs.getInt("STATUS_ALUNO"));
 				matriculaturma.setMedia(rs.getFloat("MEDIA"));
 				matriculaturma.setFrequencia(rs.getFloat("FREQUENCIA"));
 				matriculaturma.setIdCursoAluno(rs.getInt("ID_CURSO_ALUNO"));
 				matriculaturma.setIdTurma(rs.getInt("ID_TURMA"));
+				ca.setMatricula(rs.getString("MATRICULA_ALUNO"));
+				user.setNome_usuario(rs.getString("NOME_USUARIO"));
+				matriculaturma.setUser(user);
+				matriculaturma.setCa(ca);
 				lista.add(matriculaturma);
 			}
 		} catch (SQLException e) {

@@ -10,7 +10,7 @@ import dao.MatriculaTurmaDao;
 public class MatriculaTurma {
 	int idMatriculaTurma, idTurma, idCursoAluno, statusAluno;
 	float media, frequencia;
-	Turma turma; Usuario user;
+	Turma turma; Usuario user; Curso_Aluno ca;
 	
 	public MatriculaTurma(int idTurma, int idCursoAluno) {
 		super();
@@ -22,6 +22,12 @@ public class MatriculaTurma {
 	}
 	
 	
+	public Curso_Aluno getCa() {
+		return ca;
+	}
+	public void setCa(Curso_Aluno ca) {
+		this.ca = ca;
+	}
 	public Turma getTurma() {
 		return turma;
 	}
@@ -109,37 +115,5 @@ public class MatriculaTurma {
 	public ArrayList<MatriculaTurma> listar() throws Exception {
 		return new MatriculaTurmaDao().listarMatriculaTurmas();
 	}
-	
-	/*public String toString(){
-		int idaluno = 0;
-		int idusuario = 0;
-		String matricula = null;
-		String nomeUsuario = null;
-		try {
-			matricula = new Curso_AlunoController().buscarCurso_Aluno(getIdCursoAluno()).getMatricula();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			idaluno = new Curso_AlunoController().buscarCurso_Aluno(getIdCursoAluno()).getId_aluno();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			idusuario = new AlunoController().buscarAluno(idaluno).getId_usuario();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			nomeUsuario = new UsuarioController().buscarUsuario(idusuario).getNome_usuario();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return nomeUsuario + " - " + matricula;
-	}*/
 	
 }

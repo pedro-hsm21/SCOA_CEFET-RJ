@@ -3,7 +3,9 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
@@ -40,6 +43,7 @@ public class TelaCadastroAvaliacao extends JFrame {
 	private JFormattedTextField ftfData;
 	private JTextField tfTitulo;
 	private int codigo = 0;
+	private int codTurma = 0;
 
 	/**
 	 * Launch the application.
@@ -62,7 +66,7 @@ public class TelaCadastroAvaliacao extends JFrame {
 	 * 
 	 * @throws ParseException
 	 */
-	public TelaCadastroAvaliacao() throws ParseException {
+	public TelaCadastroAvaliacao() throws ParseException{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastrar Avaliacao");
 		setResizable(false);
@@ -103,29 +107,32 @@ public class TelaCadastroAvaliacao extends JFrame {
 		JButton btnCadastrarAvaliacao = new JButton("Salvar");
 		btnCadastrarAvaliacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AvaliacaoController controller = new AvaliacaoController();
+				boolean status = false;
 				String titulo = tfTitulo.getText();
 				float nota = Float.parseFloat(spNotaTotal.getValue().toString());
-				String descricao = taDescricao.getText();
-				String data = ftfData.getText();
-				if (codigo == 0) {
-					try {
-						AvaliacaoController controller = new AvaliacaoController();
-						controller.cadastrarAvaliacao(titulo, nota, descricao, data);
-
-						limpar();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				} else {
-					try{
-						AvaliacaoController controller = new AvaliacaoController();
-						controller.alterarAvaliacao(codigo, titulo, nota, descricao, data);
-
-						limpar();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
+				String descricao = taDescricao.getText();				
+				
+				DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy"); 
+				java.sql.Date data = null;
+				try {
+					data = new java.sql.Date(fmt.parse(ftfData.getText()).getTime());
+				} catch (ParseException e2) {					
+					JOptionPane.showMessageDialog(null,"Erro na data"); 
 				}
+				
+				try {
+					if (codigo == 0) {			
+						status = controller.cadastrarAvaliacao(titulo, nota, descricao, data, codTurma);			
+					} else {											
+						status = controller.alterarAvaliacao(codigo, titulo, nota, descricao, data, codTurma);
+					}	
+					if (status) {
+						JOptionPane.showMessageDialog(null, "Sucesso");
+					}
+				} catch (Exception e1) {
+						e1.printStackTrace();
+				}		
 			}
 		});
 		btnCadastrarAvaliacao.setBackground(new Color(122, 97, 171));
@@ -147,6 +154,7 @@ public class TelaCadastroAvaliacao extends JFrame {
 		ftfData.setBounds(151, 75, 70, 20);
 		panelCadastroAvaliacao.add(ftfData);
 		ftfData.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+		
 
 		JLabel lblNotaTotalCadastroAvaliacao = new JLabel("Nota Total:");
 		lblNotaTotalCadastroAvaliacao.setHorizontalAlignment(SwingConstants.LEFT);
@@ -198,12 +206,19 @@ public class TelaCadastroAvaliacao extends JFrame {
 		taDescricao.setText("");
 		ftfData.setText("");
 	}
+	
+	public void carregarValores(int id) {
+		JOptionPane.showMessageDialog(null, "Mandou id:" + id);
+	this.codTurma = id ;
+	}
 
-	public void carregarValores(Avaliacao avaliacao) {
+	public void carregarValores(Avaliacao avaliacao, int id) {
 		tfTitulo.setText(avaliacao.getTitulo_avaliacao());
 		spNotaTotal.setValue(avaliacao.getNota_total());
 		taDescricao.setText(avaliacao.getDescricao_avaliacao());
-		ftfData.setText(avaliacao.getData_avaliacao());
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy"); 
+		ftfData.setText(format.format(avaliacao.getData_avaliacao()));
 		codigo = avaliacao.getIdavaliacao();
+		this.codTurma = id;
 	}
 }

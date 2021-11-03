@@ -488,7 +488,7 @@ public class TelaCadastroTurma extends JFrame {
 		try {
 			matriculasturmas = controllerMT.listarMatriculasTurmas(idturma);
 			matriculasturmas.forEach((MatriculaTurma matriculaturma) -> {
-				tablemodel.addRow(new Object[] { matriculaturma.toString() });
+				tablemodel.addRow(new Object[] { matriculaturma.getUser().getNome_usuario() + "-" + matriculaturma.getCa().getMatricula()});
 			});
 			table.setModel(tablemodel);
 		} catch (Exception e) {
