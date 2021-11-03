@@ -207,7 +207,7 @@ public class TelaCadastroAvaliacao extends JFrame {
 	}
 	
 	public void carregarValores(int id) {
-		JOptionPane.showMessageDialog(null, "Mandou id:" + id);
+		//JOptionPane.showMessageDialog(null, "Mandou id:" + id);
 	this.codTurma = id ;
 	}
 

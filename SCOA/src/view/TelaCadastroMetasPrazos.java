@@ -269,7 +269,7 @@ public class TelaCadastroMetasPrazos extends JFrame {
             	}
     						   
             });
-		cbStatus.setModel(new DefaultComboBoxModel<String>(new String[] {"N\u00E3o Inciada", "Em andamento", "Atrasada", "Concluida "}));
+		cbStatus.setModel(new DefaultComboBoxModel<String>(new String[] {"N\u00E3o Inciada", "Em andamento", "Concluida ", "Atrasada"}));
 		cbStatus.setBounds(626, 44, 233, 20);
 		panelCadastroMetasPrazos.add(cbStatus);
 		

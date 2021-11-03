@@ -79,7 +79,7 @@ public class TelaTurmas extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent arg0) {
-				carregarTable(-1);
+				//carregarTable(-1);
 			}
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -184,13 +184,13 @@ public class TelaTurmas extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-				int linhas = table.getRowCount();//
+				int linhas = table.getRowCount();
 				int indiceLocalizado = -1;
-				for (int i = 0; i < linhas; i++) {
-
-					if (dtm.getValueAt(i, 1).equals(tfBusca.getText())) {
+				for (int i = 0; i < linhas; i++) {		
+					if (tfBusca.getText().equals(dtm.getValueAt(i, 1).toString())) {
 						indiceLocalizado = i;
 					}
+					//JOptionPane.showMessageDialog(null, "Comparou " + tfBusca.getText() + " com: " + dtm.getValueAt(i, 1));
 				}
 				if (indiceLocalizado < 0)
 					JOptionPane.showMessageDialog(null, "Não encontrado.", "Erro na busca.",
@@ -251,10 +251,14 @@ public class TelaTurmas extends JFrame {
 		
 		btnconsultar = new JButton("Ver avaliações");
 		btnconsultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				TelaAvaliacoes tela = new TelaAvaliacoes();
-				tela.carregarTableAv(turmas.get(table.getSelectedRow()).getIdTurma());
-				tela.setVisible(true);
+			public void actionPerformed(ActionEvent e) {	
+				if (table.getSelectedRow() >= 0) {
+					TelaAvaliacoes tela = new TelaAvaliacoes();
+					tela.carregarTableAv(turmas.get(table.getSelectedRow()).getIdTurma());
+					tela.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Nenhuma selecionada!");
+				}
 			}
 		});
 		btnconsultar.setBounds(172, 87, 152, 23);

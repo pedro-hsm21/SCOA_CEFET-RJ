@@ -61,6 +61,7 @@ public class TelaMetas  extends JFrame {
 	private JComboBox<String> cbProf;
 	private ArrayList<Metas> metas;
 	private ArrayList<Usuario> usuario;
+	private int codigo;
 
 	/**
 	 * Launch the application.
@@ -247,19 +248,29 @@ public class TelaMetas  extends JFrame {
 				try {
 					MetasController controller = new MetasController();					
 					Metas meta = metas.get(clicou);			
-					if (meta.getStatus() < 3) {
+					if (meta.getStatus() == 0 || meta.getStatus() == 1) {
 						int rs = JOptionPane.showConfirmDialog(null, "Atualizar status da " + meta.getTitulo() + " para " + verificaStatus(meta.getStatus()+1) +  "?",
 								"Aten��o", JOptionPane.YES_NO_OPTION);
 							if (rs == JOptionPane.YES_OPTION) {
 								meta.setStatus(meta.getStatus()+1);
 								controller.alterarMeta(meta);
 							}
-					}	
+					} else if (meta.getStatus() == 3)  {
+						int rs = JOptionPane.showConfirmDialog(null, "Atualizar status da " + meta.getTitulo() + " para " + verificaStatus(2) + "?",
+								"Aten��o", JOptionPane.YES_NO_OPTION);
+							if (rs == JOptionPane.YES_OPTION) {
+								meta.setStatus(2);
+								controller.alterarMeta(meta);
+							}
+					}	else  if (meta.getStatus() == 2){
+						JOptionPane.showMessageDialog(null, "Meta já concluida. Parabéns!");
+					}
 					
 				} catch (Exception ex) {
 					// TODO Auto-generated catch block
 					ex.printStackTrace();
 				}
+				carregarTable(codigo);
 			}
 		});
 		btnstatus.setBounds(883, 89, 125, 23);
@@ -303,9 +314,9 @@ public class TelaMetas  extends JFrame {
 			case 1:
 				string = "Em andamento"; break;
 			case 2:	
-				string = "Atradasa"; break;
+				string = "Concluida"; break;
 			case 3:
-				string = "Concluida"; break;			
+				string = "Atradasa"; break;			
 		}
 		return string;
 	}
@@ -340,15 +351,16 @@ public class TelaMetas  extends JFrame {
 			}			
 			
 			if ( dataatual.after(a) && ( meta.getStatus() == 0 ||  meta.getStatus() == 1)) {
-				meta.setStatus(2);
+				meta.setStatus(3);
 				controller.alterarMeta(meta);			
 			}					
 			
 		}
 	}
 	
-	public void teste(int id){
-		carregarTable(id);
+	public void MetasProf(int id){
+		this.codigo = id;
+		carregarTable(codigo);
 		contentPane.remove(btnAlterar);
 		contentPane.remove(btnExcluir);
 		contentPane.remove(btnNovo);

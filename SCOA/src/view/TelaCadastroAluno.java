@@ -216,7 +216,7 @@ public class TelaCadastroAluno extends JFrame {
 						
 						e1.printStackTrace();
 					}
-				}else		JOptionPane.showMessageDialog(null, "Senhas digitadas são diferentes 1:" + String.valueOf(passwordField.getPassword()) + " 2:" + String.valueOf(passwordField_1.getPassword()));
+				}else		JOptionPane.showMessageDialog(null, "Senhas digitadas são diferentes!");
 			}
 		});
 		btnCadastrarAluno.setBackground(new Color (122, 97, 171));

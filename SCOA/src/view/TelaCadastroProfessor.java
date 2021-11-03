@@ -195,7 +195,7 @@ public class TelaCadastroProfessor extends JFrame {
 					}
 				}
 				else
-					JOptionPane.showMessageDialog(null, "Senhas digitadas são diferentes 1:" + String.valueOf(passwordField.getPassword()) + " 2:" + String.valueOf(passwordField_1.getPassword()));
+					JOptionPane.showMessageDialog(null, "Senhas digitadas são diferentes!");
 			}
 		});
 		btnCadastrarProfessor.setBackground(new Color (122, 97, 171));

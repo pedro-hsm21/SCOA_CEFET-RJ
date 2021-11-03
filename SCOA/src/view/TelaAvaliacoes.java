@@ -104,15 +104,17 @@ public class TelaAvaliacoes extends JFrame {
 		JButton btnSelect = new JButton("Selecionar");
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				codAv = avaliacoes.get(tableAv.getSelectedRow()).getIdavaliacao();				
-				carregarTableNotas(codAv);
+				if (tableAv.getSelectedRow() >= 0) {
+					codAv = avaliacoes.get(tableAv.getSelectedRow()).getIdavaliacao();				
+					carregarTableNotas(codAv);
+				}
 			}
 		});
 		btnSelect.setBounds(879, 184, 129, 23);
 		contentPane.add(btnSelect);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(-25, 218, 998, 342);
+		scrollPane_1.setBounds(10, 218, 998, 342);
 		contentPane.add(scrollPane_1);
 		
 		tableNotas = new JTable();

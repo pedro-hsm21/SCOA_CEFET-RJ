@@ -190,7 +190,7 @@ public class TelaAlunos extends JFrame {
 					}
 				}
 				if (indiceLocalizado < 0)
-					JOptionPane.showMessageDialog(null, "N�o encontrado", "Erro na busca",
+					JOptionPane.showMessageDialog(null, "Nao encontrado", "Erro na busca",
 							JOptionPane.INFORMATION_MESSAGE);
 				else
 					table.setRowSelectionInterval(indiceLocalizado, indiceLocalizado);

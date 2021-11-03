@@ -59,7 +59,7 @@ public class TelaCadastroUsuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroProfessor frame = new TelaCadastroProfessor();
+					TelaCadastroUsuario frame = new TelaCadastroUsuario();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -168,10 +168,10 @@ public class TelaCadastroUsuario extends JFrame {
 						
 						boolean status = false; int id_user = 0;
 						if (codigo == 0) {
-							id_user = usercontroller.cadastrarUsuario(nome,email,data,senha, UF, cidade, bairro, rua,num,comp,2, cpf,tel);							
+							id_user = usercontroller.cadastrarUsuario(nome,email,data,senha, UF, cidade, bairro, rua,num,comp,3, cpf,tel);							
 							
 						} else {
-							status = usercontroller.alterarUsuario(codigo,nome,email,data,senha, UF, cidade, bairro, rua,num,comp,2, cpf,tel);
+							status = usercontroller.alterarUsuario(codigo,nome,email,data,senha, UF, cidade, bairro, rua,num,comp,3, cpf,tel);
 						}
 						
 						if (status == true || id_user > 0){
@@ -187,7 +187,7 @@ public class TelaCadastroUsuario extends JFrame {
 					}
 				}
 				else
-					JOptionPane.showMessageDialog(null, "Senhas digitadas são diferentes 1:" + String.valueOf(passwordField.getPassword()) + " 2:" + String.valueOf(passwordField_1.getPassword()));
+					JOptionPane.showMessageDialog(null, "Senhas digitadas são diferentes 1:");
 			}
 		});
 		btnCadastrarProfessor.setBackground(new Color (122, 97, 171));
