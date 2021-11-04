@@ -1,9 +1,13 @@
 eclipse.preferences.version=1
+encoding//src/dao/CursoDao.java=UTF-8
 encoding//src/view/TelaAlunos.java=UTF-8
+encoding//src/view/TelaCadastroCurso.java=UTF-8
 encoding//src/view/TelaChamados.java=UTF-8
+encoding//src/view/TelaCursos.java=UTF-8
 encoding//src/view/TelaGrades.java=UTF-8
 encoding//src/view/TelaGradesDisciplinas.java=UTF-8
 encoding//src/view/TelaMetas.java=UTF-8
+encoding//src/view/TelaPrincipalAluno.java=UTF-8
 encoding//src/view/TelaProfessores.java=UTF-8
 encoding//src/view/TelaTurmas.java=UTF-8
 encoding//src/view/TelaUsuarios.java=UTF-8

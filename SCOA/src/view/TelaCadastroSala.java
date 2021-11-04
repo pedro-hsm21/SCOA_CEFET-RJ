@@ -171,7 +171,6 @@ public class TelaCadastroSala extends JFrame {
 
 	public void carregarValores(Sala sala) {
 		spNumero.setValue(sala.getNumero_sala());
-		;
 		taLocalizacao.setText(sala.getLocalizacao());
 		codigo = sala.getIdsala();
 	}

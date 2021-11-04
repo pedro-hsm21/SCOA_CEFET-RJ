@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 import dao.CursoDao;
 
-public class Curso{
+public class Curso {
 	int id_curso, periodos;
 	String nome_curso, tipo_curso, descricao_curso;
-	
-	
+
 	public Curso(int periodos, String nome_curso, String tipo_curso, String descricao_curso) {
 		super();
 		this.periodos = periodos;
@@ -16,7 +15,7 @@ public class Curso{
 		this.tipo_curso = tipo_curso;
 		this.descricao_curso = descricao_curso;
 	}
-	
+
 	public Curso() {
 
 	}
@@ -61,27 +60,28 @@ public class Curso{
 		this.descricao_curso = descricao_curso;
 	}
 
-	public void cadastrar(Curso curso) throws Exception{
-		//new CursoDao().cadastrarCurso(curso);
-	}	
-	
-	public void alterar() throws Exception{
-		//new CursoDao().alterarCurso(curso);
-	}	
-	
-	public void excluir(int cod) throws Exception{
-		//new CursoDao().excluirCurso(cod);
-	}	
-	
-	public void buscar(int cod) throws Exception{
-		//new CursoDao().buscarCurso(cod)
+	public void cadastrar(Curso curso) throws Exception {
+		new CursoDao().cadastrarCurso(curso);
 	}
-	public ArrayList<Curso> listarCurso() throws Exception{
+
+	public void alterar(Curso curso) throws Exception {
+		new CursoDao().alterarCurso(curso);
+	}
+
+	public void excluir(int cod) throws Exception {
+		new CursoDao().excluirCurso(cod);
+	}
+
+	public Curso buscar(int cod) throws Exception {
+		return new CursoDao().buscarCurso(cod);
+	}
+
+	public ArrayList<Curso> listarCurso() throws Exception {
 		return new CursoDao().listarCursos();
-		
+
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return getNome_curso();
 	}
 }
