@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -176,13 +178,14 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 		jMenuChamado.add(jMenuItemChamadosHistorico);
 
 		mnPlanoDeEstudos = new JMenu("Plano de Estudos");
-		mnPlanoDeEstudos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		mnPlanoDeEstudos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				TelaPlanosEstudos telaPlanosEstudos = new TelaPlanosEstudos();
 				telaPlanosEstudos.carregarTable();
 				telaPlanosEstudos.setVisible(true);
 			}
-		});
+		});	
 		mnPlanoDeEstudos.setIcon(new ImageIcon(TelaPrincipalAluno.class.getResource("/images/Book-icon.png")));
 		jMenuBar1.add(mnPlanoDeEstudos);
 		jMenuChamado.add(jMenuItemChamadosAbertos);
