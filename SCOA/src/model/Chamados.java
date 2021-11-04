@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import dao.ChamadosDao;
 
 public class Chamados{
-	int idchamado, id_aluno, status;
+	int idchamado, id_aluno, status, idAtendente;
 	String titulo,	mensagem, tipo_chamado, solucao;
 	Usuario usuario;
 	
@@ -33,6 +33,8 @@ public class Chamados{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+		
+
 
 	public int getStatus() {
 		return status;
@@ -40,6 +42,15 @@ public class Chamados{
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	
+	public int getIdAtendente() {
+		return idAtendente;
+	}
+
+	public void setIdAtendente(int idAtendente) {
+		this.idAtendente = idAtendente;
 	}
 
 	public String getSolucao() {

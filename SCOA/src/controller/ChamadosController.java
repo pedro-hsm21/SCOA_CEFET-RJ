@@ -14,10 +14,11 @@ public class ChamadosController {
 			return false;
 	}	
 	
-public boolean alterarChamados(int id, int id_usuario, String titulo, String mensagem, String tipo_chamado, int status, String solucao) throws Exception{
+public boolean alterarChamados(int id, int id_usuario, String titulo, String mensagem, String tipo_chamado, int status, String solucao, int IdAtendente) throws Exception{
 		
 		if (id > 0 && id_usuario > 0 && titulo != null && titulo.length() > 0 && mensagem != null && mensagem.length() > 0 && tipo_chamado != null && tipo_chamado.length() > 0){
 			Chamados chamado = new Chamados(id_usuario, titulo, mensagem, tipo_chamado, status, solucao);
+			chamado.setIdAtendente(IdAtendente);
 			chamado.setIdchamado(id);
 			chamado.alterar(chamado);
 			return true;
