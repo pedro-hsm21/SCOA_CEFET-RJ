@@ -9,6 +9,7 @@ public class NotaAvaliacao {
 	private int idNotaAv,idAv,idMatTurma;
 	private float nota;
 	private Usuario user;
+	private Avaliacao av;
 	
 	public NotaAvaliacao(int idNA, int idAv, int idMT, float nota){
 		this.idNotaAv = idNA;
@@ -22,6 +23,14 @@ public class NotaAvaliacao {
 	}
 
 	
+	public Avaliacao getAv() {
+		return av;
+	}
+
+	public void setAv(Avaliacao av) {
+		this.av = av;
+	}
+
 	public Usuario getUser() {
 		return user;
 	}
@@ -69,6 +78,11 @@ public class NotaAvaliacao {
 	
 	public ArrayList<NotaAvaliacao> listar(int id) throws Exception{
 		return new NotaAvDao().listarAvaliacoes(id);
+		
+	}
+	
+	public ArrayList<NotaAvaliacao> listarNotas(int id) throws Exception{
+		return new NotaAvDao().listarNotasAluno(id);
 		
 	}
 	

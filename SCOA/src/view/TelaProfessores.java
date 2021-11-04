@@ -149,7 +149,7 @@ public class TelaProfessores extends JFrame {
 					try {
 						TelaCadastroProfessor tela = new TelaCadastroProfessor();
 						ProfessorController controllerP = new ProfessorController();
-						Professor Professor = controllerP.buscarProf(usuarios.get(clicou).getId_usuario());
+						Professor Professor = controllerP.buscarProfessor(usuarios.get(clicou).getId_usuario());
 						 //JOptionPane.showMessageDialog(null,"enviou codigo" + Professor.getId_Professor() + "e periodo" + Professor.getPeriodo_Professor());
 						tela.carregarValores(Professor, usuarios.get(clicou));
 						dispose();
@@ -207,7 +207,7 @@ public class TelaProfessores extends JFrame {
 						try {
 							UsuarioController controller = new UsuarioController();
 							ProfessorController controllerP = new ProfessorController();
-							Professor Professor = controllerP.buscarProf(usuarios.get(clicou).getId_usuario());
+							Professor Professor = controllerP.buscarProfessor(usuarios.get(clicou).getId_usuario());
 							boolean status = controllerP.excluirProfessor(Professor.getId_professor()) && controller.excluirUsuario(usuarios.get(clicou).getId_usuario())  ;
 							if (status == true) {
 								JOptionPane.showMessageDialog(null, "Removido com sucesso!");

@@ -93,4 +93,52 @@ public ArrayList<NotaAvaliacao> listarAvaliacoes(int id) throws Exception {
 	return  lista;
 
 	}
+
+	public ArrayList<NotaAvaliacao> listarNotasAluno(int id) throws Exception {
+	
+	ArrayList<NotaAvaliacao> lista = new ArrayList<NotaAvaliacao>();
+	String sql="select nota_avaliacao.* , avaliacao.* from nota_avaliacao inner join avaliacao on ID_AVALIACAO=IDAVALIACAO inner join matricula_turma on ID_MATRICULA_TURMA = IDMATRICULA_TURMA inner join curso_aluno on ID_CURSO_ALUNO = IDCURSO_ALUNO and IDCURSO_ALUNO = ? order by IDAVALIACAO desc";
+		
+		try {
+		pstm=con.prepareStatement(sql);
+		pstm.setInt(1, id);
+		rs=pstm.executeQuery();
+		while (rs.next()){
+			NotaAvaliacao nota = new NotaAvaliacao();
+			Avaliacao av = new Avaliacao();
+			//IDNOTA_AVALIACAO, NOTA_ATINGIDA, ID_AVALIACAO, ID_MATRICULA_TURMA
+			nota.setIdNotaAv((rs.getInt("IDNOTA_AVALIACAO")));
+			nota.setNota((rs.getFloat("NOTA_ATINGIDA")));
+			nota.setIdAv(rs.getInt("ID_AVALIACAO"));
+			nota.setIdMatTurma(rs.getInt("ID_MATRICULA_TURMA"));			
+			av.setTitulo_avaliacao(rs.getString("TITULO_AVALIACAO"));
+			av.setDescricao_avaliacao(rs.getString("DESCRICAO_AVALIACAO"));
+			av.setNota_total(rs.getFloat("NOTA_TOTAL"));
+			av.setData_avaliacao(rs.getDate("DATA_AVALIACAO"));
+			nota.setAv(av);			
+			lista.add(nota);
+	    	}
+		} catch (SQLException e) {
+			throw new Exception("Erro:" + e);
+		} finally {
+			try {
+				if (pstm != null){ 
+						pstm.close();
+					};
+			}catch (SQLException e){
+				throw new Exception("Erro ao fechar o Statement:" + e);
+			}
+			try {
+				if (con != null){
+					con.close();
+				}
+			}catch(SQLException e){
+				throw new Exception("Erro ao fechar a conexão:" + e);
+			}
+		}
+		
+	return  lista;
+
+	}
+
 }

@@ -21,4 +21,9 @@ public class NotasController {
 		return new NotaAvaliacao().listar(idAv);
 		
 	}
+	
+	public ArrayList<NotaAvaliacao> listarNotasAluno(int idA) throws Exception{
+		return new NotaAvaliacao().listarNotas(idA);
+		
+	}
 }
