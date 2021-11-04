@@ -326,6 +326,7 @@ public class TelaPrincipalAdmin extends javax.swing.JFrame {
 		jMenuItemAtender.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				TelaChamados telaChamados = new TelaChamados();
+				telaChamados.setIdusuario(usuario.getId_usuario());
 				telaChamados.carregarTable(-1, -1);
 				telaChamados.setVisible(true);
 			}

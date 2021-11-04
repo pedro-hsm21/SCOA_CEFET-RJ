@@ -223,7 +223,16 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 	}// GEN-LAST:event_jMenuHomeMouseClicked
 
 	private void jMenuItemConsultaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemConsultaAvaliacaoActionPerformed
-		this.setVisible(false);
+		TelaAvaliacaoAluno tela;
+		try {
+			tela = new TelaAvaliacaoAluno();
+			tela.carregarTableCurso(usuario.getId_usuario());
+			tela.setVisible(true);this.setVisible(false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}// GEN-LAST:event_jMenuItemConsultaAvaliacaoActionPerformed
 
