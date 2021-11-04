@@ -55,6 +55,8 @@ public class AbrirChamados  extends JFrame {
 	private JLabel lblStatus;
 	private int codigoA = 0;
 	private int codigoCh = 0;
+	private int codU = 0;
+	
 
 	/**
 	 * Launch the application.
@@ -172,7 +174,11 @@ public class AbrirChamados  extends JFrame {
 						}//if codA
 						status = controller.cadastrarChamado(codigoA, titulo, msg, tipo);
 					}else {	
-						status = controller.alterarChamados(codigoCh, codigoA, titulo, msg, tipo, chStatus, solucao);
+						status = controller.alterarChamados(codigoCh, codigoA, titulo, msg, tipo, chStatus, solucao, codU);
+						TelaChamados tela = new TelaChamados();
+						tela.carregarTable(-1, -1);
+						tela.setIdusuario(codU);
+						tela.setVisible(true);
 					}//if codCh	
 				}catch(Exception e1) {
 					e1.printStackTrace();
@@ -298,7 +304,8 @@ public class AbrirChamados  extends JFrame {
 	}
 	
 	
-	public void carregarEdit(){
+	public void carregarEdit(int id){
+		this.codU = id;
 		panelCadastroCurso.add(lblSolucao);
 		panelCadastroCurso.add(taSolucao);
 		panelCadastroCurso.add(lblStatus);

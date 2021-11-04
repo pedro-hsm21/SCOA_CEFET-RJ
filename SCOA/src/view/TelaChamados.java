@@ -14,8 +14,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+
 import controller.ChamadosController;
+import controller.UsuarioController;
 import model.Chamados;
+import model.Usuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -41,6 +47,9 @@ public class TelaChamados extends JFrame {
 	private JLabel lbl1;
 	private JComboBox<String> cbFiltro;
 	private ArrayList<Chamados> chamados;
+	private ArrayList<Usuario> atendentes;
+	private int idusuario;
+	
 
 	/**
 	 * Launch the application.
@@ -58,6 +67,14 @@ public class TelaChamados extends JFrame {
 		});
 	}
 
+	public int getIdusuario() {
+		return idusuario;
+	}
+
+	public void setIdusuario(int idusuario) {
+		this.idusuario = idusuario;
+	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -68,6 +85,7 @@ public class TelaChamados extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent arg0) {
+								
 				//carregarTable(-1,-1);
 			}
 		});
@@ -103,23 +121,12 @@ public class TelaChamados extends JFrame {
 		});
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"Numero", "Titulo", "Solicitante", "Status"
+				"Numero", "Titulo", "Solicitante", "Status", "Atendente"
 			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		));
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(199);
@@ -137,8 +144,9 @@ public class TelaChamados extends JFrame {
 					AbrirChamados tela = new AbrirChamados();
 					tela.carregarcombobox();
 					tela.carregarvalor(ch);
-					tela.carregarEdit();					
+					tela.carregarEdit(idusuario);					
 					tela.setVisible(true);
+					dispose();
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -186,6 +194,13 @@ public class TelaChamados extends JFrame {
 	}
 
 	void carregarTable(int id, int idUser) {
+		UsuarioController controllerU = new UsuarioController();
+		try {
+			atendentes = controllerU.listarUsuario(3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		DefaultTableModel tablemodel = (DefaultTableModel) table.getModel();
 		tablemodel.setRowCount(0);
 		ChamadosController controller = new ChamadosController();
@@ -193,7 +208,7 @@ public class TelaChamados extends JFrame {
 		try {
 			chamados = controller.listarChamados(id,idUser);
 			chamados.forEach((Chamados ch) -> { 		
-				tablemodel.addRow(new Object[] {ch.getIdchamado(),ch.getTitulo(),ch.getUsuario().getNome_usuario(),verifica(ch.getStatus())});
+				tablemodel.addRow(new Object[] {ch.getIdchamado(),ch.getTitulo(),ch.getUsuario().getNome_usuario(),verifica(ch.getStatus()), atendente(ch.getIdAtendente())});
 			});
 			table.setModel(tablemodel);
 		} catch (Exception e) {
@@ -201,6 +216,19 @@ public class TelaChamados extends JFrame {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public String atendente(int id){
+		String string = "" ;
+		if (id > 0){
+			for (Usuario atendente : atendentes) {
+				if (atendente.getId_usuario() == id) {
+					string = atendente.getNome_usuario();
+				}
+			}
+			
+		}
+		return string;
 	}
 	
 	

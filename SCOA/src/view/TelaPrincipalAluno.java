@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -43,7 +45,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				lbl2.setText("Olá, " + usuario.getNome_usuario());
+				lbl2.setText("Ol�, " + usuario.getNome_usuario());
 			}
 		});
 		initComponents();
@@ -70,7 +72,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 		jMenuConsulta = new javax.swing.JMenu();
 		jMenuItemConsultaTurma = new javax.swing.JMenuItem();
 		jMenuItemConsultaAvaliacao = new javax.swing.JMenuItem();
-		jMenuItemConsultaAvaliacao.setText("Minhas Avaliações");
+		jMenuItemConsultaAvaliacao.setText("Minhas Avalia\u00E7oes");
 		jMenuChamado = new javax.swing.JMenu();
 		jMenuItemChamadoNovo = new javax.swing.JMenuItem();
 		jMenuItemChamadosAbertos = new javax.swing.JMenuItem();
@@ -132,12 +134,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Documents-icon.png")));
 		jMenuItemConsultaAvaliacao.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				try {
-					jMenuItemConsultaAvaliacaoActionPerformed(evt);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				jMenuItemConsultaAvaliacaoActionPerformed(evt);
 			}
 		});
 		jMenuConsulta.add(jMenuItemConsultaAvaliacao);
@@ -181,13 +178,14 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 		jMenuChamado.add(jMenuItemChamadosHistorico);
 
 		mnPlanoDeEstudos = new JMenu("Plano de Estudos");
-		mnPlanoDeEstudos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		mnPlanoDeEstudos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				TelaPlanosEstudos telaPlanosEstudos = new TelaPlanosEstudos();
 				telaPlanosEstudos.carregarTable();
 				telaPlanosEstudos.setVisible(true);
 			}
-		});
+		});	
 		mnPlanoDeEstudos.setIcon(new ImageIcon(TelaPrincipalAluno.class.getResource("/images/Book-icon.png")));
 		jMenuBar1.add(mnPlanoDeEstudos);
 		jMenuChamado.add(jMenuItemChamadosAbertos);
@@ -227,10 +225,17 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 
 	}// GEN-LAST:event_jMenuHomeMouseClicked
 
-	private void jMenuItemConsultaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) throws Exception {// GEN-FIRST:event_jMenuItemConsultaAvaliacaoActionPerformed
-		this.setVisible(false);
-		TelaAvaliacaoAluno telaavaliacao = new TelaAvaliacaoAluno();
-		telaavaliacao.setVisible(true);
+	private void jMenuItemConsultaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemConsultaAvaliacaoActionPerformed
+		TelaAvaliacaoAluno tela;
+		try {
+			tela = new TelaAvaliacaoAluno();
+			tela.carregarTableCurso(usuario.getId_usuario());
+			tela.setVisible(true);this.setVisible(false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}// GEN-LAST:event_jMenuItemConsultaAvaliacaoActionPerformed
 

@@ -80,7 +80,7 @@ public void excluirChamados(int id) throws Exception{
 }
 
 public void alterarChamados(Chamados chamados) throws Exception {
-	String sql= "UPDATE chamado SET ID_ALUNO = ?, TITULO = ?, MENSAGEM = ?, TIPO_CHAMADO = ?, STATUS_CHAMADO = ?, SOLUCAO = ?"
+	String sql= "UPDATE chamado SET ID_ALUNO = ?, TITULO = ?, MENSAGEM = ?, TIPO_CHAMADO = ?, STATUS_CHAMADO = ?, SOLUCAO = ? , ID_USUARIO = ?"
 			+ " WHERE IDCHAMADO = ?";
 		try{
 		pstm = con.prepareStatement(sql);
@@ -90,7 +90,8 @@ public void alterarChamados(Chamados chamados) throws Exception {
 		pstm.setString(4, chamados.getTipo_chamado());
 		pstm.setInt(5, chamados.getStatus());
 		pstm.setString(6, chamados.getSolucao());
-		pstm.setInt(7, chamados.getIdchamado());
+		pstm.setInt(7, chamados.getIdAtendente());
+		pstm.setInt(8, chamados.getIdchamado());
 		
 		pstm.executeUpdate();
 		
@@ -149,6 +150,7 @@ public ArrayList<Chamados> listarChamados(int id, int idAluno) throws Exception 
 			chamados.setIdchamado(rs.getInt("IDCHAMADO"));
 			chamados.setStatus(rs.getInt("STATUS_CHAMADO"));
 			chamados.setSolucao(rs.getString("SOLUCAO"));
+			chamados.setIdAtendente(rs.getInt("ID_USUARIO"));
 			usuario.setNome_usuario(rs.getString("NOME_USUARIO"));
 			chamados.setUsuario(usuario);
 			lista.add(chamados);
