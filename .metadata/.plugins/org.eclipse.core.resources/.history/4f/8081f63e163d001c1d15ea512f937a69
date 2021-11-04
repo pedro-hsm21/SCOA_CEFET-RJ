@@ -132,12 +132,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Documents-icon.png")));
 		jMenuItemConsultaAvaliacao.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				try {
-					jMenuItemConsultaAvaliacaoActionPerformed(evt);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				jMenuItemConsultaAvaliacaoActionPerformed(evt);
 			}
 		});
 		jMenuConsulta.add(jMenuItemConsultaAvaliacao);

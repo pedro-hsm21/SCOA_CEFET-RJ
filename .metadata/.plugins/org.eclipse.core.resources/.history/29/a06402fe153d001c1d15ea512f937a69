@@ -132,12 +132,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Documents-icon.png")));
 		jMenuItemConsultaAvaliacao.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				try {
-					jMenuItemConsultaAvaliacaoActionPerformed(evt);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				jMenuItemConsultaAvaliacaoActionPerformed(evt);
 			}
 		});
 		jMenuConsulta.add(jMenuItemConsultaAvaliacao);
@@ -227,10 +222,8 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 
 	}// GEN-LAST:event_jMenuHomeMouseClicked
 
-	private void jMenuItemConsultaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) throws Exception {// GEN-FIRST:event_jMenuItemConsultaAvaliacaoActionPerformed
+	private void jMenuItemConsultaAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItemConsultaAvaliacaoActionPerformed
 		this.setVisible(false);
-		TelaAvaliacaoAluno telaavaliacao = new TelaAvaliacaoAluno();
-		telaavaliacao.setVisible(true);
 
 	}// GEN-LAST:event_jMenuItemConsultaAvaliacaoActionPerformed
 
