@@ -64,7 +64,7 @@ public class TelaTurmasAluno extends JFrame {
 	public TelaTurmasAluno() throws Exception {	
 				
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Cadastrar Aluno");
+		setTitle("SCOA - Turmas");
 		setResizable(false);
 		setBounds(100, 100, 1024, 600);		
 		contentPane = new JPanel();
@@ -100,7 +100,15 @@ public class TelaTurmasAluno extends JFrame {
 			new String[] {
 				"Curso", "Matricula"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tableCurso_Aluno.getColumnModel().getColumn(0).setResizable(false);
 		tableCurso_Aluno.getColumnModel().getColumn(0).setPreferredWidth(426);
 		tableCurso_Aluno.getColumnModel().getColumn(1).setResizable(false);
 		scrollPane.setViewportView(tableCurso_Aluno);
@@ -116,11 +124,26 @@ public class TelaTurmasAluno extends JFrame {
 		tableAluno_Turma = new JTable();
 		tableAluno_Turma.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"Periodo", "Turma", "Dia", "Horario", "Media", "Frequencia", "Professor"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tableAluno_Turma.getColumnModel().getColumn(0).setResizable(false);
+		tableAluno_Turma.getColumnModel().getColumn(1).setResizable(false);
+		tableAluno_Turma.getColumnModel().getColumn(2).setResizable(false);
+		tableAluno_Turma.getColumnModel().getColumn(3).setResizable(false);
+		tableAluno_Turma.getColumnModel().getColumn(4).setResizable(false);
+		tableAluno_Turma.getColumnModel().getColumn(5).setResizable(false);
+		tableAluno_Turma.getColumnModel().getColumn(6).setResizable(false);
 		scrollPane_1.setViewportView(tableAluno_Turma);
 		
 		JButton btnNewButton = new JButton("Selecionar Curso");

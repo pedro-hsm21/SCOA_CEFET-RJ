@@ -21,7 +21,7 @@ public class MetasDao extends Connection {
 	}
 
 	public void cadastrarMetas(Metas Metas) throws Exception {
-		String sql = "INSERT INTO metas_prazo" + "(TITULO, DESCRICAO, ID_PROFESSOR, TIPO_META, STATUS_META, DATA_INICIO, DATA_FIM)"
+		String sql = "INSERT INTO metas_prazo" + "(TITULO_META, DESCRICAO_META, ID_PROFESSOR, TIPO_META, STATUS_META, DATA_INICIO, DATA_FIM)"
 				+ "  VALUES (?,?,?,?,?,?,?)";
 		try {
 			pstm = con.prepareStatement(sql);
@@ -83,7 +83,7 @@ public class MetasDao extends Connection {
 	}
 
 	public void alterarMetas(Metas Metas) throws Exception {
-		String sql = "UPDATE Metas_prazo SET TITULO = ?, DESCRICAO = ?, ID_PROFESSOR = ?, TIPO_META = ?, STATUS_META = ?, DATA_INICIO = ?, DATA_FIM = ?"
+		String sql = "UPDATE Metas_prazo SET TITULO_META = ?, DESCRICAO_META = ?, ID_PROFESSOR = ?, TIPO_META = ?, STATUS_META = ?, DATA_INICIO = ?, DATA_FIM = ?"
 				+ " WHERE IDMETAS_PRAZO = ?";
 		
 		try {
@@ -137,8 +137,8 @@ public class MetasDao extends Connection {
 				Metas Metas = new Metas();
 				Usuario user = new Usuario();
 				Metas.setIdMeta(rs.getInt("IDMETAS_PRAZO"));
-				Metas.setTitulo(rs.getString("TITULO"));
-				Metas.setDescricao(rs.getString("DESCRICAO"));
+				Metas.setTitulo(rs.getString("TITULO_META"));
+				Metas.setDescricao(rs.getString("DESCRICAO_META"));
 				Metas.setIdProf(rs.getInt("ID_PROFESSOR"));
 				Metas.setTipo(rs.getInt("TIPO_META"));
 				Metas.setStatus(rs.getInt("STATUS_META"));
@@ -181,8 +181,8 @@ public class MetasDao extends Connection {
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				Metas.setIdMeta(rs.getInt("IDMETAS_PRAZO"));
-				Metas.setTitulo(rs.getString("TITULO"));
-				Metas.setDescricao(rs.getString("DESCRICAO"));
+				Metas.setTitulo(rs.getString("TITULO_META"));
+				Metas.setDescricao(rs.getString("DESCRICAO_META"));
 				Metas.setIdProf(rs.getInt("ID_PROFESSOR"));
 				Metas.setTipo(rs.getInt("TIPO_META"));
 				Metas.setStatus(rs.getInt("STATUS_META"));

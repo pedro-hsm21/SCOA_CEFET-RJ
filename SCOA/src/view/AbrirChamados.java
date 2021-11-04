@@ -17,7 +17,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import java.awt.Component;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
@@ -175,21 +174,17 @@ public class AbrirChamados  extends JFrame {
 						status = controller.cadastrarChamado(codigoA, titulo, msg, tipo);
 					}else {	
 						status = controller.alterarChamados(codigoCh, codigoA, titulo, msg, tipo, chStatus, solucao, codU);
-						TelaChamados tela = new TelaChamados();
-						tela.carregarTable(-1, -1);
-						tela.setIdusuario(codU);
-						tela.setVisible(true);
+					//	TelaChamados tela = new TelaChamados();
+					//	tela.carregarTable(-1, -1);
+					//	tela.setIdusuario(codU);
+					//	tela.setVisible(true);
 					}//if codCh	
 				}catch(Exception e1) {
 					e1.printStackTrace();
 				}//try/catch
 				
 				if (status) {
-					JOptionPane.showMessageDialog(null,"Sucesso!");
-					if (codigoCh > 0) {
-						TelaChamados tela = new TelaChamados();
-						tela.setVisible(true);
-					}
+					JOptionPane.showMessageDialog(null,"Sucesso!");	
 					
 					dispose();						
 				} else {					
@@ -223,7 +218,7 @@ public class AbrirChamados  extends JFrame {
 		panelCadastroCurso.add(lblTipo);
 		
 		cbTipo = new JComboBox<String>();
-		cbTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Selecione", "Solicita\u00E7\u00E3o de Servi\u00E7o", "Reclama\u00E7\u00E3o", "Sugest\u00E3o ", "Problema Tecnico "}));
+		cbTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Selecione", "Solicita\u00E7\u00E3o de Servi\u00E7o", "Reclama\u00E7\u00E3o", "Sugest\u00E3o ", "Problema Tecnico ", "TECNICO", "FINANCEIRO", "ADMINISTRATIVO"}));
 		cbTipo.setBounds(521, 44, 361, 20);
 		panelCadastroCurso.add(cbTipo);
 		

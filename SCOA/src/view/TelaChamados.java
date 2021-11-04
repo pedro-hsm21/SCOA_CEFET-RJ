@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import controller.ChamadosController;
 import controller.UsuarioController;
@@ -126,13 +125,25 @@ public class TelaChamados extends JFrame {
 			new String[] {
 				"Numero", "Titulo", "Solicitante", "Status", "Atendente"
 			}
-		));
+		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(199);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(219);
 		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setResizable(false);
 		scrollPane.setViewportView(table);
 		
 		btnNewButton = new JButton("Atender");
@@ -171,7 +182,7 @@ public class TelaChamados extends JFrame {
 		contentPane.add(btnfiltrar);
 		
 		cbFiltro = new JComboBox<String>();
-		cbFiltro.setModel(new DefaultComboBoxModel(new String[] {"Todos", "Aberto", "Em atendimento"}));
+		cbFiltro.setModel(new DefaultComboBoxModel<String>(new String[] {"Todos", "Aberto", "Em atendimento"}));
 		cbFiltro.setBounds(672, 90, 237, 20);
 		contentPane.add(cbFiltro);
 		

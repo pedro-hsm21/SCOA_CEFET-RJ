@@ -45,7 +45,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				lbl2.setText("Ol�, " + usuario.getNome_usuario());
+				lbl2.setText("Olá, " + usuario.getNome_usuario());
 			}
 		});
 		initComponents();
@@ -174,7 +174,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 				telaChamados.setVisible(true);
 			}
 		});
-		jMenuItemChamadosHistorico.setText("Hist�rico");
+		jMenuItemChamadosHistorico.setText("Historico");
 		jMenuChamado.add(jMenuItemChamadosHistorico);
 
 		mnPlanoDeEstudos = new JMenu("Plano de Estudos");
@@ -230,7 +230,7 @@ public class TelaPrincipalAluno extends javax.swing.JFrame {
 		try {
 			tela = new TelaAvaliacaoAluno();
 			tela.carregarTableCurso(usuario.getId_usuario());
-			tela.setVisible(true);this.setVisible(false);
+			tela.setVisible(true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

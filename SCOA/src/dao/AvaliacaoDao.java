@@ -51,7 +51,7 @@ public void cadastrarAvaliacao(Avaliacao avaliacao) throws Exception{
 			pstm.setInt(1, idAvaliacao);
 			pstm.setInt(2, rs2.getInt("idMatricula_turma"));			
 			pstm.executeUpdate();
-			JOptionPane.showMessageDialog(null, "Entrou no while");
+			
 			
 		}
 		
